@@ -1,0 +1,203 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage{appendix}
+\usepackage{subcaption}
+\usepackage{mdframed}
+
+\usepackage{listings}
+\usepackage{color}
+\lstdefinestyle{matlab_custom}{
+	language = matlab,
+	basicstyle=\scriptsize\fontfamily{cm}\sffamily,
+	showstringspaces = false,
+}
+
+\usepackage[margin=2cm]{geometry} %Set margin size
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Hanna Autio}
+\lhead{\today}
+\chead{Masters Thesis} %Course name
+
+\cfoot{\thepage}
+
+\usepackage{cleveref}
+
+\author{Hanna Autio}
+\title{A stochastic model for Meningococcal Disease in the African Meningitis belt} %Title here
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\cleardoublepage
+\newpage
+\setcounter{page}{1}
+
+% On my indices:
+% 	- Greek letters are constants
+% 	- n \eta for populations
+% 	- k \kappa for events
+
+
+\section{Introduction}
+
+The mathematical description of populations and disease dynamics is a field which can be almost infinitely complex. It is a subject of much research, relevant to policy makers and medical researchers.
+
+
+% Disease modelling
+%		-stochastic v deterministic
+%		-incorporating weather and shit
+
+
+% The förutsättningar for different countries to deal with the problem
+%		-When is an epidemic?
+%		-Look into more stuff to put here.
+% Issues with modelling weather + how that makes it hard to say exactly what's going on with the seasonality
+% Something about meningitis + WHO
+% 	-vaccination
+%		-possible eradication
+%		-areas of research which they have identified
+
+% MenAfriCar?
+
+\subsection{Background}
+
+The bacterium responsible for the disease examined in this report is the \emph{Neisseria Meningitidis}. Humans are the only known reservoir for the bacterium, and at a given time somewhere between $2\% - 50\%$ are likely to be carriers of the bacterium [sources]. In general, carriage does not lead to invasive disease, but it has been linked to a subsequent immune response to the bacterium. Carriage can last both for a very short period of time as well as for several months, during which the bacterium is present in the nasopharynx of the carrier [source: duality, virulence and trans..].
+
+\emph{N. Meningitidis} is genetically variable. It is classified based on some surface-level structures into different serogroups, most commonly A, B, C, W-135, X, and Y [source]. Note however that it is fairly common for the bacterium to be non-serogroupable[source?]. Of these main serotypes, most epidemics have historically been caused by serogroups A and B, and serogroups C and W-135 have also been the cause of some epidemics.
+
+The African meningitis belt was first described by Lapeyssonnie in 1968 [source:Lapeyssonnie]. This region is shown in \cref{[FIGURE:MENINGITIS BELT]}, and was characterized by a pattern of seemingly periodical epidemics of meningitis, with intervals of about 5-15 years, documented since the start of the 20th century. It's specific geographical area and what characterizes it has been examined since, and the World Health Organization characterizes it as the region in Africa between Senegal in the west and Ethiopia in the east [source:WHO]. In terms of meningitis, this region is characterised to a higher rate of meningitis and meningococcal disease than the rest of the world. Furthermore, semi-regular epidemics of the disease have been identified since the early 20th century [Lapeyssonnie]. The dynamics of the disease in this region can be classified into three characteristic states, hypoendemic, hyperendemic and epidemic [source: a hypothetical explanation..]. The hypoendemic state is during the rainy period, when the incidence rate of disease is about []. The hyperendemic state is signified by an increased incidence rate, and it occurs during the dry season. An epidemic state is reached when the incidence rate exceeds [whatever] and only occurs during the dry season. Occasionally an epidemic will last several years, dying out in the rainy season to re-emerge the following dry season. In general, the epidemics seems to occur with intervals of about 5-12 years, but they are not [i fas] [source: time series meningitis].
+
+One climate factor commonly considered to explain the higher incidence rates of meningitis in this region is the total precipitation. The region coincides fairly well with the area between the 300mm and 1100mm isohyets [source:Where is the meningitis belt]. The area as defined by the WHO also coincides with the region affected by the Harmattan [find source], a dry wind from the Saharan desert. As there are links between factors that irritate the airways and subsequent infection by \emph{N. Meningitidis} [sources on smoking, colds], a link between the Harmattan and the hyperendemic meningitis season would seem plausible. Is is an area of active research [?], and finding any climactic factors that could be driving the epidemics is outlined as an area of priority by the WHO [source: research priorities].
+
+Historically, epidemics in the meningitis belt have been caused by serogroup A, while most epidemics and infections in the rest of the world has been casued by serogroup B [source]. To tackle the disease dynamics in the meningitis belt, vaccines towards serogroup A have been introduced, and since the introduction of these, no new epidemics caused by this serogroup has occurred in the area. However, there have been incidences of other serogroups causing epidemics, most notably W-135. [sources]
+
+% Describe the seasonality
+% How the disease spreads
+% Serotypes + different strains of invasiveness + mutations
+% Age distribution and immunity and how it relates
+% Carriage state + immunization
+% Patterns in other parts of the world and how it compares (most commonly infects children who loses immunity from the mother) + carriage in college students and military recruits
+
+\subsection{Terminology}
+% Event
+% System
+% probability rate
+% population/subpopulation
+
+\begin{description}
+	\item[Event] An Event is something that somehow changes the state of the system.
+\end{description}
+
+\section{Methods}
+
+The goal of this project is to develop a model for the disease dynamics. To this end, a system for describing the population as well as the disease is defined. The equations governing it's behaviour is defined and briefly discussed, and subsequently a Poisson approximation is constructed. This Poisson approximation is used to evaluate the soundness of the model by performing multiple simulations of a single realization. The results of these simulations are used as an approximation of the probability distribution of the system as a whole, and different scenarios is examined.
+
+\subsection{Model}
+
+Consider a population of individuals. We divide the population into $\eta$ groups based on a few different parameters related to disease and population characteristics, for example age, carriage status or immunity. The state of the system at time $t = \tau$ is then described by a vector $X_\tau = \left( x_1 \left( \tau \right), \ldots x_\eta\left( \tau \right) \right)$, where $x_n\left( \tau \right)$ describes the number of individuals in population $n$ at time $\tau$. We let the system vary by allowing for discrete changes to the populations, and we call this events. Define the matrix $\Delta = \{ \delta_{kn} \}$, where $\delta_{kn}$ are the effects on population $n$ caused by event $k$.
+
+As the only change to the system is introduced by events as specified, there is an alternative description of the system state based on the initial state combined with information of the events. Define the vector $Y\left( \t \right) = \left( y_1\left( t \right) , \ldots y_\kappa \left( t \right) \right)$, where $y_k \left( t \right)$ is the number of events of type $k$ that has occurred at time $t$. With the initial state $X_0$, we can then describe the system state as $X \left( t \right) = X_0 + \Delta Y \left( t \right)$
+
+%We let the system state at time $t$ be described by the number of events of each type that has occurred up until that time. When paired with the initial population state, this can easily be projected onto the population space. This projection will lose some information, as there can be several sets of events that lead to the same population state where the converse is not true. Note however that each type of event is unique in the effect it has on the population state.
+%
+%
+%
+%% The mathematical description of the system, including Kolmogorov forward equation. This is, at it's foundation, a Markov jump process.
+%
+%
+%% Population into subpopulations
+%% System state?
+%% Non-unique indivduals
+%% Event probabilites do not change between events
+%
+%\subsubsection{Events}
+%
+%We define an event as a discontinuity in the system state over time or, equivalently, as an instantaneous and discrete chance to the system state.
+%
+%We define an event as an instantaneous change to the system.
+% one or more populations. For example, an event could be the maturation of a child, which would change the population of children by decreasing it by one and the population of adults by increasing it by one. Other simple examples include death and birth.
+%
+%To simulate and model these events, we need to define their properties. The interesting properties are the rates at which they occur as well as the effects they have on the populations. The effects of event $k, E_k$ on population $n$ is called $\delta_{kn}$, so that the accumulated effect from event $k$ is $\bm{\delta}_k = \left[ \delta_{k1} \ldots \delta_{k\eta} \right]$. In general, most of the $\delta{kn}$ for simple events should be $0$. The only non-zero entries should be $\pm 1$.
+%
+%The other property of an event which needs to be determined is their distributions. By the nature of the events as described above, they are assumed to follow a \emph{Poisson} distribution, so that $E_k \in \mathrm{Po} \left( r_k t\right)$, where $r_k$ is the rate at which the event is expected to occur. This rate can depend on the number of individuals in each population, as well as the current time. Defining these in an appropriate way is how to tune the system so that it produces relevant results. How to construct these rates depend on the properties of the event. For example, most rates will be linear to some population. The event of an adult dying will be linear to the number of adults
+%
+%% As we define an event as the instantaneous change to the system, it is practical to use the number of events that has occurred as the state variable. If the initial values of each population is known, this state is easily projected into the population domain using the vectors describing the effects of each event on the populations as t_0 + X * delta
+%
+%\subsubsection{Populations}
+%
+%The intuitive way to describe the state of a system like this is the number of individuals of each population, such that for $n$ populations we have the state vector $P = \left[ p_1 \ldots p_n \right] $. However, this description is missing some of the information, in that it does not collect any history. Instead, we will use the events as the base of our state.
+%
+%Assume that we have defined a set of $k$ events. We require each event to be unique in the sense that the collected effects they have on a p
+%
+%
+%% Interaction time <-> population
+
+\subsubsection{Populations}
+There are several levels of complexity for this model, each of which models the system slightly differently. The basic modelling and implementation is as described above, using discrete events and populations. The first level of the model only incorporates four relevant populations, carriers $C$, susceptible $S$, ill $D$, and immune $I$. While this implementation cannot show the relevant dynamics between age groups (as described in \cite{?}), it allows for basic validation of the implementation, if the parameters as described in the literature (\cite{?}) yields dynamics resembling what is seen in reality.
+
+This model allows for population flow in a few different directions (\cref{fig:simple_model}). Individuals in the population of susceptibles can be infected by a non-invasive carrier strain via contact with the  carrier population, or infected by an invasive strain by contact with an ill individual. Carriers will most likely carry their strain over about 6 months (as motivated in \cref{section:background_neisseria}), but in some cases their carried strain will evolve into an invasive strain and the carrier will become ill. Once ill, the individual is assumed to infect susceptible individuals with an invasive strain, leading to new infections. It is, however, assumed that the strain is similar enough to the carrier strain that carriers, as well as individuals immunized by carriage, will be immune to the invasive strain. Once ill, it is expected that an individual will recover in approximately a week, or pass away. Probabilities are shown in \cref{table:pars_model1}.
+
+As the first iteration does not include the population movement described in \cref{section:model_populationmove}, the seasonality and time dependency is impossible to catch. One simulation will then attempt to imitate the dynamics over a homogenous time period, be it dry season or wet season. To have the implementation behave more as one or the other, changing the probabilities should be sufficient.
+
+The second iteration of the model implements the same basic events as the first one, but introduces new compartments of the population. This is done by having several sub-population, each following the basic dynamics from the basic model, which will, with a certain probability, encounter each other and interact during the dry season. This is intended to mimic a state where different groups of people will converge around locations with better access to water under conditions where it is sparse.
+
+\subsubsection{Time dependency}
+
+\subsection{Implementation}
+
+\section{Results and analysis}
+
+\section{Conclusions}
+
+
+% Report starts here
+
+% Figure float, including 2 subfigures
+%\begin{figure}
+%		\begin{mdframed}
+%			\centering
+%			\begin{subfigure}{0.45\textwidth}
+%				\begin{mdframed}
+%					\includegraphics[width=\textwidth]{}
+%					\caption{} \label{}
+%				\end{mdframed}
+%			\end{subfigure}
+%			\begin{subfigure}{0.45\textwidth}
+%				\begin{mdframed}
+%					\includegraphics[width=\textwidth]{}
+%					\caption{} \label{}
+%				\end{mdframed}
+%			\end{subfigure}
+%			\caption{} \label{}
+%		\end{mdframed}
+%\end{figure}
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%		\begin{mdframed}
+%			\includegraphics[width=0.48\textwidth]{}
+%			\caption{} \label{}
+%		\end{mdframed}
+%\end{wrapfigure}
+
+\newpage
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\begin{appendices}
+
+%\lstinputlisting[language=matlab, style=matlab_custom]{} % Example code input
+
+\end{appendices}
+\end{document}
