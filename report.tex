@@ -72,15 +72,15 @@ The mathematical description of populations and disease dynamics is a field whic
 
 \subsection{Background}
 
-The bacterium responsible for the disease examined in this report is the \emph{Neisseria Meningitidis}. Humans are the only known reservoir for the bacterium, and at a given time somewhere between $2\% - 50\%$ of a population are likely to be carriers of the bacterium [sources]. In general, carriage does not lead to invasive disease, but it has been linked to a subsequent immune response to the bacterium. Carriage can last both for a very short period of time as well as for several months, during which the bacterium is present in the nasopharynx of the carrier [source: duality, virulence and trans..]. 
+The bacterium responsible for the disease examined in this report is the \emph{Neisseria Meningitidis}. Humans are the only known reservoir for the bacterium, and at a given time somewhere between $2\% - 50\%$ of a population are likely to be carriers of the bacterium [sources]. In general, carriage does not lead to invasive disease, but it has been linked to a subsequent immune response to the bacterium. Carriage can last both for a very short period of time as well as for several months, during which the bacterium is present in the nasopharynx of the carrier \cite{taha2002duality}. 
 
 \emph{N. Meningitidis} is genetically variable. It is classified, based on surface-level structures, into different serogroups, most commonly A, B, C, W-135, X, and Y [source]. Note however that it is fairly common for the bacterium to be non-serogroupable[source?]. Of the main serotypes, most epidemics have historically been caused by serogroups A and B, and serogroups C and W-135 have also been the cause of some epidemics. 
 
-The African meningitis belt was first described by Lapeyssonnie in 1968 [source:Lapeyssonnie]. This region is shown in \cref{[FIGURE:MENINGITIS BELT]} and has been characterized by semi-regular epidemics documented since the early 20th century. Its specific geographical area is defined be the WHO as the region in Africa between Senegal in the west and Ethiopia in the east [source], which coincides fairly well with the area described by Lapeyssonnie.
+The African meningitis belt was first described by Lapeyssonnie in 1968 \cite{lapeyssonnie}. This region is shown in \cref{[FIGURE:MENINGITIS BELT]} and has been characterized by semi-regular epidemics documented since the early 20th century. Its specific geographical area is defined be the WHO as the region in Africa between Senegal in the west and Ethiopia in the east [source], which coincides fairly well with the area described by Lapeyssonnie.
 
-Meningitis dynamics in the region have some characteristics. Firstly, there are recurring epidemics with intervals of about 5-15 years. Secondly, the incidence rates of disease is higher than in other regions of the world. Thirdly, the disease is most commonly caused by a serogroup which does not usually cause epidemics in the rest of the world. All of these properties are also affected by a strong seasonality, so that there are three distinguishable states for the disease in a population. There is the hypoendemic state, with a low incidence rate of about [] which occurs during the wet season. During the dry season, the system falls into a hyperendemic state with increased incidence rate, or occasionally an epidemic state. An epidemic state is defined as a rate of disease above []. \cite{a hypothetical...}
+Meningitis dynamics in the region have some characteristics. Firstly, there are recurring epidemics with intervals of about 5-15 years. Secondly, the incidence rates of disease is higher than in other regions of the world. Thirdly, the disease is most commonly caused by a serogroup which does not usually cause epidemics in the rest of the world. All of these properties are also affected by a strong seasonality, so that there are three distinguishable states for the disease in a population. There is the hypoendemic state, with a low incidence rate of about [] which occurs during the wet season. During the dry season, the system falls into a hyperendemic state with increased incidence rate, or occasionally an epidemic state. An epidemic state is defined as a rate of disease above []. \cite{mueller2010hypothetical}
 
-The reason for the specific dynamics in this region is often considered to be some climatic factors. One such factor frequently considered is the total precipitation. The region coincides fairly well with the area between the 300mm and 1100mm isohyets \cite{Where is the meningitis belt}. Another common cilmate factor for the area, as defined by the WHO, is that it is affected by the Harmattanm a dry wind from the Saharan desert. As there are links between factors that irritate the airways and subsequent infection by \emph{N. Meningitidis} [sources on smoking, colds], a link between the Harmattan and the hyperendemic meningitis season would seem plausible. Is is an area of active research [?], and finding any climactic factors that could be driving the epidemics is outlined as an area of priority by the WHO [source: research priorities].
+The reason for the specific dynamics in this region is often considered to be some climatic factors. One such factor frequently considered is the total precipitation. The region coincides fairly well with the area between the 300mm and 1100mm isohyets \cite{molesworth2002meningitis}. Another common cilmate factor for the area, as defined by the WHO, is that it is affected by the Harmattanm a dry wind from the Saharan desert. As there are links between factors that irritate the airways and subsequent infection by \emph{N. Meningitidis} [sources on smoking, colds], a link between the Harmattan and the hyperendemic meningitis season would seem plausible. Is is an area of active research [?], and finding any climactic factors that could be driving the epidemics is outlined as an area of priority by the WHO [source: research priorities].
 
 Historically, epidemics in the meningitis belt have been caused by serogroup A, while most epidemics and infections in the rest of the world has been casued by serogroup B [source]. To tackle the disease dynamics in the meningitis belt, vaccines towards serogroup A have been introduced, and since the introduction of these, no new epidemics caused by this serogroup has occurred in the area. However, there have been incidences of other serogroups causing epidemics, most notably W-135. [sources]
 
@@ -99,7 +99,8 @@ Historically, epidemics in the meningitis belt have been caused by serogroup A, 
 
 \section{Methods}
 
-The goal of this project is to develop a model for the disease dynamics. To this end, a system for describing the population as well as the disease is defined. The equations governing it's behaviour is defined and briefly discussed, and a computer program for simulating realizations of the given system is constructed. Several realizations of the same system is considered, and together they yield an approximation of the probability distribution of the system states over time. 
+The goal of this project is to develop a model for the disease dynamics. To this end, a system for describing the population as well as the disease is defined. The equations governing it's behaviour is defined and briefly discussed, and a computer program for simulating realizations of the given system is constructed. Several realizations of the same system is considered, and together they yield an approximation of the probability distribution of the system state over time. 
+
 
 \subsection{Model}
 
@@ -149,12 +150,14 @@ The goal of this project is to develop a model for the disease dynamics. To this
 
 \newpage
 
-\bibliographystyle{plain}
-\bibliography{bibliography}
-
 \begin{appendices}
 
 %\lstinputlisting[language=matlab, style=matlab_custom]{} % Example code input
 
 \end{appendices}
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+
 \end{document}
