@@ -120,9 +120,20 @@ The goal of this project is to develop methods to understand the dynamics charac
 
 \subsection{Model}
 
+We consider a population consisting of a discrete number of individuals. We are then interested in the distribution of, for example, disease in the population, and as such divide it into a set of sub-populations based on disease status and other properties. This is done in such a way that no individual can be part of more than one subpopulation at a time. The state of the population can then be described by a vector containing the number of individuals in each subpopulation, $X = \left[ x_1 \ldots x_\eta \ldots x_n\right]$, where $x_1$ is the number of individuals in subpopulation one. The total number of individuals in the population is given by $\sum_{\eta = 1}^n x_{\eta}$. We will use the vector $X$ as the system state variable.
+Note that this method does not allow for unique individuals in any way. Possible issues that may arise are discussed below.
+
+Given the definition of the system state, a framework for dynamics like infection, transmission and recovery must be introduced. These dynamics are allowed to occur under an \emph{event} framework, where each event corresponds to one specific type of dynamic. It is assumed that an event occurs quickly and can only increment or decrement a subpopulation by one individual. For example, the maturation of a child would be modelled as a instantaneous event that decreases the population of children by one and increases the population of adults by one, while the birth of a child would increment the population of children by one.
+
+Events relevant to the disease dynamics are random events. We assume they follow a Poisson distribution, with a rate that may depend on relevant subpopulations. For example, a recovery event will have a zero rate when the population of infected is zero as there is no one that can recover. The rate is assumed constant between events.
+
+Given this framework, 
+
 To describe the relevant disease dynamics, we define a system based on the population, where we classify the population into subpopulations and let the number of individuals in the respective subpopulation describe the system state. This methodology corresponds well to the SIR-models frequently used in medical population dynamics. A sufficent system description is then the vector containing the number of individuals in each population. We call this vector $X = \left[ x_1 \ldots x_\eta \ldots x_n \right]$. 
 
-The transition from one system state to another occurs as a Markov jump. 
+We assume that the transition from one system state to another occurs as a Markov Jump, so that the system over time is a Markov process. In a continuous-time framework, this assumption implies that the probability $P \left( X_{\tau + s} = \xi_i | X_{\tau} = \xi_j \right) = P\left( X_{s} = \xi_i | X_{0} = \xi_j\right)$, or in other words: Given the current state, earlier history does not contribute any information to the prediction of future states. The transition from one system state to another is called an \emph{event}. As all stochastic dynamics is introduced to the system by the means of these events, analyis of the process is analysis of the events.
+
+
 
 % Population into subpopulations
 % System state?
