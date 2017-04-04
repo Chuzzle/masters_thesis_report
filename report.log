@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  14 FEB 2017 17:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  29 MAR 2017 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -850,47 +850,22 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ]
 
 LaTeX Warning: Reference `[FIGURE:MENINGITIS BELT]' on page 1 undefined on inpu
-t line 79.
+t line 89.
 
 [1
 
-]
-
-LaTeX Warning: Citation `?' on page 2 undefined on input line 146.
-
-
-LaTeX Warning: Citation `?' on page 2 undefined on input line 146.
-
-
-LaTeX Warning: Reference `fig:simple_model' on page 1 undefined on input line 1
-48.
-
-
-LaTeX Warning: Reference `section:background_neisseria' on page 1 undefined on 
-input line 148.
-
-
-LaTeX Warning: Reference `table:pars_model1' on page 1 undefined on input line 
-148.
-
-
-LaTeX Warning: Reference `section:model_populationmove' on page 1 undefined on 
-input line 150.
-
-[2] [3]
-No file report.bbl.
-(./report.aux)
+] [2] (./report.bbl) [3] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13534 strings out of 494466
- 244691 string characters out of 6166387
+ 13537 strings out of 494466
+ 244700 string characters out of 6166387
  326598 words of memory out of 5000000
- 16574 multiletter control sequences out of 15000+600000
+ 16575 multiletter control sequences out of 15000+600000
  16760 words of font info for 62 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  45i,11n,43p,10420b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (4 pages, 16052 bytes).
+Output written on report.dvi (4 pages, 14596 bytes).
