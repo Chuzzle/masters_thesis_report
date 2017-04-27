@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2016.8.28)  4 APR 2017 15:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2016.8.28)  27 APR 2017 12:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -897,14 +897,14 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 40.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
+] [1
+
 ]
 
 LaTeX Warning: Reference `[FIGURE:MENINGITIS BELT]' on page 1 undefined on inpu
-t line 89.
+t line 95.
 
-[1
-
-] [2] [3] (./report.bbl) [4] (./report.aux)
+[2] [3] (./report.bbl) [4] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -918,4 +918,4 @@ Here is how much of TeX's memory you used:
  350 hyphenation exceptions out of 8191
  42i,11n,43p,10395b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (5 pages, 18236 bytes).
+Output written on report.dvi (5 pages, 24504 bytes).
