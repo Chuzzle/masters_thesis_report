@@ -110,6 +110,12 @@ Historically, epidemics in the meningitis belt have been caused by serogroup A, 
 % Patterns in other parts of the world and how it compares (most commonly infects children who loses immunity from the mother) + carriage in college students and military recruits
 
 % Social aspects in the meningitis belt
+	% -infrastructure
+	% -policy
+	% -access to clean water
+
+\subsection{Main goals of this project}
+
 % What are the goals of this thesis and why have I chosen to focus on those aspects?
 
 \subsection{Terminology}
@@ -138,7 +144,11 @@ The equation describing the probability density distribution of the system state
 
 Depending on the problem one wishes to model, there can be events that might not obviously be considered random. Examples are aging, where the transition from a sub-population of individuals $\leq 4$ years to a sub-population of ages $5-14$ can not be considered random on the individual level. However, the individual level is not considered here. As such, we assume that the transition between the two groups above will occur about once per individual in the younger group every five years. This lets us formulate aging events as random, Poisson distributed events.
 
-Another consequence of the lack of individual focus in this model is that it is in theory possible for very unlikely scenarios on the individual level to occur. For example, consider the case where there is no one current ill. Then an event occurs, incrementing the ill sub-population by one, which increases the rate of the recovery event to a non-zero value. Immediately after, the recovery event occurs. Here, we cuold have the case that a "specific" individual contracted the disease and recovered in an unreasonable short period of time. This is a potential scenario in this model, however not very likely.
+Another consequence of the lack of individual focus in this model is that it is in theory possible for very unlikely scenarios on the individual level to occur. For example, consider the case where there is no one current ill. Then an event occurs, incrementing the ill sub-population by one, which increases the rate of the recovery event to a non-zero value. Immediately after, the recovery event occurs. Here, we could have the case that a "specific" individual contracted the disease and recovered in an unreasonable short period of time. This is a potential scenario in this model, however not very likely.
+
+Within the stochastic framework established, there is no definite way of implementing a minimum time of for example disease. There are, however, ways to emulate such a behaviour when constructing events and populations, which can lead to a more accurate model, incorporating periods of incubation and similar scenarios. A period of incubation is introduced to this model by constructing a new population of infected individuals who are neither carriers nor ill. This population increases when a susceptible individual contracts the bacterium, and the population decreases as individuals either become sick or become carriers.
+
+A list of the events incorporated in the model is included in \cref{appendix:events} together with the rates. A figure showing the flow of population between different groups of disease status is shown in \cref{fig:population_flow}.
 
 % Something about ways to avoid this kind of thing, or chaining events. Talk about the incubation period.
 
@@ -152,9 +162,21 @@ Another consequence of the lack of individual focus in this model is that it is 
 
 As mentioned in the background, the disease and immunity show some dependencies of age, and so the population is divided into sub-populations based on age. The choice was made to divide the population into three age groups, infants (0-4 years), young (5-14 years), and adult ($\geq15$ years). These age groups were chosen based on available data for the disease distribution and on population data.
 
-
+In order to produce a model that can take into account the variations of the population over time, birth and death was also included into the model on a slightly simplified basis. It is assumed that only the oldest sub-population bears children, and it is also assumed that this group is the only one to die from non-disease related causes. This includes the infant mortality rate, and so the birth rate is calculated based on the number of children that survive the first year. These approximations leads to a small shift in the distribution of the age groups over time, but the shift is only shown after a time period greater than 10 years and there are no indications that this affects the results in any way.
 
 \subsubsection{Time dependency}
+
+As one of the main goals of this project is to examine the seasonality of the disease, some sort of time dependency must be included. So far, only probability rates that depend exclusively on the population has been considered. In this section, I will make some comments on probability rates that can vary with time.
+
+We consider events for which the probability rate $\lambda$ may depend on time. 
+
+To match the questions posed in the goals for this thesis, two types of time dependency was introduced. The first is based on a change in behaviour of the population, leading to an
+
+\subsection{Acquiring data and parameters}
+
+\subsubsection{Population data}
+
+\subsubsection{Disease data}
 
 \subsection{Implementation}
 
