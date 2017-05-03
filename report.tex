@@ -146,7 +146,7 @@ Depending on the problem one wishes to model, there can be events that might not
 
 Another consequence of the lack of individual focus in this model is that it is in theory possible for very unlikely scenarios on the individual level to occur. For example, consider the case where there is no one current ill. Then an event occurs, incrementing the ill sub-population by one, which increases the rate of the recovery event to a non-zero value. Immediately after, the recovery event occurs. Here, we could have the case that a "specific" individual contracted the disease and recovered in an unreasonable short period of time. This is a potential scenario in this model, however not very likely.
 
-Within the stochastic framework established, there is no definite way of implementing a minimum time of for example disease. There are, however, ways to emulate such a behaviour when constructing events and populations, which can lead to a more accurate model, incorporating periods of incubation and similar scenarios. A period of incubation is introduced to this model by constructing a new population of infected individuals who are neither carriers nor ill. This population increases when a susceptible individual contracts the bacterium, and the population decreases as individuals either become sick or become carriers.
+Within the stochastic framework established, there is no definite way of implementing a minimum time of for example disease. There are however ways to emulate such a behaviour when constructing events and populations, leading to a more accurate model that incorporates periods of incubation and similar scenarios. A period of incubation is introduced to this model by constructing a new population of infected individuals who are neither carriers nor ill. This population increases when a susceptible individual contracts the bacterium, and the population decreases as individuals either become sick or become carriers.
 
 A list of the events incorporated in the model is included in \cref{appendix:events} together with the rates. A figure showing the flow of population between different groups of disease status is shown in \cref{fig:population_flow}.
 
@@ -157,6 +157,8 @@ A list of the events incorporated in the model is included in \cref{appendix:eve
 % Non-unique indivduals
 % Event probabilites do not change between events
 % Interaction time <-> population
+
+% Introduce an example of one of the equations governing the rates. Probably one of the semi-complex.
 
 \subsubsection{Populations}
 
@@ -170,15 +172,35 @@ As one of the main goals of this project is to examine the seasonality of the di
 
 We consider events for which the probability rate $\lambda$ may depend on time. 
 
-To match the questions posed in the goals for this thesis, two types of time dependency was introduced. The first is based on a change in behaviour of the population, leading to an
+To match the questions posed in the goals for this thesis, two types of time dependency was introduced and compared. They are intended to model hypothetical explanations for the seasonal variations in the disease pattern between dry and wet season, by changing one or more of the equations governing the event probability rates.
+
+The dry and wet season are here modelled as discrete and deterministic periods. The dry season occurs between days $65$ and $335$ each year, lasting for about nine months. The rest is considered wet season.
+
+As the modelling procedure requires the system state and probability rates to be constant between events, the changes brought by the seasonal shift is introduced immediately after the first event after the season change. The new probability rates are calculated based on the updated equations and the updated system state. Provided events are frequent enough, this method should not introduce significant errors. The uncertainty in the exact and discrete onset of the seasons should be a greater source of uncertainty and error.
+
+The changes in the equations are different based on what type of time dependency is introduced. One is designed to model a change in the population behaviour, namely two separate groups coming in contact over the dry season. Practically, this is done by introducing events corresponding to the biological events introduced by this contact, i.e transmission from one population group to the other, and letting the probability rate from that event be zero during the wet season.
+
+The second time dependent behaviour considered here is simply a change in the invasiveness of the disease itself, and is modelled by a change in one of the internal parameters.
 
 \subsection{Acquiring data and parameters}
 
-\subsubsection{Population data}
+The implementation discussed in this project is designed to approximately match a theoretical population in northern Nigeria. The region was chosen as there is reliable data.
+
+\subsubsection{Population and climate data}
+
+The only climate data currently used is when the wet season occurs, which in this region is approximately from July though September. The year start is set to the first of August, to ensure a simulation start and end with as few interesting events as possible.
+
+The distribution of the population was sourced from Gapminder, and the population growth resulting from a model disregarding the disease corresponds well to a 2\% population growth, which is the current value in Nigeria.
+
+% Comment on the population size
+
+% Comment on migration
 
 \subsubsection{Disease data}
 
 \subsection{Implementation}
+
+The model was implemented in \verb0C++0, and could be easily adapted to a different problem.
 
 \section{Results and analysis}
 
