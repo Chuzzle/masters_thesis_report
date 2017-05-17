@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  4 MAY 2017 10:50
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  17 MAY 2017 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -852,18 +852,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ]
 
 LaTeX Warning: Reference `[FIGURE:MENINGITIS BELT]' on page 1 undefined on inpu
-t line 95.
+t line 98.
 
-[2]
+[2] [3]
 
-LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 15
+LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 16
 1.
 
 
 LaTeX Warning: Reference `fig:population_flow' on page 1 undefined on input lin
-e 151.
+e 161.
 
-[3] [4] (./report.bbl) [5] (./report.aux)
+[4] [5] (./report.bbl) [6] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -877,4 +877,4 @@ Here is how much of TeX's memory you used:
  350 hyphenation exceptions out of 8191
  45i,11n,43p,10420b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (6 pages, 30708 bytes).
+Output written on report.dvi (7 pages, 33296 bytes).
