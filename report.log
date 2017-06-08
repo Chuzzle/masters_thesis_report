@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  2 JUN 2017 16:45
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  5 JUN 2017 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -862,14 +862,14 @@ i-demic menin-gi-tis in the re-gion. A polysaccharide-
 
 [3]
 
-LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 13
-6.
+LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 15
+0.
 
 
 LaTeX Warning: Reference `fig:population_flow' on page 1 undefined on input lin
-e 136.
+e 150.
 
-[4] [5] (./report.bbl) [6] (./report.aux)
+[4] [5] [6] (./report.bbl) [7] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -883,4 +883,4 @@ Here is how much of TeX's memory you used:
  350 hyphenation exceptions out of 8191
  45i,12n,43p,10420b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (7 pages, 39852 bytes).
+Output written on report.dvi (8 pages, 41464 bytes).
