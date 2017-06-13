@@ -10,6 +10,17 @@
 \usepackage{subcaption}
 \usepackage{mdframed}
 
+% Sets small roman numerals as the symbols in enumerate environments
+\usepackage{enumerate}
+\usepackage{enumitem}
+\setlist[enumerate,1]{label={\upshape(\roman*)}}
+
+% Theorem environments
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Code formatting
 \usepackage{listings}
 \usepackage{color}
 \lstdefinestyle{matlab_custom}{
@@ -54,6 +65,8 @@
 The mathematical description of populations and disease dynamics is a field which can be extremely complex. It is a subject of much research, relevant to policy makers and medical researchers. An accurate model that can predict future dynamics can be of immense value, both to prepare for and deal with epidemics, and to evaluate different vaccination policies. However, accuracy in itself is not enough. The model must also be precise enough, as well as capable of evaluating several possible scenarios within a reasonable time frame. This leads to a need for a balance between accuracy, which means several different interactions must be considered, and swiftness, which calls for approximations and numerical efficiency.
 
 A common practise for population dynamics is to approximate a discrete and random system, according to the central limit theorem and the law of large numbers, by a continuous and deterministic system. It is obvious that in a given population, the number of individuals is a discrete number. Furthermore, it is intuitively clear that events such as contagion and infection are fundamentally random. However, models that incorporate this randomness into their structure are in general significantly slower to use, as a single evaluation will take longer and more evaluations are needed to increase precision and accuracy (in correspondence to the Monte Carlo framework). Consequently, an approximation is made to a deterministic system governed by differential equations, and letting the populations vary continuously. By the law of large numbers and the central limit theorem, this is no issue if the population is large enough and a continuous population will, while not entirely accurate, be at least as specific as a realisation of a discrete random system. With this framework standard numerical procedures can be used, and as the model is deterministic only one evaluation is needed. However, the law of large numbers only holds as long as there is indeed a large number of individuals; whenever a population (or subpopulation) faces extinction the rule no longer holds. These and other factors must all be considered when determining what framework and what model is the most appropriate for the system at hand, with respect to accuracy, speed and likely system states.
+
+Most classical approaches to population dynamics describes the system in terms of the relative number of individuals in a given sub-population, but there are some limitations to this method and alternatives should be considered. SIR-models and other compartmental models are examples of the aforementioned, where the system state is recorded based on how large the different population compartments are. However, in some cases this will not provide sufficient information. Consider for example the case where a model is used to estimate what capacity a maternity ward should have some years into the future. It is then not sufficient to consider only the population growth over time, but the raw number of births are the relevant factor. A compartmental model is not suited for this specific problem, and a model more focused on the specific dynamics should be developed.
 
 The complexity in modelling population dynamics arises from several factors. Firstly, the modelling of a population in itself, disregarding external factors, can be made increasingly complex by considering each individual and the exact changes they are subject to. Secondly, external factors should be considered so as to make the modelling relevant for policy makers. What external factors to include and how precisely they should be modelled, as well as their precise effects on the population, introduces a whole new layer of complexity. For example, one external factor that may be interesting to consider is weather, and currently there is no reasonable way to reliably model the weather. It can even be argued that to accurately model a population, the whole system that is the earth itself must be considered. Consequently, some approximations and assumptions will be made, even when choosing the stochastic approach to modelling. As the stochastic approach is in general more complex, it can be argued that more of these assumptions and approximations will be made than in a corresponding deterministic model to compensate for the increased complexity otherwise. This should also be considered when evaluating different options for modelling.
 
@@ -111,7 +124,9 @@ To further determine the seasonality of the disease, also the epidemic state sho
 
 \section{Methods}
 
-The development of a stochastic model for population dynamics aims at determining the probability for the system to be in a given state at a given time. Typically, there will not be a closed-form analytical solution for this problem, and the Monte Carlo framework is employed to produce estimates. This is also the basic method used in this project.
+The development of a stochastic model for population dynamics aims at determining the probability for the system to be in a given state at a given time. Typically, there will not be a closed-form analytical solution for this problem, and the Monte Carlo framework is employed to produce estimates. This is also the basic method used in this project. This means that a model is developed for the general, stochastic behaviour of the system, and a multitude of realisations are simulated. The aggregate of these realisations should then be a viable approximation of the probabilistic behaviour of the system.
+
+For this problem, it was determined that a model should not focus only on the population distribution over time but also the number of times an individual was infected. There are several reasons for this; One is that the rate of permanent sequelae is significant, meaning that while an individual may recover from the disease itself the history of their disease is still relevant. Another reason is that the information used to determine when an epidemic is, is the number of cases that has occurred and not the specific number of sick individuals at a given time.
 
 In this section, I explain the model constructed for this problem, and make some comments on the simulation method as well as the parameters. Finally, there are some comments on the implementation.
 
@@ -122,6 +137,52 @@ In this section, I explain the model constructed for this problem, and make some
 % Make a comparison to earlier modelling examples and comment on why they may be less accurate
 
 \subsection{Model}
+
+According to the comments made above, a stochastic model focusing on the relevant dynamics was created. We begin by defining what dynamics should be considered, and constructing classes of events corresponding to each type of dynamic. For example, we will consider dynamics such as transmission and recovery and define one event class for each of these. Using this framework, we can record the number of times an event of each class occurs and take it as the system state variable. Given $m$ event classes, the system state variable at time $t$ is the vector $\bm{N}\left( t \right) = \left[ N_1 \left( t \right), \ldots, N_m \left( t \right) \right], \textrm{ each }N_\mu \in \mathbb{N}$. The ultimate goal is to determine the probability $P \left( \bm{N}\left( t \right)  = \bm{n} | X\left( 0 \right) \right)$ or: The probability that precisely $\bm{n} = \left[ n_1, \ldots, n_m \right]$ events of each class has occurred at time $t$, given an initial population $X\left( 0 \right)$.
+
+The event counts form a stochastic process, which under the following assumptions is a density dependent Markov Jump process.
+
+\begin{assumption} For a sufficiently small time interval $h$, the following assumptions hold:
+	\begin{enumerate}
+		\item Event occurrences in disjoint time-intervals are independent \label{assumption_1a}
+
+		\item The Chapman-Kolmogorov equation \cite{Kolmogoroff1931,Feller1940} holds.  \label{assumption_1b}
+
+		\item $P\left( N_{\mu} \left( t  + h \right)  - N_{\mu} \left( t \right) = 1 | X\left( t \right) \right) = W_{\mu} \left( X \left( t\right), t \right) h + \mathcal{O} \left( h \right)$. \label{assumption_1c}
+	
+		\item $P\left( N_{\mu}\left( t+h\right) = N_{\mu} \left( t \right) | X\left( t \right) \right) = 1-W_{\mu}\left( X \left( t \right) ,t \right) h + \mathcal{O}\left( h \right)$. \label{assumption_1d}
+
+		\item $P\left( N_{\mu}\left( t + h \right ) - N_{\mu} \left( t \right) = k | X\left( t \right) \right)= \mathcal{O}\left( h \right) , \, \textrm{ for all } k \geq 2$. \label{assumption_1e}
+	\end{enumerate}
+\end{assumption} \label{assumption_1}
+
+Assumptions \ref{assumption_1c} - \ref{assumption_1d} implies that the process formed by the event counts for a single class is a Poisson process with rate $W_{\mu}$, which may depend on the population and time. Assumption \ref{assumption_1e} ensures that no more than one event can occur simultaneously.
+
+The Chapman-Kolmogorov equation is as follows: Consider a stochastic process $\xi_1, \ldots, \xi_k$, with a joint probability density function $p_{\xi_1 \ldots \xi_k} \left( x_1, \ldots, x_k \right)$. Then the probability density
+\begin{align*}
+p_{\xi_1, \ldots, \xi_ {k-1}} \left( x_1, \ldots x_{k-1} \right) = \int_{-\infty}^\infty p_{\xi_1, \ldots, \xi_k}\left( x_1, \ldots, x_k \right) \mathrm{d} x_k,
+\end{align*}
+
+corresponding to a straight-forward marginalisation of the joint probability density function.
+
+To further discuss the Markov property of the system, some further discussion on the population space in which the process occurs is useful. A specific population is considered, and compartmentalized based on what events have been created. This is done in such a way that no individual can be included in more than one sub-population at once, and so that all the dynamics we would like to consider will affect at least one sub-population. The basic compartmentalisation used in this project can be seen in \cref{fig:population_flow}. In the following, we consider $k$ populations, so that the population space state is described as $X \left( t \right) = \left[ x_1 \ldots x_k \right], x_\kappa \in \mathbb{N}$.
+
+For each event class $\mu$ we define a vector $\delta^\mu$, where $\delta^\mu_\kappa$ describes the effects of event $\mu$ on population $\kappa$. The eventcounts can then easily be mapped to the population space by constructing a matrix $\bm{\delta} = \left[ \delta^1 \ldots \delta^m \right]^{T}$ as $X \left( t \right) = X \left( 0 \right) + \bm{\delta} \bm{N}$, but note that some information is lost in this projection. Using this description, there are no changes in the population outside of the events, which should match the initial idea that all relevant dynamics should be modelled using the event framework.
+
+Earlier we mentioned that the process constructed is a density dependent Markov jump process. The jump aspect of the process is in the discrete nature of the event counts, meaning that the system state jumps from one state to another with the instantaneous occurrence of an event. The density dependence is introduced via the probability rates $W_\mu \left( X\left( t \right), t \right)$, as they describe the future evolution of the process based on the current population an the current system state. Then only the Markov property should receive some further consideration. Again, we look to the $W_\mu$. They depend on the population state (and consequently the system state) $X$ at time $t$, but not on any earlier state. This is precisely the Markov property.
+
+In the comments on \cref{assumption_1}, we mentioned that each event count formed a Poisson process, so that the aggregate event counts forms a multivariate Poisson process. A well-known result for these is the following:
+
+\begin{lemma}
+\end{lemma}
+
+%The Chapman-Kolmogorov equation in the case of a Markov process can be written: $p_{\xi_j | \xi_i = x_i} \left( x_j \right) = \int_{-\infty}^\infty p_{\xi}$. 
+
+
+
+
+
+\newpage
 
 We consider a population consisting of a discrete number of individuals. We are then interested in the distribution of, for example, disease in the population, and as such divide it into a set of $n$ sub-populations based on disease status (and potentially other properties). This is done in such a way that no individual can be part of more than one subpopulation at a time. The state of the population can then be described by a vector containing the number of individuals in each subpopulation, $\bm{X} = \left[ x_1 \ldots x_\eta \ldots x_n\right]$, where $x_1$ is the number of individuals in subpopulation one. The total number of individuals in the population is given by $\sum_{\eta = 1}^n x_{\eta}$. We will use the vector $\bm{X} = \bm{X} \left( t \right)$ as the system state variable at time $t$. Note that this method does not allow for unique individuals in any way. Possible issues that may arise are discussed below.
 

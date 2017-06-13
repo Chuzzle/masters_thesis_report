@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  5 JUN 2017 16:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  13 JUN 2017 17:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -720,25 +720,40 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \c@mdf@zref@counter=\count143
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks23
+)
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip119
+\enit@outerparindent=\dimen154
+\enit@toks=\toks24
+\enit@inbox=\box49
+\enitdp@description=\count144
+)
+\c@assumption=\count145
+\c@theorem=\count146
+
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count144
-\lst@gtempboxa=\box49
-\lst@token=\toks23
-\lst@length=\count145
-\lst@currlwidth=\dimen154
-\lst@column=\count146
-\lst@pos=\count147
-\lst@lostspace=\dimen155
-\lst@width=\dimen156
-\lst@newlines=\count148
-\lst@lineno=\count149
-\lst@maxwidth=\dimen157
+\lst@mode=\count147
+\lst@gtempboxa=\box50
+\lst@token=\toks25
+\lst@length=\count148
+\lst@currlwidth=\dimen155
+\lst@column=\count149
+\lst@pos=\count150
+\lst@lostspace=\dimen156
+\lst@width=\dimen157
+\lst@newlines=\count151
+\lst@lineno=\count152
+\lst@maxwidth=\dimen158
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
-\c@lstnumber=\count150
-\lst@skipnumbers=\count151
-\lst@framebox=\box50
+\c@lstnumber=\count153
+\lst@skipnumbers=\count154
+\lst@framebox=\box51
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2013/08/26 1.5b listings configuration
@@ -755,29 +770,29 @@ Package ifvtex Info: VTeX not detected.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count152
-\Gm@cntv=\count153
-\c@Gm@tempcnt=\count154
-\Gm@bindingoffset=\dimen158
-\Gm@wd@mp=\dimen159
-\Gm@odd@mp=\dimen160
-\Gm@even@mp=\dimen161
-\Gm@layoutwidth=\dimen162
-\Gm@layoutheight=\dimen163
-\Gm@layouthoffset=\dimen164
-\Gm@layoutvoffset=\dimen165
-\Gm@dimlist=\toks24
+\Gm@cnth=\count155
+\Gm@cntv=\count156
+\c@Gm@tempcnt=\count157
+\Gm@bindingoffset=\dimen159
+\Gm@wd@mp=\dimen160
+\Gm@odd@mp=\dimen161
+\Gm@even@mp=\dimen162
+\Gm@layoutwidth=\dimen163
+\Gm@layoutheight=\dimen164
+\Gm@layouthoffset=\dimen165
+\Gm@layoutvoffset=\dimen166
+\Gm@dimlist=\toks26
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip119
-\f@ncyO@elh=\skip120
-\f@ncyO@erh=\skip121
-\f@ncyO@olh=\skip122
-\f@ncyO@orh=\skip123
-\f@ncyO@elf=\skip124
-\f@ncyO@erf=\skip125
-\f@ncyO@olf=\skip126
-\f@ncyO@orf=\skip127
+\fancy@headwidth=\skip120
+\f@ncyO@elh=\skip121
+\f@ncyO@erh=\skip122
+\f@ncyO@olh=\skip123
+\f@ncyO@orh=\skip124
+\f@ncyO@elf=\skip125
+\f@ncyO@erf=\skip126
+\f@ncyO@olf=\skip127
+\f@ncyO@orf=\skip128
 )
 (/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
@@ -785,23 +800,23 @@ Package cleveref Info: `listings' support loaded on input line 2950.
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box51
-\c@lstlisting=\count155
+\AtBeginShipoutBox=\box52
+\c@lstlisting=\count158
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -837,11 +852,11 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 40.
+LaTeX Font Info:    Try loading font information for U+msa on input line 51.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 40.
+LaTeX Font Info:    Try loading font information for U+msb on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -852,35 +867,47 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ]
 
 LaTeX Warning: Reference `[FIGURE:MENINGITIS BELT]' on page 1 undefined on inpu
-t line 76.
+t line 89.
 
 [2]
-Overfull \hbox (10.04253pt too wide) in paragraph at lines 90--91
+Overfull \hbox (10.04253pt too wide) in paragraph at lines 103--104
 []\OT1/cmr/m/n/10 Since 2010, a WHO project has been un-der-taken to com-bat ep
 i-demic menin-gi-tis in the re-gion. A polysaccharide-
  []
 
 [3]
 
-LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 15
+LaTeX Warning: Citation `Kolmogoroff1931' on page 4 undefined on input line 149
+.
+
+
+LaTeX Warning: Citation `Feller1940' on page 4 undefined on input line 149.
+
+
+LaTeX Warning: Reference `fig:population_flow' on page 1 undefined on input lin
+e 168.
+
+[4] [5]
+
+LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 21
 0.
 
 
 LaTeX Warning: Reference `fig:population_flow' on page 1 undefined on input lin
-e 150.
+e 210.
 
-[4] [5] [6] (./report.bbl) [7] (./report.aux)
+[6] [7] [8] (./report.bbl) [9] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 13541 strings out of 494466
- 244769 string characters out of 6166387
- 327598 words of memory out of 5000000
- 16578 multiletter control sequences out of 15000+600000
- 16928 words of font info for 63 fonts, out of 8000000 for 9000
+ 13874 strings out of 494466
+ 250207 string characters out of 6166387
+ 335301 words of memory out of 5000000
+ 16904 multiletter control sequences out of 15000+600000
+ 17626 words of font info for 65 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 45i,12n,43p,10420b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,11n,43p,10420b,255s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (8 pages, 41464 bytes).
+Output written on report.dvi (10 pages, 51152 bytes).
