@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  13 JUN 2017 17:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2016.8.22)  14 JUN 2017 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -890,11 +890,11 @@ e 168.
 [4] [5]
 
 LaTeX Warning: Reference `appendix:events' on page 1 undefined on input line 21
-0.
+3.
 
 
 LaTeX Warning: Reference `fig:population_flow' on page 1 undefined on input lin
-e 210.
+e 213.
 
 [6] [7] [8] (./report.bbl) [9] (./report.aux)
 
@@ -910,4 +910,4 @@ Here is how much of TeX's memory you used:
  350 hyphenation exceptions out of 8191
  45i,11n,43p,10420b,255s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (10 pages, 51152 bytes).
+Output written on report.dvi (10 pages, 51236 bytes).
