@@ -8,7 +8,7 @@
 \usepackage{wrapfig}
 \usepackage{appendix}
 \usepackage{subcaption}
-\usepackage{mdframed}
+\usepackage{framed}
 
 % Sets small roman numerals as the symbols in enumerate environments
 \usepackage{enumerate}
@@ -16,9 +16,12 @@
 \setlist[enumerate,1]{label={\upshape(\roman*)}}
 
 % Theorem environments
+\usepackage[framed,standard]{ntheorem}
+\theoremindent1cm
 \newtheorem{assumption}{Assumption}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newframedtheorem{algorithm}{Algorithm}
 
 % Code formatting
 \usepackage{listings}
@@ -42,6 +45,8 @@
 \cfoot{\thepage}
 
 \usepackage{cleveref}
+\crefname{assumption}{assumption}{assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
 
 \author{Hanna Autio}
 \title{A stochastic model for Meningococcal Disease in the African Meningitis belt} %Title here
@@ -126,9 +131,9 @@ To further determine the seasonality of the disease, also the epidemic state sho
 
 The development of a stochastic model for population dynamics aims at determining the probability for the system to be in a given state at a given time. Typically, there will not be a closed-form analytical solution for this problem, and the Monte Carlo framework is employed to produce estimates. This is also the basic method used in this project. This means that a model is developed for the general, stochastic behaviour of the system, and a multitude of realisations are simulated. The aggregate of these realisations should then be a viable approximation of the probabilistic behaviour of the system.
 
-For this problem, it was determined that a model should not focus only on the population distribution over time but also the number of times an individual was infected. There are several reasons for this; One is that the rate of permanent sequelae is significant, meaning that while an individual may recover from the disease itself the history of their disease is still relevant. Another reason is that the information used to determine when an epidemic is, is the number of cases that has occurred and not the specific number of sick individuals at a given time.
+For this problem, it was determined that a model should not focus only on the population distribution over time but also the number of times any individual was infected. There are several reasons for this; One is that the rate of permanent sequelae is significant, meaning that while an individual may recover from the disease itself the history of their disease is still relevant. Another reason is that the information used to determine when an epidemic is, is the number of cases that has occurred and not the specific number of sick individuals at a given time. These factors leads us to construct a model that focuses on the dynamics of the system.
 
-In this section, I explain the model constructed for this problem, and make some comments on the simulation method as well as the parameters. Finally, there are some comments on the implementation.
+In this section, we first explain the model constructed for this problem and the theory behind the algorithm used to construct realisations. Then follows a section on the implementation, both from a mathematical standpoint and a computational, and finally a section discussing the real-world data and parameters used in the project.
 
 %
 %
@@ -138,9 +143,11 @@ In this section, I explain the model constructed for this problem, and make some
 
 \subsection{Model}
 
-According to the comments made above, a stochastic model focusing on the relevant dynamics was created. We begin by defining what dynamics should be considered, and constructing classes of events corresponding to each type of dynamic. For example, we will consider dynamics such as transmission and recovery and define one event class for each of these. Using this framework, we can record the number of times an event of each class occurs and take it as the system state variable. Given $m$ event classes, the system state variable at time $t$ is the vector $\bm{N}\left( t \right) = \left[ N_1 \left( t \right), \ldots, N_m \left( t \right) \right], \textrm{ each }N_\mu \in \mathbb{N}$. The ultimate goal is to determine the probability $P \left( \bm{N}\left( t \right)  = \bm{n} | X\left( 0 \right) \right)$ or: The probability that precisely $\bm{n} = \left[ n_1, \ldots, n_m \right]$ events of each class has occurred at time $t$, given an initial population $X\left( 0 \right)$.
+According to the comments made above, a stochastic model focusing on the relevant dynamics was created. We begin by defining what dynamics should be considered, and constructing classes of events corresponding to each type of dynamic. For example, we will consider dynamics such as transmission and recovery and define one event class for each of these. Using this framework, we can record the number of times an event of each class occurs and take it as the system state variable. Given $m$ event classes, the system state variable at time $t$ is the vector $\bm{N}\left( t \right) = \left[ N_1 \left( t \right), \ldots, N_m \left( t \right) \right], \textrm{ each }N_\mu \in \mathbb{N}$. The ultimate goal is to determine the probability $P \left( \bm{N}\left( t \right)  = \bm{n} | X\left( \bm{0} \right) \right)$ or: The probability that precisely $\bm{n} = \left[ n_1, \ldots, n_m \right]$ events of each class has occurred at time $t$, given an initial population space $X_0$.
 
-The event counts form a stochastic process, which under the following assumptions is a density dependent Markov Jump process.
+The population space is constructed by choosing a particular population and compartmentalising it into $k$ sub-populations, similarly to the methodology of classical SIR-models. The compartmentalisation should be such that no individual can be included in more than one sub-population at a time, and no event should increase or decrease a given sub-population by more than one. The compartmentalisation used in this project is shown in \cref{fig:population_flow} and further discussed in \cref{section:populations}. The population space at time $t$, $X_t$ is a k-dimensional stochastic variable. Later we will discuss its dependence on the event counts $N \left( t \right)$.
+
+The event $N\left( t \right)$ counts form an m-dimensional stochastic process, which under the following assumptions is a density dependent Markov Jump process.
 
 \begin{assumption} For a sufficiently small time interval $h$, the following assumptions hold:
 	\begin{enumerate}
@@ -148,15 +155,17 @@ The event counts form a stochastic process, which under the following assumption
 
 		\item The Chapman-Kolmogorov equation \cite{Kolmogoroff1931,Feller1940} holds.  \label{assumption_1b}
 
-		\item $P\left( N_{\mu} \left( t  + h \right)  - N_{\mu} \left( t \right) = 1 | X\left( t \right) \right) = W_{\mu} \left( X \left( t\right), t \right) h + \mathcal{O} \left( h \right)$. \label{assumption_1c}
+		\item $P\left( N_{\mu} \left( t  + h \right)  - N_{\mu} \left( t \right) = 1 | X_t \right) = W_{\mu} \left( X_t \right) h + \mathcal{O} \left( h \right)$. \label{assumption_1c}
 	
-		\item $P\left( N_{\mu}\left( t+h\right) = N_{\mu} \left( t \right) | X\left( t \right) \right) = 1-W_{\mu}\left( X \left( t \right) ,t \right) h + \mathcal{O}\left( h \right)$. \label{assumption_1d}
+		\item $P\left( N_{\mu}\left( t+h\right) = N_{\mu} \left( t \right) | X_t \right) = 1-W_{\mu}\left( X_t \right) h + \mathcal{O}\left( h \right)$. \label{assumption_1d}
 
-		\item $P\left( N_{\mu}\left( t + h \right ) - N_{\mu} \left( t \right) = k | X\left( t \right) \right)= \mathcal{O}\left( h \right) , \, \textrm{ for all } k \geq 2$. \label{assumption_1e}
-	\end{enumerate}
-\end{assumption} \label{assumption_1}
+		\item $P\left( N_{\mu}\left( t + h \right ) - N_{\mu} \left( t \right) = k | X_t \right)= \mathcal{O}\left( h \right) , \, \textrm{ for all } k \geq 2$. \label{assumption_1e}
+	\end{enumerate} \label{assumption_1}
+\end{assumption}
 
-Assumptions \ref{assumption_1c} - \ref{assumption_1d} implies that the process formed by the event counts for a single class is a Poisson process with rate $W_{\mu}$, which may depend on the population and time. Assumption \ref{assumption_1e} ensures that no more than one event can occur simultaneously.
+\Crefrange{assumption_1c}{assumption_1d} in \cref{assumption_1} implies that the process formed by the event counts for a single class is a Poisson process with rate $W_{\mu}$. We assume each $W_{\mu}$ is a smooth function of the population. Assumption \ref{assumption_1e} ensures that no more than one event can occur simultaneously. Note also that conditioning the probabilities on the population $X_t$ at $t$ is sufficient, although conditioning based on the event counts $N\left( t \right)$ and the initial population state would also hold in this context.
+
+% Discuss some properties of a Poisson process
 
 The Chapman-Kolmogorov equation is as follows: Consider a stochastic process $\xi_1, \ldots, \xi_k$, with a joint probability density function $p_{\xi_1 \ldots \xi_k} \left( x_1, \ldots, x_k \right)$. Then the probability density
 \begin{align*}
@@ -165,70 +174,138 @@ p_{\xi_1, \ldots, \xi_ {k-1}} \left( x_1, \ldots x_{k-1} \right) = \int_{-\infty
 
 corresponding to a straight-forward marginalisation of the joint probability density function.
 
-To further discuss the Markov property of the system, some further discussion on the population space in which the process occurs is useful. A specific population is considered, and compartmentalized based on what events have been created. This is done in such a way that no individual can be included in more than one sub-population at once, and so that all the dynamics we would like to consider will affect at least one sub-population. The basic compartmentalisation used in this project can be seen in \cref{fig:population_flow}. In the following, we consider $k$ populations, so that the population space state is described as $X \left( t \right) = \left[ x_1 \ldots x_k \right], x_\kappa \in \mathbb{N}$.
+Now, we consider the dependence of the population space on the event space. For each event class $\mu$ we define a vector $\delta^\mu$, where $\delta^\mu_\kappa$ describes the effects of event $\mu$ on population $\kappa$. The eventcounts can then easily be mapped to the population space by constructing a matrix $\bm{\delta} = \left[ \delta^1 \ldots \delta^m \right]^{T}$ as $X_t = X_0 + \bm{\delta} \bm{N} \left( t \right)$, but note that some information is lost in this projection. Using this description, there are no changes in the population outside of the events, which should match the initial idea that all relevant dynamics should be modelled using the event framework.
 
-For each event class $\mu$ we define a vector $\delta^\mu$, where $\delta^\mu_\kappa$ describes the effects of event $\mu$ on population $\kappa$. The eventcounts can then easily be mapped to the population space by constructing a matrix $\bm{\delta} = \left[ \delta^1 \ldots \delta^m \right]^{T}$ as $X \left( t \right) = X \left( 0 \right) + \bm{\delta} \bm{N}$, but note that some information is lost in this projection. Using this description, there are no changes in the population outside of the events, which should match the initial idea that all relevant dynamics should be modelled using the event framework.
+% Maybe add some comments discussing how the population at time t and t+h are dependent, while the same does not hold for the events occurring in the different segments.
 
-Earlier we mentioned that the process constructed is a density dependent Markov jump process. The jump aspect of the process is in the discrete nature of the event counts, meaning that the system state jumps from one state to another with the instantaneous occurrence of an event. The density dependence is introduced via the probability rates $W_\mu \left( X\left( t \right), t \right)$, as they describe the future evolution of the process based on the current population an the current system state. Then only the Markov property should receive some further consideration. Again, we look to the $W_\mu$. They depend on the population state (and consequently the system state) $X$ at time $t$, but not on any earlier state. This is precisely the Markov property.
+Earlier we mentioned that the process constructed is a density dependent Markov jump process. The jump aspect of the process is in the discrete nature of the event counts, meaning that the system state jumps from one state to another with the instantaneous occurrence of an event. The density dependence is introduced via the probability rates $W_\mu \left( X_t\right)$, as they describe the future evolution of the process based on the current population and the current system state. Then only the Markov property should receive some further consideration. Again, we look to the $W_\mu$. They depend on the population state (and consequently the system state) $X$ at time $t$, but not on any earlier state. This is precisely the Markov property.
 
 In the comments on \cref{assumption_1}, we mentioned that each event count formed a Poisson process, so that the aggregate event counts forms a multivariate Poisson process. A well-known result for these is the following:
 
-\begin{lemma}
-	The waiting time to the next event is exponentially distributed.
+\begin{lemma} \label{lemma:exponential}
+	The waiting time $H$ to the next event is exponentially distributed with a rate $W = \sum_{\mu=1}^m W_\mu$
 \end{lemma}
 
+This result will be used later, and so we will prove it here:
 
+\begin{proof}
+	The waiting time to the next event is given by the time until the very next event occurs. Let $H_\mu$ be the waiting time until event $\mu$. Then	$H = \min \{ H_1, \ldots, H_m \}$ or equivalently $H_\mu \geq H \textrm{ for all } \mu$. Given the system state at time $t$, the events can be regarded as independent. This gives us the following probability density function for $H$, where we use that $H_\mu \sim \exp \left( W_\mu \right)$:
+	\begin{align*}
+		f_{H} \left( h \right) = \prod_{\mu = 1}^m P \left( H_\mu \geq h \right) = \prod_{\mu =1}^m 1 - F_{H_\mu}\left( h \right) \underset{h\geq 0}{=\joinrel=} \prod_{\mu = 1}^m \mathrm{e}^{-W_{\mu} h} = \mathrm{e}^{- h \sum_{\mu = 1}^m W_\mu}
+	\end{align*}
+	This is precisely the exponential probability density function, with parameter $\sum_{\mu = 1}^m W_\mu$.
+\end{proof}
 
-%The Chapman-Kolmogorov equation in the case of a Markov process can be written: $p_{\xi_j | \xi_i = x_i} \left( x_j \right) = \int_{-\infty}^\infty p_{\xi}$. 
+Another result concerns the time-evolution of the probabilities governing the system state:
 
+\begin{theorem}
+	Under the previous assumptions, the dynamics in the event space obeys the Kolmogorov Forward equation.
+	
+	\begin{align}
+		\frac{\textrm{d}}{\textrm{d}t} P \left( N \left( t + s \right) = \bm{n} | X_t \right) =
+		&  \sum_{\mu = 1}^m P \left( N \left( t + s \right) = \left[ n_1 \ldots n_\mu - 1 \ldots n_m \right] \right) W_{\mu} \left( X_ {t+s} - \delta^{\mu} \right) - \\
+		- & \sum_{\mu = 1}^m P \left( N \left( t + s \right) = \bm{n} \right) W_{\mu} \left( X_{t+s} \right) \label{eq:kolmogorov_forward}
+	\end{align} \label{th:kolmogorov_forward}
+\end{theorem}
 
+where we have used $X_{t+s}$ to mean $X_0 + \bm{\delta}\bm{n}$, or the population state given the event counts $\bm{n}$. The interpretation of the equation is as follows: The probability that a function should be in a given state at a given time increases as the probability that it should enter the state increases, and decreases as the probability that it should leave that state increases. The first term corresponds to the probability that it should enter the given state, as it is the probability that it should be in an immediately preceding state and enter the given state. The second term is interpreted similarly.
 
+\Cref{th:kolmogorov_forward} provides us with a differential equation describing the probability distribution evolution for the event counts, but in general there are no simple solutions to it. Instead we look to an approximate solution using the Monte Carlo-framework, meaning we construct many artificial "samples" of the stochastic variable $N \left( t \right)$, and assume that the distribution of the samples can be used as an approximation for the distribution itself. This requires us to find an effective method of simulating a system as the one we have described, and one such method is the Feller-Kendall algorithm, also known as the Gillespie algorithm [citations].
 
+To construct a realisation of the system, we will work iteratively and use the fact that the system state is constant between events. This means that the only times we are interested in are the times where an event occurs. Furthermore, we are only interested in the very next event, as that event may change the probability distributions for future events. Consequently, in order to move the realisation forward in time, the stochastic variables we would like to sample from are the time of the next event, $H$ and what event it is that occurs, $M$. An initial idea for sampling these variables together is the following:
 
-\newpage
+\begin{algorithm} Let the system be in state $N$ at time $t$, with populations $X$. \label{algorithm:bad}
+	\begin{enumerate}
+		\item Calculate the probability rates $W_\mu \left( X \right)$
+		\item Sample times $H_\mu$ for the time of the next event of each event class
+		\item Choose the event class $M$ so that $H_M = \min \{ H_1, \ldots, H_m \}$
+		\item Increase the event count of $M$ by one:
+			\begin{align*}
+				N := \left[ N_1\left(t \right) \ldots N_M \left( t \right) + 1 \ldots N_m \right]
+			\end{align*}
+		\item Update the time and the population:
+			\begin{align*}
+				X := X + \bm{\delta}^{M} \\
+				t := t + H_M
+			\end{align*}
+		\item Repeat
+	\end{enumerate}
+\end{algorithm}
 
-We consider a population consisting of a discrete number of individuals. We are then interested in the distribution of, for example, disease in the population, and as such divide it into a set of $n$ sub-populations based on disease status (and potentially other properties). This is done in such a way that no individual can be part of more than one subpopulation at a time. The state of the population can then be described by a vector containing the number of individuals in each subpopulation, $\bm{X} = \left[ x_1 \ldots x_\eta \ldots x_n\right]$, where $x_1$ is the number of individuals in subpopulation one. The total number of individuals in the population is given by $\sum_{\eta = 1}^n x_{\eta}$. We will use the vector $\bm{X} = \bm{X} \left( t \right)$ as the system state variable at time $t$. Note that this method does not allow for unique individuals in any way. Possible issues that may arise are discussed below.
+This algorithm will work, but is not very efficient. In each step, $m$ random numbers are generated, of which $m-1$ are discarded. If the event count is high, this can lead to a significant increase in simulation time on each step. Instead, we will use the following result:
 
-Given the definition of the system state, a framework for dynamics like infection, transmission and recovery must be introduced. These dynamics are allowed to occur under an \emph{event} framework, where each event corresponds to one specific type of dynamic. It is assumed that an event occurs quickly and can only increment or decrement a subpopulation by one individual. For example, the maturation of a child would be modelled as a instantaneous event that decreases the population of children by one and increases the population of adults by one, while the birth of a child would increment the population of children by one. Each of these events can be described in two ways, either in a biological sense or in a mathematical sense. The biological description concerns what biological dynamics the event is designed to model, for example transmission or ageing, whereas the mathematical description focuses on the effects on the system state and the equations governing the occurrence of the event.
+\begin{lemma} \label{lemma:independence} % Source: p129 in Durretts "Essentials of stochastic processes", 2010
+	$M$ and $H$ are independent.
+\end{lemma}
 
-The mathematical description of an event consists of its distribution and the effects it has on the system state. For each event class $\kappa$, we define the effects it has on the system state $\bm{\delta}_\kappa = \left[ 0 \ldots 1 \ldots -1 \ldots 0 \right]$ and its probability distribution. Here, $\bm{\delta}_\kappa$ is defined such that if an event of the given type has occurred at time $t = \tau$, the system state immediately afterwards can be written $\bm{X} \left( \tau + \mathrm{d} t \right) = \bm{X} \left( \tau \right) + \bm{\delta}_\kappa$. 
+In order to prove this, we will use the definition of independence: $P \left( A \cap B \right) = P \left( A \right) \cdot P \left( B \right)$. We will determine the joint probability density function of $(H, M)$ and show that this is the product of the marginal distributions.
 
-With the tools described above, we note that there is an alternate way of describing the system state by projecting 
+\begin{proof}
+	First, we consider the marginal distributions. In \cref{lemma:exponential}, we showed that $H \sim \exp \left( \sum_{\mu = 1}^m W_\mu \right)$. We now consider the distribution of $M$, by first studying the case where there are two exponentially distributed independent variables and generalising. Let $S \sim \exp \left( \lambda_S \right), T \sim \exp \left( \lambda_T \right)$ be independent. We will determine the probability that $S$ occurs before $T$, or $P ( S < T )$. Using independence and the exponential distribution, we get:
+	
+	\begin{align}
+		P \left( S < T \right) = \int_0^\infty P ( S = s) P (T > s) \mathrm{d}s = \int_0^\infty \lambda_S \mathrm{e}^{- \lambda_S s} \mathrm{e}^{-\lambda_T s} \mathrm{d}s = \\
+		= \frac{\lambda_S}{\lambda_S + \lambda_T} \int_0^\infty (\lambda_S + \lambda_T ) \mathrm{e}^{-(\lambda_S + \lambda_T)s} \mathrm{d}s = \frac{\lambda_S}{\lambda_S + \lambda_T}, \label{proof:independence_eq1}
+	\end{align}
+	showing that the probability that it should be a particular event is proportional to its rate. Now for the generalization: Consider a set of variables $T_j \sim \exp \left( \lambda_j \right), j = 1, \ldots, I$. Let $S = T_i$ and $U$ the minimum of the remaining variables. By the result from \cref{lemma:exponential}, $U \sim \exp ( \sum_{j \neq i} \lambda_j)$. Combining this with \cref{proof:independence_eq1}, we have
+	\begin{align}
+		P \left( T_i = \min \{ T_1, \ldots, T_I \} \right) = P \left( S < U \right) = \frac{\lambda_i}{\sum_{j = 1}^{I} \lambda_j},
+	\end{align}
+	implying that the marginal distribution for $M$ is proportional to the individual rates $W_\mu$.
+	
+	Now to compute the joint probability distribution for $(H, M)$.
+	\begin{align*}
+		P \left( H = h \cap M = \mu \right) = P \left( H_\mu = h, H_n > h \textrm{ for } n \neq \mu \right) = W_\mu \textrm{e}^{- W_\mu h} \prod_{n \neq \mu} \textrm{e}^{-W_\mu } = \\
+		= W_\mu \textrm{e}^{- h \sum_{n=1}^m W_n} = \frac{W_\mu}{\sum_{n = 1}^m W_n} \left( \sum_{n=1}^m W_n \right) \textrm{e}^{-h\sum W_n},
+	\end{align*}
+	which is precisely the product of the probability density and distribution of $H, M$.  Hence they are independent.
+\end{proof}
 
+This result allows us to sample $H$ and $M$ separately from the marginal distributions defined above. The new algorithm is:
 
-%%
-As mentioned in the introduction, it is intuitively clear that biological events such as, for example, contagion or infection are fundamentally random. This is modelled by taking each of these biological events and constructing a mathematical, stochastic event to match. These mathematical events affects the system state as described above, and their occurrence is assumed to follow a Poisson distribution. The rates governing each event is assumed to depend on the system state, and possibly time. Note that a rate that depends only on the system state will be constant between events, as the system state does not change if no event occurs.
+\begin{algorithm} Let the system be in state $N$ at time $t$, with populations $X$:
+	\begin{enumerate}
+		\item Calculate the probability rates $W_\mu \left( X \right)$ and use this to determine the distributions of $H$ and $M$
+		\item Sample $H$ and $M$
+		\item Increase the event count for class $M$ by one,
+			\begin{align*}
+				N := \left[ N_1 \left( t \right) \ldots N_{M} \left( t \right) + 1 \ldots N_m \left( t \right) \right]
+			\end{align*}
+		\item Update the time and the population:
+			\begin{align*}
+				t := t + H\\
+				X := X + \bm{\delta}_M
+			\end{align*}
+		\item Repeat
+	\end{enumerate}
+\end{algorithm}
 
-This system state and the events as introduced form a Markov-Jump process, or alternatively a Markovian random walk in the n-dimensional population space. The model framework corresponds precisely to the one developed by Gillespie [source:a general method for numerically simulating] for chemical reactions. The algorithm constructed by Gillespie and Feller-Kendall then lets us construct realisations of the time-evolution of the system, allowing for a Monte-Carlo type set of simulations, giving an estimate of the time distribution of the system state.
-
-The equation describing the probability density distribution of the system state over time is called the master equation, and is in general not analytically solvable. However, under the assumptions introduced above, the master equation follows the Kolmogorov-forward equation.
-%%
-
-Depending on the problem one wishes to model, there can be events that might not obviously be considered random. Examples are aging, where the transition from a sub-population of individuals $\leq 4$ years to a sub-population of ages $5-14$ can not be considered random on the individual level. However, the individual level is not considered here. As such, we assume that the transition between the two groups above will occur about once per individual in the younger group every five years. This lets us formulate aging events as random, Poisson distributed events.
-
-Another consequence of the lack of individual focus in this model is that it is in theory possible for very unlikely scenarios on the individual level to occur. For example, consider the case where there is no one current ill. Then an event occurs, incrementing the ill sub-population by one, which increases the rate of the recovery event to a non-zero value. Immediately after, the recovery event occurs. Here, we could have the case that a "specific" individual contracted the disease and recovered in an unreasonable short period of time. This is a potential scenario in this model, however not very likely.
-
-Within the stochastic framework established, there is no definite way of implementing a minimum time of for example disease. There are however ways to emulate such a behaviour when constructing events and populations, leading to a more accurate model that incorporates periods of incubation and similar scenarios. A period of incubation is introduced to this model by constructing a new population of infected individuals who are neither carriers nor ill. This population increases when a susceptible individual contracts the bacterium, and the population decreases as individuals either become sick or become carriers.
-
-A list of the events incorporated in the model is included in \cref{appendix:events} together with the rates. A figure showing the flow of population between different groups of disease status is shown in \cref{fig:population_flow}.
-
-% Something about ways to avoid this kind of thing, or chaining events. Talk about the incubation period.
-
-% Population into subpopulations
-% System state?
-% Non-unique indivduals
-% Event probabilites do not change between events
-% Interaction time <-> population
+This method only requires two random variables to be sampled in each iteration, and is therefore significantly faster than the option presented in \cref{algorithm:bad}. This is the basic Feller-Kendall algorithm, and also the one used in this project.
 
 % Introduce an example of one of the equations governing the rates. Probably one of the semi-complex.
 
-\subsubsection{Populations}
+\subsection{Implementation}
 
-As mentioned in the background, the disease and immunity show some dependencies of age, and so the population is divided into sub-populations based on age. The choice was made to divide the population into three age groups, infants (0-4 years), young (5-14 years), and adult ($\geq15$ years). These age groups were chosen based on available data for the disease distribution and on population data.
+The first part of this section focused on how the model described above was applied to the specific problem discussed in this paper. The population compartmentalisation is explained, and an example of an equation for calculating the rates is given. Furthermore, the introduction of a time dependency is discussed. The second part focuses on the work to implement a computer program suitable for generating realisations of the system.
 
-In order to produce a model that can take into account the variations of the population over time, birth and death was also included into the model on a slightly simplified basis. It is assumed that only the oldest sub-population bears children, and it is also assumed that this group is the only one to die from non-disease related causes. This includes the infant mortality rate, and so the birth rate is calculated based on the number of children that survive the first year. These approximations leads to a small shift in the distribution of the age groups over time, but the shift is only shown after a time period greater than 10 years and there are no indications that this affects the results in any way.
+
+\subsubsection{Events and populations} \label{section:populations}
+
+When constructing a compartmentalisation suitable for this problem, we start by considering what dynamics we want to model as events. We then construct the sub-populations in such a way that each event will increase one sub-population by one, decrease a sub-population by one, or both (moving a single individual from one population to another).
+
+The types of dynamics that we want to model in this project can roughly be divided into two categories, dynamics relating to meningococcal disease and dynamics present in the healthy population. Due to the rather long intervals between the large-scale epidemics, it was determined that changes in the population distribution, as well as ageing individuals, could affect the model. This is the reason for including some dynamics of a healthy population, and finding a suitable approximation for the large-scale population variation over time was the first step.
+
+The dynamics concerning a healthy population includes death by causes other than meningococcal disease, ageing and birth. The compartmentalisation and the events for a healthy population is shown in \cref{fig:healthy_pop}. The population is divided into three age groups, infants (0-4 years), young (5-14 years) and adult ($\geq15$ years), based on available data for the population and the disease. Death and birth was included in a slightly simplified manner. It was assumed that death only occurs in the oldest age group, and that only the oldest age group bear children. In order to compensate for the lack of infant mortality, the birth rate was based on the number of children that survive the first year.
+
+Modelling meningococcal disease is the primary goal of this project, and as such much care must be put in determining what events and populations to include. The compartmentalisation and events relating to disease (for a single age group) are shown in \cref{fig:sick_pop}. A central part of the disease dynamics in this case is the presence of non-symptomatic carriers, and how this relates to transmission and immunity. Here, we choose to model the acquisition of carriage (on a susceptible individual) as a two-step process. We consider the event of transmission to a susceptible individual. This moves one individual from the sub-population "Susceptible" into a sub-population we call "Infected". Subsequently there is a second event, either one where the individual  becomes sick or one where they become a carrier. This event occurs on average 10 days after the transmission, corresponding to the incubation time for meningococcal disease. Carriers can then recover in one of two ways, either becoming immune to invasive disease or becoming susceptible. When it comes to transmission, we assume that carriers can transmit the bacterium to other individuals. We consider immunity to be protective against invasive disease, but not against carriage, so immune individuals can become carriers. In this case they never pass through the infected sub-population but are instead moved to the carrier population. This type of immune individuals can also lose immunity. However, when we consider individuals that recover from invasive disease they are always immune for the rest of their lives.
+
+When we construct the events and the populations, the equations governing the events is also created. We assume that the rates follows the law of mass-action, so that the rate is proportional to the concentration of the relevant population. This also means we assume the population is perfectly mixed at all times, or (equivalently) that the population is evenly and randomly distributed in space. The equations for each event rate can be found in \cref{appendix:event_eqs}, but we will explain the basic idea behind them here using a (simplified) example. We will consider the transmission event to a susceptible individual, but for now we will not care about the different age groups. The generalisation is however straight-forward.
+
+Consider an individual $I$ that is infective. In order for this individual to transmit disease, they must encounter a susceptible individual. However, not all contacts will lead to the disease being transmitted, and we will call $\beta$ 
 
 \subsubsection{Time dependency}
+
+% Instead of letting a parameter for an event change over time (as we let it happen discretely), we can just call them different events.
 
 As one of the main goals of this project is to examine the seasonality of the disease, some sort of time dependency must be included. So far, only probability rates that depend exclusively on the population has been considered. In this section, I will make some comments on probability rates that can vary with time.
 
@@ -243,6 +320,10 @@ As the modelling procedure requires the system state and probability rates to be
 The changes in the equations are different based on what type of time dependency is introduced. One is designed to model a change in the population behaviour, namely two separate groups coming in contact over the dry season. Practically, this is done by introducing events corresponding to the biological events introduced by this contact, i.e transmission from one population group to the other, and letting the probability rate from that event be zero during the wet season.
 
 The second time dependent behaviour considered here is simply a change in the invasiveness of the disease itself, and is modelled by a change in one of the internal parameters.
+
+\subsubsection{Computer implementation}
+
+The model was implemented in \verb0C++0, and could be easily adapted to a different problem.
 
 \subsection{Acquiring data and parameters}
 
@@ -262,14 +343,14 @@ The distribution of the population was sourced from Gapminder, and the populatio
 
 % Invasiveness is taken from "A hypothetical explanatory model"
 
-\subsection{Implementation}
-
-The model was implemented in \verb0C++0, and could be easily adapted to a different problem.
-
 \section{Results and analysis}
 
 \section{Conclusions}
 
+%DISCUSSION POINTS
+% - Possible improvements of the implementation
+% - Possible risks with non-specific individuals
+% - Uncertainty in the parameters
 
 % Figure float, including 2 subfigures
 %\begin{figure}
