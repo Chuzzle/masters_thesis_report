@@ -141,7 +141,7 @@ In this section, we first explain the model constructed for this problem and the
 
 % Make a comparison to earlier modelling examples and comment on why they may be less accurate
 
-\subsection{Model}
+\subsection{Model} \label{section:model}
 
 According to the comments made above, a stochastic model focusing on the relevant dynamics was created. We begin by defining what dynamics should be considered, and constructing classes of events corresponding to each type of dynamic. For example, we will consider dynamics such as transmission and recovery and define one event class for each of these. Using this framework, we can record the number of times an event of each class occurs and take it as the system state variable. Given $m$ event classes, the system state variable at time $t$ is the vector $\bm{N}\left( t \right) = \left[ N_1 \left( t \right), \ldots, N_m \left( t \right) \right], \textrm{ each }N_\mu \in \mathbb{N}$. The ultimate goal is to determine the probability $P \left( \bm{N}\left( t \right)  = \bm{n} | X\left( \bm{0} \right) \right)$ or: The probability that precisely $\bm{n} = \left[ n_1, \ldots, n_m \right]$ events of each class has occurred at time $t$, given an initial population space $X_0$.
 
@@ -277,7 +277,7 @@ This result allows us to sample $H$ and $M$ separately from the marginal distrib
 				X := X + \bm{\delta}_M
 			\end{align*}
 		\item Repeat
-	\end{enumerate}
+	\end{enumerate} \label{algorithm:good}
 \end{algorithm}
 
 This method only requires two random variables to be sampled in each iteration, and is therefore significantly faster than the option presented in \cref{algorithm:bad}. This is the basic Feller-Kendall algorithm, and also the one used in this project.
@@ -301,29 +301,25 @@ Modelling meningococcal disease is the primary goal of this project, and as such
 
 When we construct the events and the populations, the equations governing the events is also created. We assume that the rates follows the law of mass-action, so that the rate is proportional to the concentration of the relevant population. This also means we assume the population is perfectly mixed at all times, or (equivalently) that the population is evenly and randomly distributed in space. The equations for each event rate can be found in \cref{appendix:event_eqs}, but we will explain the basic idea behind them here using a (simplified) example. We will consider the transmission event to a susceptible individual, but for now we will not care about the different age groups. The generalisation is however straight-forward.
 
-Consider an individual $I$ that is infective. In order for this individual to transmit disease, they must encounter a susceptible individual. However, not all contacts will lead to the disease being transmitted, and we will call $\beta$ 
+Consider an infective individual. In order for this individual to transmit disease, they must encounter a susceptible individual, and this encounter must also be sufficient to transmit bacteria. We call the expected number of contacts that lead to transmission per time unit and infective individual $\beta$. However, some of these contacts will be with non-susceptible individuals. As we expect the population to be evenly distributed, we can assume that the chance that a given individual is susceptible is equal to the relative number of susceptible individuals in the population, $\frac{S}{N}$ where $S$ is the number of susceptible individuals and $N$ the full population. This holds for each infective individual, which gives us the rate
+
+\begin{align}
+	W = I \beta \frac{S}{N} \label{eq:rate}
+\end{align}
 
 \subsubsection{Time dependency}
 
-% Instead of letting a parameter for an event change over time (as we let it happen discretely), we can just call them different events.
+One of the main goals of this thesis is to examine possible explanations for the seasonal difference between the endemic and the hyperendemic state. In order to evaluate the effects of different mechanics, we introduce events with a time dependency, that intend to model different mechanics for different time periods. We let the probability rate for these events be zero during the season where they are not active. For this project, the activation and de-activation of these events are deterministic. The combination of these methods lead to discrete and deterministic seasonal shifts. The reason behind this choice is predominantly simplicity, but it also results in a system where the changes introduced by the shift in mechanics will be very clear and easy to compare.
 
-As one of the main goals of this project is to examine the seasonality of the disease, some sort of time dependency must be included. So far, only probability rates that depend exclusively on the population has been considered. In this section, I will make some comments on probability rates that can vary with time.
+Due to the nature of the algorithm we use (\cref{algorithm:good}), deterministic changes can be slightly complex to introduce. Time moves forward in discrete and random steps, meaning that the time introduction of the new event will never explicitly occur. We solve this by introducing the new events immediately following the first event after the pre-determined time. Provided events are frequent enough, this should not introduce any errors of more significance than the ones introduced by approximating the seasonality as an entirely deterministic process.
 
-We consider events for which the probability rate $\lambda$ may depend on time. 
-
-To match the questions posed in the goals for this thesis, two types of time dependency was introduced and compared. They are intended to model hypothetical explanations for the seasonal variations in the disease pattern between dry and wet season, by changing one or more of the equations governing the event probability rates.
-
-The dry and wet season are here modelled as discrete and deterministic periods. The dry season occurs between days $65$ and $335$ each year, lasting for about nine months. The rest is considered wet season.
-
-As the modelling procedure requires the system state and probability rates to be constant between events, the changes brought by the seasonal shift is introduced immediately after the first event after the season change. The new probability rates are calculated based on the updated equations and the updated system state. Provided events are frequent enough, this method should not introduce significant errors. The uncertainty in the exact and discrete onset of the seasons should be a greater source of uncertainty and error.
-
-The changes in the equations are different based on what type of time dependency is introduced. One is designed to model a change in the population behaviour, namely two separate groups coming in contact over the dry season. Practically, this is done by introducing events corresponding to the biological events introduced by this contact, i.e transmission from one population group to the other, and letting the probability rate from that event be zero during the wet season.
-
-The second time dependent behaviour considered here is simply a change in the invasiveness of the disease itself, and is modelled by a change in one of the internal parameters.
+Two types of seasonal events were introduced, one intended to model a behavioural change in the population and one intended to model an external change in the disease itself. For the event concerning behavioural change, we will consider the specific dynamic where several, typically separate populations, are mixed due to migration or lack of resources. This is modelled by constructing a realisation of two separate populations in parallel and having a seasonal event corresponding to cross-transmission, where infective individuals in one population can transmit bacteria to individuals in the other population. When we consider a change in the disease itself, instead of introducing more events during the dry season, we will have one set of events during the dry season and another during the wet season. In general, the only reason between these sets will be in (some) of the parameters used in the equations governing the probability rates (see $\beta$ in \cref{eq:rate}). Predominantly we will consider a seasonal variation in the invasiveness parameter, that affects the probability that a susceptible individual that is infected by the bacterium becomes sick rather than becoming a carrier.
 
 \subsubsection{Computer implementation}
 
-The model was implemented in \verb0C++0, and could be easily adapted to a different problem.
+The model was implemented in \verb0C++0, and the program could easily be adapted to a different problem. All analysis was performed in \verb0python0, using the \verb0numPy0 library.
+
+Each model configuration was run 100 times. This was estimated to be enough to examine the general behaviour of the system, and to give an estimate of the expected behaviour.
 
 \subsection{Acquiring data and parameters}
 
@@ -332,6 +328,7 @@ The implementation discussed in this project is designed to approximately match 
 \subsubsection{Population and climate data}
 
 The only climate data currently used is when the wet season occurs, which in this region is approximately from July though September. The year start is set to the first of August, to ensure a simulation start and end with as few interesting events as possible.
+% this gives dry season from 65 to 335, wet season the rest of the time
 
 The distribution of the population was sourced from Gapminder, and the population growth resulting from a model disregarding the disease corresponds well to a 2\% population growth, which is the current value in Nigeria.
 
@@ -344,6 +341,49 @@ The distribution of the population was sourced from Gapminder, and the populatio
 % Invasiveness is taken from "A hypothetical explanatory model"
 
 \section{Results and analysis}
+
+In this section, results from the different simulations are showed and explained. All data can be found in \cref{appendix:data}, and some relevant examples are shown in this section. First the validity of the model is examined, and subsequently the results from trials for different seasonal models is presented. Finally, results from runs intended to model epidemic behaviour is shown.
+
+\subsection{Validation results}
+
+A graph showing the average of the runs for a system with no disease is presented in \cref{fig:results:no_disease}. This configuration is intended to determine whether the baseline population model is sound, as presented in \cref{section:populations}. The interesting aspects to consider are the population distribution over time, as well as the population growth. We find that the population distribution is fairly constant over time, while the population growth is at $\sim$ [something].
+
+We also consider the validity of the model after the introduction of endemic disease for two different serotypes. The results are shown in \cref{fig:results:endemic_disease}. The primary goal of this simulation is to examine whether the model could mimic the endemic behaviour of the disease, with the appropriate number of disease cases and carriers. The results from these runs are similar to the available results from field research for both serotypes. However, note that there is no significant ratio of immune individuals of any age group for the system with serogroup $W-135$, as carriage of that strain does not induce immunity.
+
+Considering the model with disease included, it is important to note that the parameter governing the transmission of disease was used to have the system match the data, due to lack of available research. A common estimate of the parameter $R_0$ was produced using a set of simulations, and the value producing the best correspondence to real data was chosen. As such, these results are not as reliable as would be desired.
+
+% Validation results
+%			- modelling on system without disease
+%			- modelling on the system with disease, but no seasonal variations
+
+\subsection{Seasonal variations}
+
+The seasonal variations in number of disease cases was postulated to have two possible explanations, and both of these are examined in this section. First we consider an explanation from behavioural changes, and then an explanation from the biology of the bacterium itself. It is worth commenting that in the second case, the parameter can be controlled so that the data matches reality, as the parametrization is dependent on the model itself. Only a negative result would be significant here, as it means that the model can not be applied to this case. Validation of this theory must come from some other source.
+
+\subsubsection{Behavioural changes}
+
+
+
+\subsubsection{Parametrical changes}
+% Seasonality modelling
+%			- population grouping on season
+%			- different parameters
+%				- comparison
+
+\subsection{Epidemics}
+% Epidemics modelling
+%		- I don't know what the results are yet here ^^
+
+% Memo: Look at all immune groups, including permanent immunity
+% Look at the number of disease cases -> events, not population numbers
+
+% CLIPPED FROM GOALS
+
+% The primary goal of this project has been to create and implement stochastic model for the population and disease dynamics in the African Meningitis belt. The model should be evaluated, and its calculations should be compared to real-world data and other models, to determine whether there is an improvement in the accuracy and specificity of the model.
+
+% If the model and its implementation seems sound, some further questions are to be considered. The primary consideration of this thesis is to attempt to determine whether the difference between the endemic and the hyperendemic states of the disease can be explained by behavioural changes or whether the explanation must be found somewhere else, for example in biochemical factors of the bacterium itself.
+
+% To further determine the seasonality of the disease, also the epidemic state should be considered. While epidemic outbreaks are connected to the introduction of a more invasive strain, the epidemics themselves also display a certain seasonality. Using the seasonal variations found to produce the most accurate results in the previous section, the results of introducing a more invasive strain during different seasons will be examined. If the introduction leads to an epidemic also during the wet season, or fails to lead to an epidemic in the dry season, the suggested explanation does not hold.
 
 \section{Conclusions}
 
