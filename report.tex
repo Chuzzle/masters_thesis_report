@@ -121,7 +121,7 @@ To further determine the seasonality of the disease, also the epidemic state sho
 
 % What are the goals of this thesis and why have I chosen to focus on those aspects?
 
-\subsection{Terminology}
+%\subsection{Terminology}
 % Event
 % System
 % probability rate
@@ -319,7 +319,26 @@ Two types of seasonal events were introduced, one intended to model a behavioura
 
 The model was implemented in \verb0C++0, and the program could easily be adapted to a different problem. All analysis was performed in \verb0python0, using the \verb0numPy0 library.
 
-Each model configuration was run 100 times. This was estimated to be enough to examine the general behaviour of the system, and to give an estimate of the expected behaviour.
+Each model configuration was run 100 times. This was estimated to be enough to examine the general behaviour of the system, and to give an estimate of the expected behaviour. Furthermore, in cases where there are no notable deviations between realisations, we also assume the variations from realisation to realisation to be Gaussian distributed. This allows us to use standard methods for calculating confidence intervals.
+
+\subsubsection{Data processing and analysis}
+Scripts for analysing the data was written in \verb0Python0, using libraries \verb0NumPy0 and \verb0StatsModels0.
+
+Most calculations are straight-forward estimates, using the arithmetic mean as an estimate of the expected value and the measurement variance as an estimate of the variance. Mean values was calculated using the \verb0NumPy0 mean function. 
+
+When calculating incidence rates, data on the events was used. Initially it was differentiated to find the daily events data. In order to account for transient behaviours and only consider a steady state solution, the data from the first 2000 days of each realisation was discarded. Again, the arithmetic mean for all realisations was considered. The weekly incidence rates was calculated for each day (except the first six) as the sum of the average events the last seven days, including the current. Using this method, rather than dividing the sequence into weekly segments and summing over these, leads to more data points, but also means that the data points are not independent. This must be considered when estimating the statistical properties of the resulting values. In this report it is primarily relevant when calculating the variance of the mean estimate. We also note that enough data points are produced that the aggregate will be approximately Gaussian distributed. Using tools from time series statistics [source: an introduction...], the variance of the mean as an estimate of the expected value, for large enough data sets, is:
+
+\begin{align*}
+	\textrm{V} \left( \hat{m} \right) \approx \frac{1}{N} \sum_{k=-\infty}^{\infty} r_x \left( k \right)
+\end{align*}
+
+where $k$ are the lags, $r_x$ is the autocovariance function and $N$ is the number of available data points. The standard biased estimator for the autocovariance function supplied by \verb0StatsModels0 was used to find an estimate of $r_x$:
+
+\begin{align*}
+	\hat{r}_x \left( k \right) = \frac{1}{N} \sum_{t=k+1}^N \left( x_t - m \right) \left( x_{t-k} - m \right)
+\end{align*}
+
+This estimator can be somewhat reliably used for lags $k$ up to about $\frac{N}{4}$. For larger lags, the number of data points is too small. Based on the properties of the system, as well as the assumptions on events in disjoint time intervals being independent (\cref{assumption_1a}), we let $\hat{r}_x \left( k \right) = 0 \textrm{ for all } k > \frac{N}{4}$.
 
 \subsection{Acquiring data and parameters}
 
@@ -327,34 +346,99 @@ The implementation discussed in this project is designed to approximately match 
 
 \subsubsection{Population and climate data}
 
-The only climate data currently used is when the wet season occurs, which in this region is approximately from July though September. The year start is set to the first of August, to ensure a simulation start and end with as few interesting events as possible.
+The only climate data currently used is when the wet season occurs, which in this region is approximately from July though September. The year start is set to the first of August, to ensure a simulation start and end with as few interesting events as possible. We use a year of 365 days, with the dry season occuring between days 65 and 335.
 % this gives dry season from 65 to 335, wet season the rest of the time
 
-The distribution of the population was sourced from Gapminder, and the population growth resulting from a model disregarding the disease corresponds well to a 2\% population growth, which is the current value in Nigeria.
+The population distribution for the healthy population was sourced from Gapminder [source], and the chosen number of individuals for a base population is 50000. Out of this number, x\% are adults, x\% are 5-14 years old and the remaining x\% are younger. The population size was chosen as being large enough to provide a reasonable estimate of an actual community [source], while still being small enough that simulation time was reasonable. Larger populations could also decrease the value of the stochastic methodology.
 
 % Comment on the population size
 
 % Comment on migration
 
+In order to accurately model the behavioural variations of the population, some data for these are required. However, within the scope of this project, this data could not be acquired in a reasonable manner. It is clear that migration is frequent in this region [source], and it is furthermore clear that it affects seasonal variations in for example measles. In this project, only a qualitative estimate of how migration works is considered, and the resulting values should not be used as numerical approximations but as qualitative assessments of whether a factor could be potentially influential. We consider the migration patterns by simultaneously modelling two equal sets of the base population and introducing cross-transmission during the dry season.
+
+Some relevant parameters for the events related to the healthy population is presented below. All values are from Gapminder.
+
+\begin{tabular}{|l|c|}
+	\hline
+	Parameter			& Value \\ \hline
+	Births per adult	&		\\
+	Life expectancy		&
+\end{tabular}
+
 \subsubsection{Disease data}
+
+Several articles were considered when acquiring parameters for the modelling effort. Parameters were determined from numbers estimated based on the aggregate of articles. In the table below, numbers used to calculate the rates are presented, together with sources that support them. Two virulent serogroups were considered, A and W-135. In the cases where the parameters differ between this, it is clearly marked in the table. The same is true for cases where the parameters differ between age groups.
+
+\begin{tabular}{|l|c|c|}
+	\hline
+		Parameter 													& Value			& Source 														\\ \hline
+		Halflife of carriage										& 90 days		& [epidemiology of infections, northern nigeria]				\\
+		Duration of disease											& 7 days		& [modelling meningococcal meningitis in meningitis belt]		\\
+		Risk of death given disease									& $0.1$			& [WHO]															\\
+		Risk of invasive disease, given infection					& $0.01$		& [clonal waves]												\\
+		Time from transmission to disease or carriage				& 10 days		&																\\
+		Chance of acguring immunity after carriage (A)				& $0.71$		& [carriage and immunity, burkina faso 2003]					\\
+		Chance of acquiring immunity after carriage (W-135)		& $0$			& [as above]													\\
+		Risk of lost immunity after 4 months (A, $<14$ years)		& $0.15$		& [as above]													\\
+		Risk of lost immunity after 4 months (A, $>14$ years)		& $0.06$		& [as above]													\\
+		Risk of lost immunity after 4 months (W-135, $<14$ years)	& $0.57$		& [as above]													\\
+		Risk of lost immunity after 4 months (W-135, $>14$ years)	& $0.5$			& [as above]													\\ \hline
+\end{tabular}
+
+Note that these numbers need further mathematical operations to derive the rates used in the implementation. For example, if we consider the rate at which a a sick individual dies, we would expect about $\frac{1}{10}$ to die within one week (the duration of disease), leading to the rate $\frac{1}{70} \left( \textrm{day} \right)^{-1}$.
+
+The transmission rates depend heavily on the model and the parametrization, and in general are not possible to measure. In this project, the estimate for the transmission rates are based on estimate of the basic reproductive number, $R_0$. This number is an estimate of the number of disease cases that one single infected individual will cause in an otherwise susceptible population. Using this number and the expected duration of disease and carriage, the transmission rates from sick individuals and carriers are straight-forward to estimate. Another thing to note about the transmission rates are that transmission to susceptible individuals and immune individuals are as likely, the only difference being that immune individuals will not be subject to invasive disease. This choice was made as there was no data suggesting that the naturally occuring immunity would lead to a reduction of carriage. There are some data that suggests that the modern conjugate vaccines induce immunity sufficient to prevent carriage, but these vaccines are not modelled in this project. [sources]
+
+Estimation of the basic reproductive number was made using by trying a range of different values and chosing the one producing the carriage rate closest to a target value of 5\% [source]. The estimated value is $R_0 \approx 1.03$
+
+The initial population values are expected to be of limited importance, as the system stabilizes into something of a steady-state solution, and not a lot of effort was put into making these values optimal. Estimates of population immunity ranges widely, and differs between what measures were used. [carriage and immunity BF 2003, human immunity to the meningococcus].
+
+One hypothesis on the increase in disease cases over the dry season is a change in the risk of infection given disease. This increase is estimated to [], and this increase is sourced from \cite{mueller2010hypothetical}.
 
 % Invasiveness is taken from "A hypothetical explanatory model"
 
 \section{Results and analysis}
 
-In this section, results from the different simulations are showed and explained. All data can be found in \cref{appendix:data}, and some relevant examples are shown in this section. First the validity of the model is examined, and subsequently the results from trials for different seasonal models is presented. Finally, results from runs intended to model epidemic behaviour is shown.
+In this section, results from the different simulations are showed and explained. All data can be found online at [url], and some relevant examples are shown in this section. First the validity of the model is examined, and subsequently the results from trials for different seasonal models is presented. Finally, results from runs intended to model epidemic behaviour is shown.
+
+In general, the arithmetic mean of several realisations is presented. The choice to do so is based on the fact that there are no significant qualitative difference between realisations, implying that the mean represents an adequate estimate of the probable behaviour of the system. In the case of realisations deviating significantly from the mean, further comments will be made.
 
 \subsection{Validation results}
 
 A graph showing the average of the runs for a system with no disease is presented in \cref{fig:results:no_disease}. This configuration is intended to determine whether the baseline population model is sound, as presented in \cref{section:populations}. The interesting aspects to consider are the population distribution over time, as well as the population growth. We find that the population distribution is fairly constant over time, while the population growth is at $\sim$ [something].
 
-We also consider the validity of the model after the introduction of endemic disease for two different serotypes. The results are shown in \cref{fig:results:endemic_disease}. The primary goal of this simulation is to examine whether the model could mimic the endemic behaviour of the disease, with the appropriate number of disease cases and carriers. The results from these runs are similar to the available results from field research for both serotypes. However, note that there is no significant ratio of immune individuals of any age group for the system with serogroup $W-135$, as carriage of that strain does not induce immunity.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/raw_data_disease_free.pdf}
+		\caption{Raw data from a set of realisations on a system without disease. Note how all runs seem to be fairly similar.} \label{fig:results:raw_no_disease}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/plotted_aves_disease_free.pdf}
+		\caption{Average of the runs shown in \cref{fig:results:raw_no_disease}.} \label{fig:results:ave_no_disease}
+	\end{subfigure}
+	\caption{Basic data sets for a set of realisations of a system without disease. Right is an average of the simulations on the left.} \label{fig:results:no_disease}
+\end{figure}
+
+We also consider the validity of the model after the introduction of endemic disease for two different serotypes. The results are shown in \cref{fig:results:endemic_disease}. The primary goal of this simulation is to examine whether the model could mimic the endemic behaviour of the disease, with the appropriate number of disease cases and carriers. The results from these runs are similar to the available results from field research for both serotypes. However, note that there is no significant ratio of immune individuals of any age group for the system with serogroup W-135, as carriage of that strain does not induce immunity. 
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_1pop_A.pdf}
+		\caption{Average of one set of runs on a system with parameters matching disease of serogroup A in an endemic state. No seasonal variations were introduced in these simulations.} \label{fig:results:endemic_disease_A}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_1pop_W135.pdf}
+		\caption{Average of one set of simulations on a system with parameters matching disease of serogroup W-135 in an endemic state. No seasonal variations were introduced in these simulations.} \label{fig:results:endemic_disease_W135}
+	\end{subfigure}
+	\caption{Figures showing the results from simulation for a system with parameters matching two different serotypes of disease. Overall, the results are similar except in the subpopulations of immune individuals. Immunity is lacking from all age groups for the system corresponding to serogroup W-135} \label{fig:results:endemic_disease}
+\end{figure}
 
 Considering the model with disease included, it is important to note that the parameter governing the transmission of disease was used to have the system match the data, due to lack of available research. A common estimate of the parameter $R_0$ was produced using a set of simulations, and the value producing the best correspondence to real data was chosen. As such, these results are not as reliable as would be desired.
 
-% Validation results
-%			- modelling on system without disease
-%			- modelling on the system with disease, but no seasonal variations
+
 
 \subsection{Seasonal variations}
 
@@ -362,7 +446,24 @@ The seasonal variations in number of disease cases was postulated to have two po
 
 \subsubsection{Behavioural changes}
 
+A graph showing the seasonal variations in disease cases for this type of run is shown in \cref{fig:results:seasonal_disease}. It is clear from the graphs that there are significant differences between the different seasons. The weekly incidence rates reflects these variations, and show a significant differnce between the dry and the wet season. However, the increase in incidence rate does not reflect the shift from endemic to hyperendemig incidence rates presented in the introduction. Including even larger differences between the population density in the dry and the wet season would most likely be able to correct for this discrepancy, if it is found that the population behaviour corresponds to a larger migratory pattern.
 
+The more interesting result for these runs are the carrier rates, which are about four times larger than what is produced for a run without seasonal changes. This difference can be seen both during the wet season and the dry season. The increase during the dry season is explained by the increased rate of disease spread during this time, and as the expected duration of carriage is so long this will also affect the ratios during the wet season.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_2pop_A}
+		\caption{Graph showing some tdata for a system corresponding to a population with seasonal behavioural variations, subject to disease of serogroup A. Displayed are the ratios of the population in all age groups that are immune, carriers or sick. The seasonal variations in the ratio of immune and carriers are very clear. The ratio of sick is too small to be seen in this plot, and incidence rates are presented elsewhere. The carriage rates for this system are significantly higher than in the system without seasonal variations.} \label{fig:results:seasonal_disease_A}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_2pop_W135}
+		\caption{Graph showing some data for a system corresponding to a population with seasonal behavioural variations, subject to disease of serogroup W-135. Diseplayed are the ratios of the population in all age groups that are immune, carriers or sick. The seasonal variations in the ratio of carriers are very clear, but the ratio of immune and sick individuals are not significant enough to be seen in this graph (after transient behaviour). The carriage rate is significantly higher in this system than in the corresponding system without seasonal variations.} \label{fig:results:seasonal_disease_W135}
+	\end{subfigure}
+	\caption{Figures showing some data for systems corresponding to seasonal variations caused by behavioural changes, for the two serogroups considered in this project. The two systems are similar other than in the ratio of immunity. Also not the significant higher carriage rates overall compared to \cref{fig:results:endemic_disease}} \label{fig:results:seasonal_disease}
+\end{figure}
+
+These results do not differ significantly between the serogroups examined. The results that do differ is again the immunity rates, where there is no significant population immunity against serogroups W-135. As the remaining results are so similar, it is reasonable to assume that population immunity does not in general affect the difference between the endemic and hyperendemic states.
 
 \subsubsection{Parametrical changes}
 % Seasonality modelling
@@ -387,36 +488,33 @@ The seasonal variations in number of disease cases was postulated to have two po
 
 \section{Conclusions}
 
-%DISCUSSION POINTS
-% - Possible improvements of the implementation
-% - Possible risks with non-specific individuals
-% - Uncertainty in the parameters
+DISCUSSION POINTS \\
+ - Possible improvements of the implementation \\
+ - Possible risks with non-specific individuals \\
+ - Uncertainty in the parameters \\
+ - Uncertainty in the carriage rates \\
+ - Cross immunity \\
+ - Immunity affecting carriage \\
+ - Quantative vs qualitative statements
+
 
 % Figure float, including 2 subfigures
 %\begin{figure}
-%		\begin{mdframed}
-%			\centering
-%			\begin{subfigure}{0.45\textwidth}
-%				\begin{mdframed}
-%					\includegraphics[width=\textwidth]{}
-%					\caption{} \label{}
-%				\end{mdframed}
-%			\end{subfigure}
-%			\begin{subfigure}{0.45\textwidth}
-%				\begin{mdframed}
-%					\includegraphics[width=\textwidth]{}
-%					\caption{} \label{}
-%				\end{mdframed}
-%			\end{subfigure}
-%			\caption{} \label{}
-%		\end{mdframed}
+%	\centering
+%	\begin{subfigure}{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{}
+%		\caption{} \label{}
+%	\end{subfigure}
+%	\begin{subfigure}{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{}
+%		\caption{} \label{}
+%	\end{subfigure}
+%	\caption{} \label{}
 %\end{figure}
 
 %\begin{wrapfigure}{r}{0.5\textwidth}
-%		\begin{mdframed}
-%			\includegraphics[width=0.48\textwidth]{}
-%			\caption{} \label{}
-%		\end{mdframed}
+%	\includegraphics[width=0.48\textwidth]{}
+%	\caption{} \label{}
 %\end{wrapfigure}
 
 \newpage

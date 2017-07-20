@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.7.5)  5 JUL 2017 16:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.7.5)  20 JUL 2017 20:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -417,10 +417,18 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: dvips.def on input line 95.
+Package graphics Info: Driver file: pdftex.def on input line 95.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
-File: dvips.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count99
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
@@ -436,16 +444,16 @@ LaTeX Info: Redefining \bm on input line 207.
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen114
 \WF@size=\dimen115
-\c@WF@wrappedlines=\count99
+\c@WF@wrappedlines=\count100
 \WF@box=\box28
 \WF@everypar=\toks22
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/share/texlive/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
-\c@@pps=\count100
-\c@@ppsavesec=\count101
-\c@@ppsaveapp=\count102
+\c@@pps=\count101
+\c@@ppsavesec=\count102
+\c@@ppsaveapp=\count103
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
@@ -464,11 +472,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@parindent=\dimen121
 \caption@hangindent=\dimen122
 )
-\c@ContinuedFloat=\count103
+\c@ContinuedFloat=\count104
 Package caption Info: wrapfig package is loaded.
 )
-\c@subfigure=\count104
-\c@subtable=\count105
+\c@subfigure=\count105
+\c@subtable=\count106
 )
 (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
@@ -488,7 +496,7 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@outerparindent=\dimen127
 \enit@toks=\toks24
 \enit@inbox=\box29
-\enitdp@description=\count106
+\enitdp@description=\count107
 )
 (/usr/share/texlive/texmf-dist/tex/latex/ntheorem/ntheorem.sty
 Style `ntheorem', Version 1.33 <2011/08/15>
@@ -537,56 +545,56 @@ Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 )
-\c@Theorem=\count107
-\c@theorem=\count108
-\c@Satz=\count109
-\c@satz=\count110
-\c@Proposition=\count111
-\c@proposition=\count112
-\c@Lemma=\count113
-\c@lemma=\count114
-\c@Korollar=\count115
-\c@korollar=\count116
-\c@Corollary=\count117
-\c@corollary=\count118
-\c@Example=\count119
-\c@example=\count120
-\c@Beispiel=\count121
-\c@beispiel=\count122
-\c@Bemerkung=\count123
-\c@bemerkung=\count124
-\c@Anmerkung=\count125
-\c@anmerkung=\count126
-\c@Remark=\count127
-\c@remark=\count128
-\c@Definition=\count129
-\c@definition=\count130
-\c@Proof=\count131
-\c@proof=\count132
-\c@Beweis=\count133
-\c@beweis=\count134
+\c@Theorem=\count108
+\c@theorem=\count109
+\c@Satz=\count110
+\c@satz=\count111
+\c@Proposition=\count112
+\c@proposition=\count113
+\c@Lemma=\count114
+\c@lemma=\count115
+\c@Korollar=\count116
+\c@korollar=\count117
+\c@Corollary=\count118
+\c@corollary=\count119
+\c@Example=\count120
+\c@example=\count121
+\c@Beispiel=\count122
+\c@beispiel=\count123
+\c@Bemerkung=\count124
+\c@bemerkung=\count125
+\c@Anmerkung=\count126
+\c@anmerkung=\count127
+\c@Remark=\count128
+\c@remark=\count129
+\c@Definition=\count130
+\c@definition=\count131
+\c@Proof=\count132
+\c@proof=\count133
+\c@Beweis=\count134
+\c@beweis=\count135
 ))
-\c@assumption=\count135
-\c@algorithm=\count136
+\c@assumption=\count136
+\c@algorithm=\count137
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count137
+\lst@mode=\count138
 \lst@gtempboxa=\box30
 \lst@token=\toks44
-\lst@length=\count138
+\lst@length=\count139
 \lst@currlwidth=\dimen132
-\lst@column=\count139
-\lst@pos=\count140
+\lst@column=\count140
+\lst@pos=\count141
 \lst@lostspace=\dimen133
 \lst@width=\dimen134
-\lst@newlines=\count141
-\lst@lineno=\count142
+\lst@newlines=\count142
+\lst@lineno=\count143
 \lst@maxwidth=\dimen135
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count143
-\lst@skipnumbers=\count144
+\c@lstnumber=\count144
+\lst@skipnumbers=\count145
 \lst@framebox=\box31
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
@@ -600,17 +608,14 @@ Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: dvips.def on input line 143.
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
-File: dvipsnam.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
-))
+Package color Info: Driver file: pdftex.def on input line 143.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
@@ -619,9 +624,9 @@ Package ifvtex Info: VTeX not detected.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count145
-\Gm@cntv=\count146
-\c@Gm@tempcnt=\count147
+\Gm@cnth=\count146
+\Gm@cntv=\count147
+\c@Gm@tempcnt=\count148
 \Gm@bindingoffset=\dimen136
 \Gm@wd@mp=\dimen137
 \Gm@odd@mp=\dimen138
@@ -662,15 +667,73 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
 LaTeX Font Info:    ... okay on input line 55.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
 LaTeX Font Info:    ... okay on input line 55.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count149
+\scratchdimen=\dimen144
+\scratchbox=\box32
+\nofMPsegments=\count150
+\nofMParguments=\count151
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count152
+\MPscratchDim=\dimen145
+\MPnumerator=\count153
+\makeMPintoPDFobject=\count154
+\everyMPtoPDFconversion=\toks47
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count148
+\c@lstlisting=\count155
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -716,7 +779,7 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 56.
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1
 
-] [1
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1
 
 ]
 
@@ -754,35 +817,119 @@ LaTeX Warning: Reference `fig:sick_pop' on page 1 undefined on input line 300.
 LaTeX Warning: Reference `appendix:event_eqs' on page 1 undefined on input line
  302.
 
-[8]
+[8] [9]
+Overfull \hbox (97.88753pt too wide) in paragraph at lines 373--388
+[][] 
+ []
 
-LaTeX Warning: Reference `appendix:data' on page 1 undefined on input line 345.
+<figures/raw_data_disease_free.pdf, id=54, 578.16pt x 433.62pt>
+File: figures/raw_data_disease_free.pdf Graphic file (type pdf)
+
+<use figures/raw_data_disease_free.pdf>
+Package pdftex.def Info: figures/raw_data_disease_free.pdf used on input line 4
+14.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+
+<figures/plotted_aves_disease_free.pdf, id=55, 578.16pt x 433.62pt>
+File: figures/plotted_aves_disease_free.pdf Graphic file (type pdf)
+
+<use figures/plotted_aves_disease_free.pdf>
+Package pdftex.def Info: figures/plotted_aves_disease_free.pdf used on input li
+ne 418.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Warning: Reference `fig:results:no_disease' on page 1 undefined on input 
-line 349.
+[10] <figures/plotted_disease_endemic_1pop_A.pdf, id=59, 578.16pt x 433.62pt>
+File: figures/plotted_disease_endemic_1pop_A.pdf Graphic file (type pdf)
 
+<use figures/plotted_disease_endemic_1pop_A.pdf>
+Package pdftex.def Info: figures/plotted_disease_endemic_1pop_A.pdf used on inp
+ut line 429.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
 
-LaTeX Warning: Reference `fig:results:endemic_disease' on page 1 undefined on i
-nput line 351.
+<figures/plotted_disease_endemic_1pop_W135.pdf, id=60, 578.16pt x 433.62pt>
+File: figures/plotted_disease_endemic_1pop_W135.pdf Graphic file (type pdf)
 
-[9] (./report.bbl)
+<use figures/plotted_disease_endemic_1pop_W135.pdf>
+Package pdftex.def Info: figures/plotted_disease_endemic_1pop_W135.pdf used on 
+input line 433.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+ [11 <./figures/raw_data_disease_free.pdf> <./figures/plotted_aves_disease_free
+.pdf
+
+pdfTeX warning: pdflatex (file ./figures/plotted_aves_disease_free.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <./figures/plotted_disease_endemic_1pop_A.pdf
+
+pdfTeX warning: pdflatex (file ./figures/plotted_disease_endemic_1pop_A.pdf): P
+DF inclusion: multiple pdfs with page group included in a single page
+> <./figures/plotted_disease_endemic_1pop_W135.pdf
+
+pdfTeX warning: pdflatex (file ./figures/plotted_disease_endemic_1pop_W135.pdf)
+: PDF inclusion: multiple pdfs with page group included in a single page
+>] <figures/plotted_disease_endemic_2pop_A.pdf, id=160, 578.16pt x 433.62pt>
+File: figures/plotted_disease_endemic_2pop_A.pdf Graphic file (type pdf)
+
+<use figures/plotted_disease_endemic_2pop_A.pdf>
+Package pdftex.def Info: figures/plotted_disease_endemic_2pop_A.pdf used on inp
+ut line 456.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+
+<figures/plotted_disease_endemic_2pop_W135.pdf, id=161, 578.16pt x 433.62pt>
+File: figures/plotted_disease_endemic_2pop_W135.pdf Graphic file (type pdf)
+
+<use figures/plotted_disease_endemic_2pop_W135.pdf>
+Package pdftex.def Info: figures/plotted_disease_endemic_2pop_W135.pdf used on 
+input line 460.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+ [12 <./figures/plotted_disease_endemic_2pop_A.pdf> <./figures/plotted_disease_
+endemic_2pop_W135.pdf
+
+pdfTeX warning: pdflatex (file ./figures/plotted_disease_endemic_2pop_W135.pdf)
+: PDF inclusion: multiple pdfs with page group included in a single page
+>] [13] (./report.bbl)
 \tf@thm=\write3
 \openout3 = `report.thm'.
 
- [10] (./report.aux)
+ [14] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7987 strings out of 494954
- 124801 string characters out of 6181004
- 219216 words of memory out of 5000000
- 11162 multiletter control sequences out of 15000+600000
- 18563 words of font info for 72 fonts, out of 8000000 for 9000
+ 8834 strings out of 494953
+ 139209 string characters out of 6180978
+ 226722 words of memory out of 5000000
+ 11962 multiletter control sequences out of 15000+600000
+ 18862 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 42i,11n,43p,1623b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,11n,43p,1623b,495s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (15 pages, 1325642 bytes).
+PDF statistics:
+ 290 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on report.dvi (11 pages, 65720 bytes).
