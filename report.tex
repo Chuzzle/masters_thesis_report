@@ -399,7 +399,7 @@ Estimation of the basic reproductive number was made using by trying a range of 
 
 The initial population values are expected to be of limited importance, as the system stabilizes into something of a steady-state solution, and not a lot of effort was put into making these values optimal. Estimates of population immunity ranges widely, and differs between what measures were used. [carriage and immunity BF 2003, human immunity to the meningococcus].
 
-One hypothesis on the increase in disease cases over the dry season is a change in the risk of infection given disease. This increase is estimated to $25\times$, and this increase is sourced from \cite{mueller2010hypothetical}.
+One hypothesis on the increase in disease cases over the dry season is a change in the risk of infection given disease. This increase is estimated to $25\times$, and this increase is sourced from \cite{mueller2010hypothetical}, that suggests a value between 7-67 would be reasonable.
 
 % Invasiveness is taken from "A hypothetical explanatory model"
 
@@ -550,9 +550,11 @@ The more interesting result for these runs are the carrier rates, which are abou
 
 These results do not differ significantly between the serogroups examined. The results that do differ is again the immunity rates, where there is no significant population immunity against serogroups W-135. As the remaining results are so similar, it is reasonable to assume that population immunity, at least on these scales, does not in general affect the difference between the endemic and hyperendemic states.
 
+As mentioned above, the increase in incidence rate between the seasons is not sufficient to match the expected increase of (1.3 times compared to $10$ - $100$) times, but it is likely to assume that a further increase in the population concentration could achieve the expected values. However, it is also reasonable to assume that such an increase would lead to an increase in the carriage rate and also in the immunity. The carriage rate observed in the realisation as it stands is still within reasonable values, and similar rates have been observed, but a significant further increase could move it beyond what is reasonable. These results suggest that the change from endemic to hyperendemic state could be explained by behavioural changes, but it is not conclusively proven that it could occur without unreasonable assumptions on the population otherwise. It should also be noted that the parameter governing the transmission rate for this particular model is estimated to accurately produce a specific carriage rate for a specific setup. It could definitely be adapted to a different setup, but it is unclear how this would affect the system as a whole.
+
 \subsubsection{Parametrical changes}
 
-Compared to the behavioural model, the seasonal variations introduced via parameter changes affect most ratios significantly less. While some seasonal variations can still be seen, the largest change is seen in the incidence rates of disease (\cref[table:results:incidence_seasonal}). This is to be expected, as the parameter changed is the one governing the incidence rate. In some way, it is more surprising that there are in fact changes in the other populations as well. This could be caused by the increase in disease rates, as people subject to invasive disease are modelled as more infective per time unit. Sick individuals and carriers will transmitt the disease to as many individuals (on average), but over different time periods. If there are many sick people at the same time, this wil lead to a momentary increase in the transmission rate for the whole population, which will in itself affect the number of carriers.
+Compared to the behavioural model, the seasonal variations introduced via parameter changes affect most ratios significantly less. While some seasonal variations can still be seen, the largest change is seen in the incidence rates of disease (\cref{table:results:incidence_seasonal}). This is to be expected, as the parameter changed is the one governing the incidence rate. In some way, it is more surprising that there are in fact changes in the other populations as well. This could be caused by the increase in disease rates, as people subject to invasive disease are modelled as more infective per time unit. Sick individuals and carriers will transmitt the disease to as many individuals (on average), but over different time periods. If there are many sick people at the same time, this will lead to a momentary increase in the transmission rate for the whole population, which will in itself affect the number of carriers. The increase in immune is directly caused by the increase in disease, as recovery leads to immunity.
 
 \begin{figure}
 	\centering
@@ -566,6 +568,10 @@ Compared to the behavioural model, the seasonal variations introduced via parame
 	\end{subfigure}
 	\caption{Graphs showing the average distribution of carriage, disease and immunity within a population implementing seasonal variations through parametrical changes. The seasonal variations compared to \cref{fig:results:seasonal_disease} are much smaller, which is reasonable as the largest difference should be in the number of sick which is not properly shown in this graph. Interestingly, the realisations of this particular model suggests there is some level of population immunity towards serogroup W-135 (right).} \label{fig:results:seasonal_disease_parameters}
 \end{figure}
+
+The increase in incidence rate between dry and wet season is on the low end of what is expected (an increase of about 10 times, with an expected increase of 10 - 100 times), but this is reasonable as the chosen parameter change is on the low end of what is suggested to match the change from endemic to hyperendemic. Furthermore, while it is true that the increase is smaller than expected, the incidence rates themselves are high enough to match what would be considered an epidemic incidence rate during the dry season and hyperendemic during the wet season. The high incidence rates seem to be a consistent pattern in this project, and some possible explanations are discussed further down.
+
+One thing that sets this specific iteration of the model apart is the presence of immunity in a system affected by serogroup W-135. This is caused by the large number of disease cases in this system, as people that recover from invasive disease are always modelled as immune. Whether this level of immunity is reasonable or not is difficult to determine, but it is a significant result.
 
 
 %\subsection{Epidemics}
@@ -593,24 +599,25 @@ One possible issue with the model as it is constructed is that individuals are n
 
 The largest issue in the implementation of this model are the uncertainties in the parameters used. The parameters needed to model a system such as this are in general quite difficult to measure in reality, partially due to their stochastic nature, partially due to the sheer magnitude of the system and partially due to lack of reliable testing methods. An example concerns measures of immunity, where the complexity of the human immune system becomes a factor. Cut-off points as to what entails immunity, what substances elicit an immune reponse and even uncertainty in the mechanisms governing the interaction between bacterium and human tissue all lead to difficulties in forming a reliable estimate. Furthermore, in the regions considered in this project, the infrastructure needed to perform comprehensive population testing is not even present. In all, a lot of the parameters used in this report are quite uncertain, and the results are of course affected by this. While the general behaviour of the system seem sound and realistic, it is important to consider the results more from a qualitative viewpoint than a quantitative. The mechanisms that are displayed in this system are interesting and should be considered when further examining the problem, but the numbers themselves are not what should be the focus.
 
-It should be noted that one of the clearest discrepancies between the model results and real data are in the incidence rates of disease. The values found in the realisations of the model are 
+It should be noted that one of the clearest discrepancies between the model results and real data are in the incidence rates of disease. The values found in the realisations of the model are consistently higher than suggested in real-world data. There could be many reasons for this discrepancy, but one relating to the comments above relates to the way the invasiveness parameter is measured in the article used as a source. It is measured by case-carrier ratios, or the number of disease cases per carrier in the population. This number can be useful to estimating the invasiveness, but as carriage lasts so much longer than disease, and as disease usually occurs so quickly after transmission, the ratios do not explicitly measure the likelihood of invasive disease given infection. A potential way to find a value for the invasiveness that is more appropriate for the current parametrization could be to try different values and choose the one that yields the most appropriate case-carrier ratio.
 
 Cross-immunity is an important factor in the human immuno-response to \emph{N. Meningitides}, both caused by carriage of non-invasive strains and caused by carriage of for example \emph{Neisseria Lactamica}. These mechanisms are not modelled in this project, and could potentially lead to an underestimate of the ratio of immune individuals, especially concerning the system with W-135. In fact, only including one serogroup in the population at the time is not realistic. While there are results suggesting that one serogroup will be dominant at a given time, this is not sufficient to assume that other serogroups are just not present at all. Rather, it would be intesting to attempt to determine what factors lead to one serogroup being more viable than another. This could include factors like invasiveness, transmission rate, how sensitive the bacterium is to immunity and the average duration of carriage.
 
 When an immune individual is infected by the bacterium, they can not be subject to invasive disease, and they are immediately regarded as a carrier. However, this can in some sense lead to individuals losing immunity. This would depend on whether the parameter governing the rate at which carriers lose carriage and acquires immunity actually describes the rate at which carriage leads to immunity or whether it describes the rate at which people are immune after being carriers. These two may sound very similar, but they are not identical. The article used to estimate this parameter was intended to examine the rate at which carriage leads to immunity, and as such might not provide accurate estimates. This could lead to an under-estimate in the ratio of immunity in the population, which in turn could explain the slightly high incidence rates.
 
-DISCUSSION POINTS \\
- - Possible improvements of the implementation \\
- - Possible risks with non-specific individuals \\
- - Uncertainty in the parameters \\
- - Uncertainty in the carriage rates \\
- - Cross immunity \\
- - Immunity affecting carriage \\
- - Quantative vs qualitative statements
 
-- Is the incubation period leading to an error in the parameters based on "a hypothetical model.."?
-
-- People can not be immune _and_ carriers in this model
+%DISCUSSION POINTS \\
+% - Possible improvements of the implementation \\
+% - Possible risks with non-specific individuals \\
+% - Uncertainty in the parameters \\
+% - Uncertainty in the carriage rates \\
+% - Cross immunity \\
+% - Immunity affecting carriage \\
+% - Quantative vs qualitative statements
+%
+%- Is the incubation period leading to an error in the parameters based on "a hypothetical model.."?
+%
+%- People can not be immune -and- carriers in this model
 
 \section{Conclusions}
 
