@@ -93,7 +93,7 @@ Humans are the only known reservoir for N. Meningitidis. At a given time, about 
 
 The African meningitis belt is a region in Sub-Saharan Africa with an increased rate of meningococcal disease as well as recurring epidemics. The belt was first described by Lapeyssonnie in 1968 \cite{lapeyssonnie}. This region is shown in \cref{[FIGURE:MENINGITIS BELT]} and has been characterized by semi-regular epidemics documented since the early 20th century. Its specific geographical area is defined be the WHO as the region in Africa between Senegal in the west and Ethiopia in the east [source], which coincides fairly well with the area described by Lapeyssonnie.
 
-Meningitis dynamics in the region have, among others, these characteristics. Firstly, there are recurring epidemics with intervals of about 5-15 years. Secondly, the incidence rates of disease is higher than in other regions of the world. Thirdly, the disease is most commonly caused by a serogroup which does not usually cause epidemics in the rest of the world. All of these properties are also affected by a strong seasonality, so that there are three distinguishable states for the disease in a population. There is the hypoendemic state, with a low incidence rate of about [] which occurs during the wet season. During the dry season, the system falls into a hyperendemic state with increased incidence rate, or occasionally an epidemic state. An epidemic state is defined as a rate of disease above []. \cite{mueller2010hypothetical}
+Meningitis dynamics in the region have, among others, these characteristics. Firstly, there are recurring epidemics with intervals of about 5-15 years. Secondly, the incidence rates of disease is higher than in other regions of the world. Thirdly, the disease is most commonly caused by a serogroup which does not usually cause epidemics in the rest of the world. All of these properties are also affected by a strong seasonality, so that there are three distinguishable states for the disease in a population. There is the hypoendemic state, with a low weekly incidence rate of 0-1 cases per 100 000, which occurs during the wet season. During the dry season, the system falls into a hyperendemic state with an increased weekly incidence rate (about 1-20 cases per 100 000), or occasionally an epidemic state. An epidemic state on a district level is defined as a weekly incidence rate of disease at or above 10 per 100 000, but community level incidence rates can be significantly higher during epidemics. This is because epidemics are often very localized, and some health centers can have incidence rates of up towards 100 per 100 000.  \cite{mueller2010hypothetical}
 
 The reason for the specific dynamics in this region is often considered to be related to climatic factors. One such factor frequently considered is the total precipitation. The region coincides fairly well with the area between the 300mm and 1100mm isohyets \cite{molesworth2002meningitis}. Another common climate factor for the area, is that it is affected by the Harmattan, a dry wind from the Sahara desert. As there are links between factors that irritate the airways and subsequent infection by \emph{N. Meningitidis} [sources on smoking, colds], a link between the Harmattan and the hyperendemic meningitis season would seem plausible. Is is an area of active research [?], and finding any climactic factors that could be driving the epidemics is outlined as an area of priority by the WHO [source: research priorities].
 
@@ -359,12 +359,17 @@ In order to accurately model the behavioural variations of the population, some 
 
 Some relevant parameters for the events related to the healthy population is presented below. All values are from Gapminder.
 
-\begin{tabular}{|l|c|}
-	\hline
-	Parameter			& Value \\ \hline
-	Births per adult	&		\\
-	Life expectancy		&
-\end{tabular}
+\begin{figure}
+	\begin{tabular}{|l|c|}
+		\hline
+		Parameter				& Value \\ \hline
+		Births per adult		&		\\
+		Life expectancy			&		\\
+		Ratio in ages $0-4$		& 0.16	\\
+		Ratio in ages $5-14$	& 0.26
+	\end{tabular}
+	\caption{The parameters governing the initial population distribution and the events relating to a healthy population.} \label{table:pars:healthy}
+\end{figure}
 
 \subsubsection{Disease data}
 
@@ -394,7 +399,7 @@ Estimation of the basic reproductive number was made using by trying a range of 
 
 The initial population values are expected to be of limited importance, as the system stabilizes into something of a steady-state solution, and not a lot of effort was put into making these values optimal. Estimates of population immunity ranges widely, and differs between what measures were used. [carriage and immunity BF 2003, human immunity to the meningococcus].
 
-One hypothesis on the increase in disease cases over the dry season is a change in the risk of infection given disease. This increase is estimated to [], and this increase is sourced from \cite{mueller2010hypothetical}.
+One hypothesis on the increase in disease cases over the dry season is a change in the risk of infection given disease. This increase is estimated to $25\times$, and this increase is sourced from \cite{mueller2010hypothetical}.
 
 % Invasiveness is taken from "A hypothetical explanatory model"
 
@@ -421,16 +426,16 @@ A graph showing the average of the runs for a system with no disease is presente
 	\caption{Basic data sets for a set of realisations of a system without disease. Right is an average of the simulations on the left.} \label{fig:results:no_disease}
 \end{figure}
 
-We also consider the validity of the model after the introduction of endemic disease for two different serotypes. The results are shown in \cref{fig:results:endemic_disease}. The primary goal of this simulation is to examine whether the model could mimic the endemic behaviour of the disease, with the appropriate number of disease cases and carriers. The results from these runs are similar to the available results from field research for both serotypes. However, note that there is no significant ratio of immune individuals of any age group for the system with serogroup W-135, as carriage of that strain does not induce immunity. 
+We also consider the validity of the model after the introduction of endemic disease for two different serotypes. The results are shown in \cref{fig:results:endemic_disease}. The primary goal of this simulation is to examine whether the model could mimic the endemic behaviour of the disease, with the appropriate number of disease cases and carriers. The results from these runs are quite similar to the available results from field research for both serotypes, except for a slightly high incidence ratio. Also note that there is no significant ratio of immune individuals of any age group for the system with serogroup W-135, as carriage of that strain does not induce immunity. 
 
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_1pop_A.pdf}
+		\includegraphics[width=\textwidth]{figures/disease_endemic_1pop_A.pdf}
 		\caption{Average of one set of runs on a system with parameters matching disease of serogroup A in an endemic state. No seasonal variations were introduced in these simulations.} \label{fig:results:endemic_disease_A}
 	\end{subfigure}
 	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_1pop_W135.pdf}
+		\includegraphics[width=\textwidth]{figures/disease_endemic_1pop_W135.pdf}
 		\caption{Average of one set of simulations on a system with parameters matching disease of serogroup W-135 in an endemic state. No seasonal variations were introduced in these simulations.} \label{fig:results:endemic_disease_W135}
 	\end{subfigure}
 	\caption{Figures showing the results from simulation for a system with parameters matching two different serotypes of disease. Overall, the results are similar except in the subpopulations of immune individuals. Immunity is lacking from all age groups for the system corresponding to serogroup W-135} \label{fig:results:endemic_disease}
@@ -438,11 +443,91 @@ We also consider the validity of the model after the introduction of endemic dis
 
 Considering the model with disease included, it is important to note that the parameter governing the transmission of disease was used to have the system match the data, due to lack of available research. A common estimate of the parameter $R_0$ was produced using a set of simulations, and the value producing the best correspondence to real data was chosen. As such, these results are not as reliable as would be desired.
 
+Real-world data suggest that the weekly incidence rate during the endemic period is below $1$ per $10^5$ individuals. The incidence rates produced by this model, presented in \cref{table:results:incidence_endemic_1pop}, are higher than what should be expected. Possible reasons are an over-estimate of the number of carriers, an over-estimate of the parameter governing invasiveness or an under-estimate of the population immunity. The incidence rate for serogroup W-135 is especially high, which further suggests that the population immunity might be at fault.
 
+\subsection{Age dependence}
+
+As mentioned in the introduction, there are some variations between age groups concerning carriage and disease rates. These differences can be observed in the simulations corresponding to serogroup A, and plots over the disease distribution for the three age groups defined in the model are presented in \cref{fig:results:agedist_A}.
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{figures/endemic_1pop_A_infants}
+		\caption{Graphs showing the distribution of carriage, immunity and disease in ages 0-4. The ratio of disease is too small to be seen in this graph, and is presented in \cref{table:results:incidence_endemic_1pop}.} \label{fig:results:agedist_A_infants}
+	\end{subfigure}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{figures/endemic_1pop_A_young}
+		\caption{Graphs showing the distribution of carriage, immunity and disease in ages 5-14. The ratio of disease is too small to be seen in this graph, and is presented in \cref{table:results:incidence_endemic_1pop}.} \label{fig:results:agedist_A_young}
+	\end{subfigure}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{figures/endemic_1pop_A_adults}
+		\caption{Graph showing the distribution of carraige, immunity and disease in ages 15 and up. The ratio of disease is too small to be seen in this graph, and is presented in \cref{table:results:incidence_endemic_1pop}.} \label{fig:results:agedist_A_adults}
+	\end{subfigure}
+	\caption{Graphs showing the distribution of disease in the different age groups modelled in this project, younger to older left to right, for serogroup A. As disease rates are too small to be seen in these graphs, they are presented elsewhere in a more appropriate format, see \cref{table:results:incidence_endemic_1pop}. In these graphs, the ratio of immunity is particularly interesting.} \label{fig:results:agedist_A}
+\end{figure}
+
+The relative incidence rates for serogroup A show some of the variations expected, in that disease is more common for the younger individuals of the population. This is not true for serogroup W-135. Likely explanations for the presence of this dynamic for serogroup A is that there is a pattern of increased immunity by age, after multiple exposures to carriage. The same is not true for W-135, as the only immunizing event is actually being sick. Not enough of the population has ever been sick to leat to significant immunity, even with the higher rates of disease for this serogroup.
+
+\begin{figure}
+	\begin{tabular}{l|r|r}	\hline
+		Event type					& Weekly incidence rate per										& Relative incidence rate	 	\\
+									& $10^5$ individuals ($95\% CI$)  																\\ \hline
+		Invasion, any age, A		& 1.92851 														& -								\\
+		Invasion of infant, A		& 0.37211 $(0.366, 0.378)$										& 2.32569						\\
+		Invasion of young, A		& 0.71674 $(0.710, 0.723)$										& 2.75669						\\
+		Invasion of adult, A		& 0.83966 $(0.833, 0.846)$										& 1.44769						\\
+		Invasion, any age, W-135 	& 4.11585														& -								\\							
+		Invasion of infant, W-135	& 0.57676 $(0.570, 0.583)$										& 3.60475						\\
+		Invasion of young, W-135	& 1.15594 $(1.119, 1.193)$										& 4.44592						\\
+		Invasion of adult, W-135	& 2.38315 $(2.307, 2.460)$										& 4.10888						\\ \hline
+	\end{tabular}
+	\caption{Table displaying some results for a system modelling the endemic state of disease. The weekly incidence rate is calculated as the number of times the given event occurs, and the relative rate is found by adjusting for the relative portion (assuming adherence to initial values, see \cref{table:pars:healthy}) of the population that are in the given age group. Confidence intervals are not presented for the relative rates as these are only rough estimates.} \label{table:results:incidence_endemic_1pop}
+\end{figure}
 
 \subsection{Seasonal variations}
 
 The seasonal variations in number of disease cases was postulated to have two possible explanations, and both of these are examined in this section. First we consider an explanation from behavioural changes, and then an explanation from the biology of the bacterium itself. It is worth commenting that in the second case, the parameter can be controlled so that the data matches reality, as the parametrization is dependent on the model itself. Only a negative result would be significant here, as it means that the model can not be applied to this case. Validation of this theory must come from some other source.
+
+\begin{figure}
+	\begin{tabular}{l|l|r|r}
+								& Affected population				& Weekly incidence rate per			& Relative incidence rate		\\
+								&									& $10^5$ individuals ($95\% CI$)	&								\\ \hline
+		Behavioural model		& Any age (A, dry)					& 7.73821							& -								\\
+								& Infant (A, dry)					& 1.62602 $(1.611, 1.642)$			& 10.163						\\
+								& Young (A, dry)					& 2.67421 $(2.655, 2.693)$			& 10.285						\\
+								& Adult (A, dry)					& 3.43798 $(3.414, 3.461)$			& 5.928							\\
+								& Any age (A, wet)					& 5.78300							& -								\\
+								& Infant (A, wet)					& 1.21254 $(1.172, 1.253)$			& 7.578							\\
+								& Young (A, wet)					& 1.99355 $(1.936, 2.052)$			& 7.668							\\
+								& Adult (A, wet)					& 2.57691 $(2.499, 2.654)$			& 4.443							\\
+								& Any age (W-135, dry)				& 20.28803							& -								\\
+								& Infant (W-135, dry)				& 2.87552 $(2.851, 2.900)$			& 17.972						\\
+								& Young (W-135, dry)				& 5.59536 $(5.557, 5.634)$			& 21.521						\\
+								& Adult (W-135, dry)				& 11.81715 $(11.731, 11.904)$		& 20.375						\\
+								& Any age (W-135, wet)				& 15.03535							& -								\\
+								& Infant (W-135, wet)				& 2.13519 $(2.081, 2.190)$			& 13.345						\\
+								& Young (W-135, wet)				& 4.13508 $(4.018. 4.253)$			& 15.904						\\
+								& Adult (W135, wet)					& 8.76508 $(8.549, 8.981)$			& 15.112						\\
+		Parametrical change		& Any age (A, dry)					& 47.39676							& -								\\
+								& Infant (A, dry)					& 9.42910 $(9.348, 9.511)$			& 58.932						\\
+								& Young (A, dry)					& 17.65357 $(17.481, 17.827)$		& 67.898						\\
+								& Adult (A, dry)					& 20.31409 $(20.096, 20.532)$		& 35.024						\\
+								& Any age (A, wet)					& 4.71743							& -								\\
+								& Infant (A, wet)					& 0.92928 $(0.667, 1.174)$			& 5.808							\\
+								& Young (A, wet)					& 1.76014 $(1.281, 2.239)$			& 6.770							\\
+								& Adult (A, wet)					& 2.02801 $(1.550, 2.507)$			& 3.497							\\
+								& Any age (W-135, dry)				& 109.48066							& -								\\
+								& Infant (W-135, dry)				& 15.20794 $(14.947, 15.469)$		& 95.050						\\
+								& Young (W-135, dry)				& 30.47220 $(29.886, 31.058)$		& 117.201						\\
+								& Adult (W-135, dry)				& 63.80052 $(62.370, 65.231)$		& 110.001						\\
+								& Any age (W-135, wet)				& 10.618							& -								\\
+								& Infant (W-135, wet)				& 1.46293 $(1.055, 1.871)$			& 9.143							\\
+								& Young (W-135, wet)				& 2.93090 $(2.128, 3.734)$			& 11.273						\\
+								& Adult (W135, wet)					& 6.22436 $(4.495, 7.954)$			& 10.732						\\ \hline
+	\end{tabular}
+	\caption{Table displaying weekly incidence rates of disease for systems incorporating different models of seasonal variations. The incidence rates increase by about 1.3 times in the dry season in the behavioural model, and about 10 times in the parametrical model.} \label{table:results:incidence_seasonal}
+\end{figure}
 
 \subsubsection{Behavioural changes}
 
@@ -453,25 +538,37 @@ The more interesting result for these runs are the carrier rates, which are abou
 \begin{figure}
 	\centering
 	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_2pop_A}
+		\includegraphics[width=\textwidth]{figures/disease_endemic_2pop_A}
 		\caption{Graph showing some tdata for a system corresponding to a population with seasonal behavioural variations, subject to disease of serogroup A. Displayed are the ratios of the population in all age groups that are immune, carriers or sick. The seasonal variations in the ratio of immune and carriers are very clear. The ratio of sick is too small to be seen in this plot, and incidence rates are presented elsewhere. The carriage rates for this system are significantly higher than in the system without seasonal variations.} \label{fig:results:seasonal_disease_A}
 	\end{subfigure}
 	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth]{figures/plotted_disease_endemic_2pop_W135}
+		\includegraphics[width=\textwidth]{figures/disease_endemic_2pop_W135}
 		\caption{Graph showing some data for a system corresponding to a population with seasonal behavioural variations, subject to disease of serogroup W-135. Diseplayed are the ratios of the population in all age groups that are immune, carriers or sick. The seasonal variations in the ratio of carriers are very clear, but the ratio of immune and sick individuals are not significant enough to be seen in this graph (after transient behaviour). The carriage rate is significantly higher in this system than in the corresponding system without seasonal variations.} \label{fig:results:seasonal_disease_W135}
 	\end{subfigure}
 	\caption{Figures showing some data for systems corresponding to seasonal variations caused by behavioural changes, for the two serogroups considered in this project. The two systems are similar other than in the ratio of immunity. Also not the significant higher carriage rates overall compared to \cref{fig:results:endemic_disease}} \label{fig:results:seasonal_disease}
 \end{figure}
 
-These results do not differ significantly between the serogroups examined. The results that do differ is again the immunity rates, where there is no significant population immunity against serogroups W-135. As the remaining results are so similar, it is reasonable to assume that population immunity does not in general affect the difference between the endemic and hyperendemic states.
+These results do not differ significantly between the serogroups examined. The results that do differ is again the immunity rates, where there is no significant population immunity against serogroups W-135. As the remaining results are so similar, it is reasonable to assume that population immunity, at least on these scales, does not in general affect the difference between the endemic and hyperendemic states.
 
 \subsubsection{Parametrical changes}
-% Seasonality modelling
-%			- population grouping on season
-%			- different parameters
-%				- comparison
 
-\subsection{Epidemics}
+Compared to the behavioural model, the seasonal variations introduced via parameter changes affect most ratios significantly less. While some seasonal variations can still be seen, the largest change is seen in the incidence rates of disease (\cref[table:results:incidence_seasonal}). This is to be expected, as the parameter changed is the one governing the incidence rate. In some way, it is more surprising that there are in fact changes in the other populations as well. This could be caused by the increase in disease rates, as people subject to invasive disease are modelled as more infective per time unit. Sick individuals and carriers will transmitt the disease to as many individuals (on average), but over different time periods. If there are many sick people at the same time, this wil lead to a momentary increase in the transmission rate for the whole population, which will in itself affect the number of carriers.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/disease_A_seasonal}
+		\caption{Graph showing the average result of the simulations using parametrical changes to model the seasonality of the disease, for a system matching serogroup A. There are some small seasonal variations visible in some populations, but in general the system looks visually similar to what is shown in \cref{fig:results:endemic_disease_A}. The relevant seasonal changes are in the number of disease cases, presented in \cref{table:results:incidence_seasonal}} \label{fig:results:seasonal_disease_A_parameters}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{figures/disease_W135_seasonal}
+		\caption{Graph showing the average result of the simulations using parametrical changes to model the seasonality of the disease, for a system matching serogroup W-135. Some seasonal variations can be seen in the graph, especially in the ratio of immune. Comparing to the result in \cref{fig:results:endemic_disease_W135}, the presence of a visible population immmunity is itself significant. This is a result of the higher rate of disease (see \cref{table:results:incidence_seasonal}) leading to more immune individuals.} \label{fig:results:seasonal_aves_W135_parameters}
+	\end{subfigure}
+	\caption{Graphs showing the average distribution of carriage, disease and immunity within a population implementing seasonal variations through parametrical changes. The seasonal variations compared to \cref{fig:results:seasonal_disease} are much smaller, which is reasonable as the largest difference should be in the number of sick which is not properly shown in this graph. Interestingly, the realisations of this particular model suggests there is some level of population immunity towards serogroup W-135 (right).} \label{fig:results:seasonal_disease_parameters}
+\end{figure}
+
+
+%\subsection{Epidemics}
 % Epidemics modelling
 %		- I don't know what the results are yet here ^^
 
@@ -486,7 +583,21 @@ These results do not differ significantly between the serogroups examined. The r
 
 % To further determine the seasonality of the disease, also the epidemic state should be considered. While epidemic outbreaks are connected to the introduction of a more invasive strain, the epidemics themselves also display a certain seasonality. Using the seasonal variations found to produce the most accurate results in the previous section, the results of introducing a more invasive strain during different seasons will be examined. If the introduction leads to an epidemic also during the wet season, or fails to lead to an epidemic in the dry season, the suggested explanation does not hold.
 
-\section{Conclusions}
+
+
+\section{Discussion}
+
+The goal of this project has been to create a stochastic and discrete model for the dynamics of Meningococcal disease in the African Meningitis belt. In large, the project has been succesful, in that a model has been created and implemented, and some interesting results have been produced. The model can, to some extent, model the endemic and the hyperendemic incidence rates measures in the region, and suggest that population behaviour is a possible explanation for the shift between these two states. Furthermore, there seems to be a sort of steady state solution for the system in these states, even with the stochastic modelling procedure. This suggests two things, firstly that epidemics require some external triggering factor, and secondly that a deterministic modelling procedure should be sufficient to model the endemic and the hyperendemic states.
+
+One possible issue with the model as it is constructed is that individuals are non-specific. In cases where there are very small populations, for example concerning sick individuals, there is a risk that events occur in such a way that the duration of disease is unrealistically short. However, these behaviours are quite unlikely, and for the events that are stochastic in nature, there could be a non-zero probability that such a series of events could in fact occur. A more significant issue would be in cases where reality would not behave stochastically, for example concerning aging populations. In this particular project, the age groups are large enough that treating aging as a stochastic event is allowed. These factors are, however, one of the reasons to not introduce an event allowing for aging of sick individuals. It also accentuates the need to choose a model appropriate for the problem at hand.
+
+The largest issue in the implementation of this model are the uncertainties in the parameters used. The parameters needed to model a system such as this are in general quite difficult to measure in reality, partially due to their stochastic nature, partially due to the sheer magnitude of the system and partially due to lack of reliable testing methods. An example concerns measures of immunity, where the complexity of the human immune system becomes a factor. Cut-off points as to what entails immunity, what substances elicit an immune reponse and even uncertainty in the mechanisms governing the interaction between bacterium and human tissue all lead to difficulties in forming a reliable estimate. Furthermore, in the regions considered in this project, the infrastructure needed to perform comprehensive population testing is not even present. In all, a lot of the parameters used in this report are quite uncertain, and the results are of course affected by this. While the general behaviour of the system seem sound and realistic, it is important to consider the results more from a qualitative viewpoint than a quantitative. The mechanisms that are displayed in this system are interesting and should be considered when further examining the problem, but the numbers themselves are not what should be the focus.
+
+It should be noted that one of the clearest discrepancies between the model results and real data are in the incidence rates of disease. The values found in the realisations of the model are 
+
+Cross-immunity is an important factor in the human immuno-response to \emph{N. Meningitides}, both caused by carriage of non-invasive strains and caused by carriage of for example \emph{Neisseria Lactamica}. These mechanisms are not modelled in this project, and could potentially lead to an underestimate of the ratio of immune individuals, especially concerning the system with W-135. In fact, only including one serogroup in the population at the time is not realistic. While there are results suggesting that one serogroup will be dominant at a given time, this is not sufficient to assume that other serogroups are just not present at all. Rather, it would be intesting to attempt to determine what factors lead to one serogroup being more viable than another. This could include factors like invasiveness, transmission rate, how sensitive the bacterium is to immunity and the average duration of carriage.
+
+When an immune individual is infected by the bacterium, they can not be subject to invasive disease, and they are immediately regarded as a carrier. However, this can in some sense lead to individuals losing immunity. This would depend on whether the parameter governing the rate at which carriers lose carriage and acquires immunity actually describes the rate at which carriage leads to immunity or whether it describes the rate at which people are immune after being carriers. These two may sound very similar, but they are not identical. The article used to estimate this parameter was intended to examine the rate at which carriage leads to immunity, and as such might not provide accurate estimates. This could lead to an under-estimate in the ratio of immunity in the population, which in turn could explain the slightly high incidence rates.
 
 DISCUSSION POINTS \\
  - Possible improvements of the implementation \\
@@ -497,6 +608,11 @@ DISCUSSION POINTS \\
  - Immunity affecting carriage \\
  - Quantative vs qualitative statements
 
+- Is the incubation period leading to an error in the parameters based on "a hypothetical model.."?
+
+- People can not be immune _and_ carriers in this model
+
+\section{Conclusions}
 
 % Figure float, including 2 subfigures
 %\begin{figure}
