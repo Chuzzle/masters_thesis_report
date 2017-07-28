@@ -512,43 +512,19 @@ The relative incidence rates for serogroup A show some of the variations expecte
 The seasonal variations in number of disease cases was postulated to have two possible explanations, and both of these are examined in this section. First we consider an explanation from behavioural changes, and then an explanation from the biology of the bacterium itself. It is worth commenting that in the second case, the parameter can be controlled so that the data matches reality, as the parametrization is dependent on the model itself. Only a negative result would be significant here, as it means that the model can not be applied to this case. Validation of this theory must come from some other source.
 
 \begin{figure}
-	\begin{tabular}{l|l|r|r}
-								& Affected population				& Weekly incidence rate per			& Relative incidence rate		\\
-								&									& $10^5$ individuals ($95\% CI$)	&								\\ \hline
-		Behavioural model		& Any age (A, dry)					& 7.73821							& -								\\
-								& Infant (A, dry)					& 1.62602 $(1.611, 1.642)$			& 10.163						\\
-								& Young (A, dry)					& 2.67421 $(2.655, 2.693)$			& 10.285						\\
-								& Adult (A, dry)					& 3.43798 $(3.414, 3.461)$			& 5.928							\\
-								& Any age (A, wet)					& 5.78300							& -								\\
-								& Infant (A, wet)					& 1.21254 $(1.172, 1.253)$			& 7.578							\\
-								& Young (A, wet)					& 1.99355 $(1.936, 2.052)$			& 7.668							\\
-								& Adult (A, wet)					& 2.57691 $(2.499, 2.654)$			& 4.443							\\
-								& Any age (W-135, dry)				& 20.28803							& -								\\
-								& Infant (W-135, dry)				& 2.87552 $(2.851, 2.900)$			& 17.972						\\
-								& Young (W-135, dry)				& 5.59536 $(5.557, 5.634)$			& 21.521						\\
-								& Adult (W-135, dry)				& 11.81715 $(11.731, 11.904)$		& 20.375						\\
-								& Any age (W-135, wet)				& 15.03535							& -								\\
-								& Infant (W-135, wet)				& 2.13519 $(2.081, 2.190)$			& 13.345						\\
-								& Young (W-135, wet)				& 4.13508 $(4.018. 4.253)$			& 15.904						\\
-								& Adult (W135, wet)					& 8.76508 $(8.549, 8.981)$			& 15.112						\\
-		Parametrical change		& Any age (A, dry)					& 47.39676							& -								\\
-								& Infant (A, dry)					& 9.42910 $(9.348, 9.511)$			& 58.932						\\
-								& Young (A, dry)					& 17.65357 $(17.481, 17.827)$		& 67.898						\\
-								& Adult (A, dry)					& 20.31409 $(20.096, 20.532)$		& 35.024						\\
-								& Any age (A, wet)					& 4.71743							& -								\\
-								& Infant (A, wet)					& 0.92928 $(0.667, 1.174)$			& 5.808							\\
-								& Young (A, wet)					& 1.76014 $(1.281, 2.239)$			& 6.770							\\
-								& Adult (A, wet)					& 2.02801 $(1.550, 2.507)$			& 3.497							\\
-								& Any age (W-135, dry)				& 109.48066							& -								\\
-								& Infant (W-135, dry)				& 15.20794 $(14.947, 15.469)$		& 95.050						\\
-								& Young (W-135, dry)				& 30.47220 $(29.886, 31.058)$		& 117.201						\\
-								& Adult (W-135, dry)				& 63.80052 $(62.370, 65.231)$		& 110.001						\\
-								& Any age (W-135, wet)				& 10.618							& -								\\
-								& Infant (W-135, wet)				& 1.46293 $(1.055, 1.871)$			& 9.143							\\
-								& Young (W-135, wet)				& 2.93090 $(2.128, 3.734)$			& 11.273						\\
-								& Adult (W135, wet)					& 6.22436 $(4.495, 7.954)$			& 10.732						\\ \hline
+	\begin{tabular}{l|l|r}
+								& Affected population				& Weekly incidence rate per			\\
+								&									& $10^5$ individuals ($95\% CI$)	\\ \hline
+		Behavioural model		& Any age (A, dry)					& 1.56122 (1.549, 1.561)			\\
+								& Any age (A, wet)					& 1.14712 (1.122, 1.172)			\\
+								& Any age (W-135, dry)				& 4.04407 (4.020, 4.069)			\\
+								& Any age (W-135, wet)				& 3.11848 (3.071, 3.166)			\\
+		Parametrical change		& Any age (A, dry)					& 9.39334 (9.334, 9.453)			\\
+								& Any age (A, wet)					& 0.96486 (0.821, 1.109)			\\
+								& Any age (W-135, dry)				& 20.73407 (20.399, 21.070)			\\
+								& Any age (W-135, wet)				& 2.05885 (1.704, 2.413)			\\ \hline
 	\end{tabular}
-	\caption{Table displaying weekly incidence rates of disease for systems incorporating different models of seasonal variations. The incidence rates increase by about 1.3 times in the dry season in the behavioural model, and about 10 times in the parametrical model.} \label{table:results:incidence_seasonal}
+	\caption{Table displaying weekly incidence rates of disease for systems incorporating different models of seasonal variations. The incidence rates increase by about 1.3 times in the dry season in the behavioural model, and about 10 times in the parametrical model. The ratio of increase are similar for the other estimate of invasiveness that was used.} \label{table:results:incidence_seasonal}
 \end{figure}
 
 \subsubsection{Behavioural changes}
@@ -565,7 +541,7 @@ The more interesting result for these runs are the carrier rates, which are abou
 	\end{subfigure}
 	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\textwidth]{figures/disease_endemic_2pop_W135}
-		\caption{Graph showing some data for a system corresponding to a population with seasonal behavioural variations, subject to disease of serogroup W-135. Diseplayed are the ratios of the population in all age groups that are immune, carriers or sick. The seasonal variations in the ratio of carriers are very clear, but the ratio of immune and sick individuals are not significant enough to be seen in this graph (after transient behaviour). The carriage rate is significantly higher in this system than in the corresponding system without seasonal variations.} \label{fig:results:seasonal_disease_W135}
+		\caption{Graph showing some data for a system corresponding to a population with seasonal behavioural variations, subject to disease of serogroup W-135. Displayed are the ratios of the population in all age groups that are immune, carriers or sick. The seasonal variations in the ratio of carriers are very clear, but the ratio of immune and sick individuals are not significant enough to be seen in this graph (after transient behaviour). The carriage rate is significantly higher in this system than in the corresponding system without seasonal variations.} \label{fig:results:seasonal_disease_W135}
 	\end{subfigure}
 	\caption{Figures showing some data for systems corresponding to seasonal variations caused by behavioural changes, for the two serogroups considered in this project. The two systems are similar other than in the ratio of immunity. Also not the significant higher carriage rates overall compared to \cref{fig:results:endemic_disease}} \label{fig:results:seasonal_disease}
 \end{figure}
