@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.7.5)  23 JUL 2017 01:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.7.5)  28 JUL 2017 15:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -486,17 +486,35 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \FrameRule=\dimen125
 \FrameSep=\dimen126
 )
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip47
+\LTright=\skip48
+\LTpre=\skip49
+\LTpost=\skip50
+\LTchunksize=\count107
+\LTcapwidth=\dimen127
+\LT@head=\box29
+\LT@firsthead=\box30
+\LT@foot=\box31
+\LT@lastfoot=\box32
+\LT@cols=\count108
+\LT@rows=\count109
+\c@LT@tables=\count110
+\c@LT@chunks=\count111
+\LT@p@ftn=\toks23
+)
 (/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
-\@enLab=\toks23
+\@enLab=\toks24
 )
 (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\labelindent=\skip47
-\enit@outerparindent=\dimen127
-\enit@toks=\toks24
-\enit@inbox=\box29
-\enitdp@description=\count107
+\labelindent=\skip51
+\enit@outerparindent=\dimen128
+\enit@toks=\toks25
+\enit@inbox=\box33
+\enitdp@description=\count112
 )
 (/usr/share/texlive/texmf-dist/tex/latex/ntheorem/ntheorem.sty
 Style `ntheorem', Version 1.33 <2011/08/15>
@@ -504,37 +522,37 @@ Package: ntheorem 2011/08/15 1.33
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\theorem@style=\toks25
-\theorem@@style=\toks26
-\theorembodyfont=\toks27
-\theoremnumbering=\toks28
-\theorempreskipamount=\skip48
-\theorempostskipamount=\skip49
-\theoremframepreskipamount=\skip50
-\theoremframepostskipamount=\skip51
-\theoreminframepreskipamount=\skip52
-\theoreminframepostskipamount=\skip53
-\theorem@preskip=\toks29
-\theorem@postskip=\toks30
-\theorem@framepreskip=\toks31
-\theorem@framepostskip=\toks32
-\theorem@inframepreskip=\toks33
-\theorem@inframepostskip=\toks34
-\theoremindent=\dimen128
-\theorem@indent=\dimen129
-\theoremrightindent=\dimen130
-\theorem@rightindent=\dimen131
-\theoremheaderfont=\toks35
-\theoremseparator=\toks36
-\theoremprework=\toks37
-\theorempostwork=\toks38
-\theoremsymbol=\toks39
-\qedsymbol=\toks40
-\theoremkeyword=\toks41
-\qedsymbol=\toks42
-\thm@topsep=\skip54
-\thm@topsepadd=\skip55
-\shadecolor=\toks43
+\theorem@style=\toks26
+\theorem@@style=\toks27
+\theorembodyfont=\toks28
+\theoremnumbering=\toks29
+\theorempreskipamount=\skip52
+\theorempostskipamount=\skip53
+\theoremframepreskipamount=\skip54
+\theoremframepostskipamount=\skip55
+\theoreminframepreskipamount=\skip56
+\theoreminframepostskipamount=\skip57
+\theorem@preskip=\toks30
+\theorem@postskip=\toks31
+\theorem@framepreskip=\toks32
+\theorem@framepostskip=\toks33
+\theorem@inframepreskip=\toks34
+\theorem@inframepostskip=\toks35
+\theoremindent=\dimen129
+\theorem@indent=\dimen130
+\theoremrightindent=\dimen131
+\theorem@rightindent=\dimen132
+\theoremheaderfont=\toks36
+\theoremseparator=\toks37
+\theoremprework=\toks38
+\theorempostwork=\toks39
+\theoremsymbol=\toks40
+\qedsymbol=\toks41
+\theoremkeyword=\toks42
+\qedsymbol=\toks43
+\thm@topsep=\skip58
+\thm@topsepadd=\skip59
+\shadecolor=\toks44
 Package ntheorem Info: Standard config file ntheorem.std used on input line 118
 4.
 
@@ -545,57 +563,57 @@ Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 )
-\c@Theorem=\count108
-\c@theorem=\count109
-\c@Satz=\count110
-\c@satz=\count111
-\c@Proposition=\count112
-\c@proposition=\count113
-\c@Lemma=\count114
-\c@lemma=\count115
-\c@Korollar=\count116
-\c@korollar=\count117
-\c@Corollary=\count118
-\c@corollary=\count119
-\c@Example=\count120
-\c@example=\count121
-\c@Beispiel=\count122
-\c@beispiel=\count123
-\c@Bemerkung=\count124
-\c@bemerkung=\count125
-\c@Anmerkung=\count126
-\c@anmerkung=\count127
-\c@Remark=\count128
-\c@remark=\count129
-\c@Definition=\count130
-\c@definition=\count131
-\c@Proof=\count132
-\c@proof=\count133
-\c@Beweis=\count134
-\c@beweis=\count135
+\c@Theorem=\count113
+\c@theorem=\count114
+\c@Satz=\count115
+\c@satz=\count116
+\c@Proposition=\count117
+\c@proposition=\count118
+\c@Lemma=\count119
+\c@lemma=\count120
+\c@Korollar=\count121
+\c@korollar=\count122
+\c@Corollary=\count123
+\c@corollary=\count124
+\c@Example=\count125
+\c@example=\count126
+\c@Beispiel=\count127
+\c@beispiel=\count128
+\c@Bemerkung=\count129
+\c@bemerkung=\count130
+\c@Anmerkung=\count131
+\c@anmerkung=\count132
+\c@Remark=\count133
+\c@remark=\count134
+\c@Definition=\count135
+\c@definition=\count136
+\c@Proof=\count137
+\c@proof=\count138
+\c@Beweis=\count139
+\c@beweis=\count140
 ))
-\c@assumption=\count136
-\c@algorithm=\count137
+\c@assumption=\count141
+\c@algorithm=\count142
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count138
-\lst@gtempboxa=\box30
-\lst@token=\toks44
-\lst@length=\count139
-\lst@currlwidth=\dimen132
-\lst@column=\count140
-\lst@pos=\count141
-\lst@lostspace=\dimen133
-\lst@width=\dimen134
-\lst@newlines=\count142
-\lst@lineno=\count143
-\lst@maxwidth=\dimen135
+\lst@mode=\count143
+\lst@gtempboxa=\box34
+\lst@token=\toks45
+\lst@length=\count144
+\lst@currlwidth=\dimen133
+\lst@column=\count145
+\lst@pos=\count146
+\lst@lostspace=\dimen134
+\lst@width=\dimen135
+\lst@newlines=\count147
+\lst@lineno=\count148
+\lst@maxwidth=\dimen136
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count144
-\lst@skipnumbers=\count145
-\lst@framebox=\box31
+\c@lstnumber=\count149
+\lst@skipnumbers=\count150
+\lst@framebox=\box35
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -624,29 +642,29 @@ Package ifvtex Info: VTeX not detected.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count146
-\Gm@cntv=\count147
-\c@Gm@tempcnt=\count148
-\Gm@bindingoffset=\dimen136
-\Gm@wd@mp=\dimen137
-\Gm@odd@mp=\dimen138
-\Gm@even@mp=\dimen139
-\Gm@layoutwidth=\dimen140
-\Gm@layoutheight=\dimen141
-\Gm@layouthoffset=\dimen142
-\Gm@layoutvoffset=\dimen143
-\Gm@dimlist=\toks45
+\Gm@cnth=\count151
+\Gm@cntv=\count152
+\c@Gm@tempcnt=\count153
+\Gm@bindingoffset=\dimen137
+\Gm@wd@mp=\dimen138
+\Gm@odd@mp=\dimen139
+\Gm@even@mp=\dimen140
+\Gm@layoutwidth=\dimen141
+\Gm@layoutheight=\dimen142
+\Gm@layouthoffset=\dimen143
+\Gm@layoutvoffset=\dimen144
+\Gm@dimlist=\toks46
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip56
-\f@ncyO@elh=\skip57
-\f@ncyO@erh=\skip58
-\f@ncyO@olh=\skip59
-\f@ncyO@orh=\skip60
-\f@ncyO@elf=\skip61
-\f@ncyO@erf=\skip62
-\f@ncyO@olf=\skip63
-\f@ncyO@orf=\skip64
+\fancy@headwidth=\skip60
+\f@ncyO@elh=\skip61
+\f@ncyO@erh=\skip62
+\f@ncyO@olh=\skip63
+\f@ncyO@orh=\skip64
+\f@ncyO@elf=\skip65
+\f@ncyO@erf=\skip66
+\f@ncyO@olf=\skip67
+\f@ncyO@orf=\skip68
 )
 (/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
@@ -655,32 +673,32 @@ Package cleveref Info: `listings' support loaded on input line 2950.
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count149
-\scratchdimen=\dimen144
-\scratchbox=\box32
-\nofMPsegments=\count150
-\nofMParguments=\count151
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count152
-\MPscratchDim=\dimen145
-\MPnumerator=\count153
-\makeMPintoPDFobject=\count154
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count154
+\scratchdimen=\dimen145
+\scratchbox=\box36
+\nofMPsegments=\count155
+\nofMParguments=\count156
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count157
+\MPscratchDim=\dimen146
+\MPnumerator=\count158
+\makeMPintoPDFobject=\count159
+\everyMPtoPDFconversion=\toks48
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -727,8 +745,13 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+)
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count155
+\c@lstlisting=\count160
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -764,16 +787,16 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 56.
+LaTeX Font Info:    Try loading font information for U+msa on input line 58.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 56.
+LaTeX Font Info:    Try loading font information for U+msb on input line 58.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 56.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 58.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -784,10 +807,10 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ]
 
 LaTeX Warning: Reference `[FIGURE:MENINGITIS BELT]' on page 1 undefined on inpu
-t line 94.
+t line 96.
 
 [2]
-Overfull \hbox (10.04253pt too wide) in paragraph at lines 108--109
+Overfull \hbox (10.04253pt too wide) in paragraph at lines 110--111
 []\OT1/cmr/m/n/10 Since 2010, a WHO project has been un-der-taken to com-bat ep
 i-demic menin-gi-tis in the re-gion. A polysaccharide-
  []
@@ -795,39 +818,54 @@ i-demic menin-gi-tis in the re-gion. A polysaccharide-
 [3]
 
 LaTeX Warning: Reference `fig:population_flow' on page 1 undefined on input lin
-e 148.
+e 150.
 
 
-LaTeX Warning: Citation `Kolmogoroff1931' on page 4 undefined on input line 156
+LaTeX Warning: Citation `Kolmogoroff1931' on page 4 undefined on input line 158
 .
 
 
-LaTeX Warning: Citation `Feller1940' on page 4 undefined on input line 156.
+LaTeX Warning: Citation `Feller1940' on page 4 undefined on input line 158.
 
 [4] [5] [6]
 
-LaTeX Warning: Reference `fig:healthy_pop' on page 1 undefined on input line 29
-8.
-
-
-LaTeX Warning: Reference `fig:sick_pop' on page 1 undefined on input line 300.
+LaTeX Warning: Reference `fig:healthy_pop' on page 1 undefined on input line 31
+3.
 
 [7]
 
-LaTeX Warning: Reference `appendix:event_eqs' on page 1 undefined on input line
- 302.
+LaTeX Warning: Reference `fig:sick_pop' on page 1 undefined on input line 315.
 
 [8] [9]
-Overfull \hbox (97.88753pt too wide) in paragraph at lines 378--393
+Overfull \hbox (82.88753pt too wide) in paragraph at lines 394--411
 [][] 
  []
 
-[10] <figures/raw_data_disease_free.pdf, id=57, 578.16pt x 433.62pt>
+
+LaTeX Warning: Reference `appendix:pars_eqs' on page 1 undefined on input line 
+411.
+
+
+LaTeX Warning: Reference `appendix:pars_eqs' on page 1 undefined on input line 
+411.
+
+
+LaTeX Warning: Reference `appendix:pars_eqs' on page 1 undefined on input line 
+414.
+
+[10]
+
+LaTeX Warning: Citation `clonal waves' on page 11 undefined on input line 420.
+
+
+LaTeX Warning: Citation `clonalwaves' on page 11 undefined on input line 420.
+
+<figures/raw_data_disease_free.pdf, id=57, 578.16pt x 433.62pt>
 File: figures/raw_data_disease_free.pdf Graphic file (type pdf)
 
 <use figures/raw_data_disease_free.pdf>
 Package pdftex.def Info: figures/raw_data_disease_free.pdf used on input line 4
-19.
+41.
 (pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
 
 <figures/plotted_aves_disease_free.pdf, id=58, 578.16pt x 433.62pt>
@@ -835,15 +873,18 @@ File: figures/plotted_aves_disease_free.pdf Graphic file (type pdf)
 
 <use figures/plotted_aves_disease_free.pdf>
 Package pdftex.def Info: figures/plotted_aves_disease_free.pdf used on input li
-ne 423.
+ne 445.
 (pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 <figures/disease_endemic_1pop_A.pdf, id=59, 578.16pt x 433.62pt>
 File: figures/disease_endemic_1pop_A.pdf Graphic file (type pdf)
 
 <use figures/disease_endemic_1pop_A.pdf>
 Package pdftex.def Info: figures/disease_endemic_1pop_A.pdf used on input line 
-434.
+456.
 (pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
 
 <figures/disease_endemic_1pop_W135.pdf, id=60, 578.16pt x 433.62pt>
@@ -851,46 +892,66 @@ File: figures/disease_endemic_1pop_W135.pdf Graphic file (type pdf)
 
 <use figures/disease_endemic_1pop_W135.pdf>
 Package pdftex.def Info: figures/disease_endemic_1pop_W135.pdf used on input li
-ne 438.
+ne 460.
 (pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
- [11 <./figures/raw_data_disease_free.pdf> <./figures/plotted_aves_disease_free
-.pdf
 
-pdfTeX warning: pdflatex (file ./figures/plotted_aves_disease_free.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
-> <./figures/disease_endemic_1pop_A.pdf
 
-pdfTeX warning: pdflatex (file ./figures/disease_endemic_1pop_A.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./figures/disease_endemic_1pop_W135.pdf
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-pdfTeX warning: pdflatex (file ./figures/disease_endemic_1pop_W135.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
->] <figures/endemic_1pop_A_infants.pdf, id=160, 578.16pt x 433.62pt>
+[11] <figures/endemic_1pop_A_infants.pdf, id=64, 578.16pt x 433.62pt>
 File: figures/endemic_1pop_A_infants.pdf Graphic file (type pdf)
 
 <use figures/endemic_1pop_A_infants.pdf>
 Package pdftex.def Info: figures/endemic_1pop_A_infants.pdf used on input line 
-456.
+478.
 (pdftex.def)             Requested size: 145.11053pt x 108.82819pt.
 
-<figures/endemic_1pop_A_young.pdf, id=161, 578.16pt x 433.62pt>
+<figures/endemic_1pop_A_young.pdf, id=65, 578.16pt x 433.62pt>
 File: figures/endemic_1pop_A_young.pdf Graphic file (type pdf)
 
 <use figures/endemic_1pop_A_young.pdf>
-Package pdftex.def Info: figures/endemic_1pop_A_young.pdf used on input line 46
-0.
+Package pdftex.def Info: figures/endemic_1pop_A_young.pdf used on input line 48
+2.
 (pdftex.def)             Requested size: 145.11053pt x 108.82819pt.
 
-<figures/endemic_1pop_A_adults.pdf, id=162, 578.16pt x 433.62pt>
+<figures/endemic_1pop_A_adults.pdf, id=66, 578.16pt x 433.62pt>
 File: figures/endemic_1pop_A_adults.pdf Graphic file (type pdf)
 
 <use figures/endemic_1pop_A_adults.pdf>
 Package pdftex.def Info: figures/endemic_1pop_A_adults.pdf used on input line 4
-64.
+86.
 (pdftex.def)             Requested size: 145.11053pt x 108.82819pt.
- [12 <./figures/endemic_1pop_A_infants.pdf> <./figures/endemic_1pop_A_young.pdf
 
+<figures/disease_endemic_2pop_A.pdf, id=67, 578.16pt x 433.62pt>
+File: figures/disease_endemic_2pop_A.pdf Graphic file (type pdf)
+
+<use figures/disease_endemic_2pop_A.pdf>
+Package pdftex.def Info: figures/disease_endemic_2pop_A.pdf used on input line 
+563.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+
+<figures/disease_endemic_2pop_W135.pdf, id=68, 578.16pt x 433.62pt>
+File: figures/disease_endemic_2pop_W135.pdf Graphic file (type pdf)
+
+<use figures/disease_endemic_2pop_W135.pdf>
+Package pdftex.def Info: figures/disease_endemic_2pop_W135.pdf used on input li
+ne 567.
+(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
+ [12 <./figures/raw_data_disease_free.pdf> <./figures/plotted_aves_disease_free
+.pdf
+
+pdfTeX warning: pdflatex (file ./figures/plotted_aves_disease_free.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>] [13 <./figures/disease_endemic_1pop_A.pdf> <./figures/disease_endemic_1pop_W
+135.pdf
+
+pdfTeX warning: pdflatex (file ./figures/disease_endemic_1pop_W135.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <./figures/endemic_1pop_A_infants.pdf
+
+pdfTeX warning: pdflatex (file ./figures/endemic_1pop_A_infants.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+> <./figures/endemic_1pop_A_young.pdf
 
 pdfTeX warning: pdflatex (file ./figures/endemic_1pop_A_young.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
@@ -898,60 +959,369 @@ on: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figures/endemic_1pop_A_adults.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
->] <figures/disease_endemic_2pop_A.pdf, id=244, 578.16pt x 433.62pt>
-File: figures/disease_endemic_2pop_A.pdf Graphic file (type pdf)
-
-<use figures/disease_endemic_2pop_A.pdf>
-Package pdftex.def Info: figures/disease_endemic_2pop_A.pdf used on input line 
-541.
-(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
-
-<figures/disease_endemic_2pop_W135.pdf, id=245, 578.16pt x 433.62pt>
-File: figures/disease_endemic_2pop_W135.pdf Graphic file (type pdf)
-
-<use figures/disease_endemic_2pop_W135.pdf>
-Package pdftex.def Info: figures/disease_endemic_2pop_W135.pdf used on input li
-ne 545.
-(pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
- [13]
-<figures/disease_A_seasonal.pdf, id=249, 578.16pt x 433.62pt>
+>] [14] <figures/disease_A_seasonal.pdf, id=252, 578.16pt x 433.62pt>
 File: figures/disease_A_seasonal.pdf Graphic file (type pdf)
 
 <use figures/disease_A_seasonal.pdf>
-Package pdftex.def Info: figures/disease_A_seasonal.pdf used on input line 562.
+Package pdftex.def Info: figures/disease_A_seasonal.pdf used on input line 584.
 
 (pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
 
-<figures/disease_W135_seasonal.pdf, id=250, 578.16pt x 433.62pt>
+<figures/disease_W135_seasonal.pdf, id=253, 578.16pt x 433.62pt>
 File: figures/disease_W135_seasonal.pdf Graphic file (type pdf)
 
 <use figures/disease_W135_seasonal.pdf>
 Package pdftex.def Info: figures/disease_W135_seasonal.pdf used on input line 5
-66.
+88.
 (pdftex.def)             Requested size: 217.66211pt x 163.24228pt.
- [14 <./figures/disease_endemic_2pop_A.pdf> <./figures/disease_endemic_2pop_W13
+ [15 <./figures/disease_endemic_2pop_A.pdf> <./figures/disease_endemic_2pop_W13
 5.pdf
 
 pdfTeX warning: pdflatex (file ./figures/disease_endemic_2pop_W135.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
->] [15 <./figures/disease_A_seasonal.pdf> <./figures/disease_W135_seasonal.pdf
+>] [16 <./figures/disease_A_seasonal.pdf> <./figures/disease_W135_seasonal.pdf
 
 pdfTeX warning: pdflatex (file ./figures/disease_W135_seasonal.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
->] [16] (./report.bbl)
+>] [17]
+
+LaTeX Warning: Reference `appendix:pars_eqs' on page 1 undefined on input line 
+670.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 681--681
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 691--691
+[]|\OT1/cmr/m/n/10 Transmission to sus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--693
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--693
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--693
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 694--694
+[]|\OT1/cmr/m/n/10 Transmission to sus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 695--695
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 695--695
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 695--695
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 696--696
+[]|\OT1/cmr/m/n/10 Transmission to sus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 697--697
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 697--697
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 697--697
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 704--704
+[]|\OT1/cmr/m/n/10 Transmission to im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 705--705
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 705--705
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 705--705
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 706--706
+[]|\OT1/cmr/m/n/10 Transmission to im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--707
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--707
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--707
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 708--708
+[]|\OT1/cmr/m/n/10 Transmission to im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 1308) in paragraph at lines 716--716
+[]|\OT1/cmr/m/n/10 Adult im-mune los-ing
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 720--720
+[]|\OT1/cmr/m/n/10 Transmission to sus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 721--722
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (8.60632pt too wide) in paragraph at lines 721--722
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (8.12732pt too wide) in paragraph at lines 721--722
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 723--723
+[]|\OT1/cmr/m/n/10 Transmission to sus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 724--725
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (8.60632pt too wide) in paragraph at lines 724--725
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (8.12732pt too wide) in paragraph at lines 724--725
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 726--726
+[]|\OT1/cmr/m/n/10 Transmission to sus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 727--728
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (8.60632pt too wide) in paragraph at lines 727--728
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (8.12732pt too wide) in paragraph at lines 727--728
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 729--729
+[]|\OT1/cmr/m/n/10 Transmission to im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 730--731
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (8.60632pt too wide) in paragraph at lines 730--731
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (8.12732pt too wide) in paragraph at lines 730--731
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 732--732
+[]|\OT1/cmr/m/n/10 Transmission to im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 733--734
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (8.60632pt too wide) in paragraph at lines 733--734
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (8.12732pt too wide) in paragraph at lines 733--734
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 735--735
+[]|\OT1/cmr/m/n/10 Transmission to im-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 736--737
+[]|$\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (8.60632pt too wide) in paragraph at lines 736--737
+[] [] [] \OT1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (8.12732pt too wide) in paragraph at lines 736--737
+[] [][] \OMS/cmsy/m/n/10 ^^A
+ []
+
+
+Underfull \hbox (badness 3895) in paragraph at lines 741--741
+\OT1/cmr/m/n/10 ing car-rier, sea-sonal
+ []
+
+
+Underfull \hbox (badness 3895) in paragraph at lines 742--742
+\OT1/cmr/m/n/10 ing car-rier, sea-sonal
+ []
+
+
+Underfull \hbox (badness 3895) in paragraph at lines 743--743
+\OT1/cmr/m/n/10 ing car-rier, sea-sonal
+ []
+
+[18] [19]
+Underfull \hbox (badness 5504) in paragraph at lines 756--756
+\OT1/cmr/m/n/10 du-ra-tion of dis-ease, 7
+ []
+
+
+Underfull \hbox (badness 3965) in paragraph at lines 758--758
+\OT1/cmr/m/n/10 some point dur-ing the
+ []
+
+
+Underfull \hbox (badness 3323) in paragraph at lines 758--758
+\OT1/cmr/m/n/10 in-cu-ba-tion pe-riod, es-ti-
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 760--761
+\OT1/cmr/m/n/10 Here, $\OML/cmm/m/it/10 D[]$ \OT1/cmr/m/n/10 is the ra-tio
+ []
+
+
+Underfull \hbox (badness 4608) in paragraph at lines 762--762
+[]|\OT1/cmr/m/n/10 Rate at which a car-
+ []
+
+
+Underfull \hbox (badness 2351) in paragraph at lines 762--763
+\OT1/cmr/m/n/10 to gain im-mu-nity af-ter
+ []
+
+
+Underfull \hbox (badness 1852) in paragraph at lines 762--763
+\OT1/cmr/m/n/10 car-riage. The rate at
+ []
+
+
+Underfull \hbox (badness 4608) in paragraph at lines 764--764
+[]|\OT1/cmr/m/n/10 Rate at which a car-
+ []
+
+
+Underfull \hbox (badness 3803) in paragraph at lines 764--764
+\OT1/cmr/m/n/10 im-mu-nity, and the re-
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 765--765
+\OT1/cmr/m/n/10 are ex-pected to re-main
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 766--766
+\OT1/cmr/m/n/10 are ex-pected to re-main
+ []
+
+[20] [21] (./report.bbl)
 \tf@thm=\write3
 \openout3 = `report.thm'.
 
- [17] (./report.aux)
+ [22] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8889 strings out of 494953
- 141045 string characters out of 6180978
- 229722 words of memory out of 5000000
- 12012 multiletter control sequences out of 15000+600000
+ 9022 strings out of 494953
+ 142877 string characters out of 6180978
+ 261408 words of memory out of 5000000
+ 12139 multiletter control sequences out of 15000+600000
  18862 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,12n,43p,1623b,496s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -975,10 +1345,10 @@ ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (18 pages, 1397818 bytes).
+Output written on report.pdf (23 pages, 1426011 bytes).
 PDF statistics:
- 432 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 448 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,13 +1,18 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: report.aux
+White space in argument---line 60 of file report.aux
+ : \citation{clonal
+ :                  waves}
+I'm skipping whatever remains of this command
 The style file: plain.bst
 Database file #1: bibliography.bib
 Warning--I didn't find a database entry for "Kolmogoroff1931"
 Warning--I didn't find a database entry for "Feller1940"
+Warning--I didn't find a database entry for "clonalwaves"
 You've used 4 entries,
             2118 wiz_defined-function locations,
-            529 strings with 5019 characters,
+            530 strings with 5030 characters,
 and the built_in function-call counts, 1548 in all, are:
 = -- 144
 > -- 96
@@ -46,4 +51,4 @@ warning$ -- 0
 while$ -- 14
 width$ -- 5
 write$ -- 43
-(There were 2 warnings)
+(There was 1 error message)

@@ -10,6 +10,8 @@
 \usepackage{subcaption}
 \usepackage{framed}
 
+\usepackage{longtable}
+
 % Sets small roman numerals as the symbols in enumerate environments
 \usepackage{enumerate}
 \usepackage{enumitem}
@@ -155,24 +157,54 @@ The event $N\left( t \right)$ counts form an m-dimensional stochastic process, w
 
 		\item The Chapman-Kolmogorov equation \cite{Kolmogoroff1931,Feller1940} holds.  \label{assumption_1b}
 
-		\item $P\left( N_{\mu} \left( t  + h \right)  - N_{\mu} \left( t \right) = 1 | X_t \right) = W_{\mu} \left( X_t \right) h + \mathcal{O} \left( h \right)$. \label{assumption_1c}
+		\item $P\left( N_{\mu} \left( t  + h \right)  - N_{\mu} \left( t \right) = 1 | X_t \right) = W_{\mu} \left( X_t \right) h + o \left( h \right)$. \label{assumption_1c}
 	
-		\item $P\left( N_{\mu}\left( t+h\right) = N_{\mu} \left( t \right) | X_t \right) = 1-W_{\mu}\left( X_t \right) h + \mathcal{O}\left( h \right)$. \label{assumption_1d}
+		\item $P\left( N_{\mu}\left( t+h\right) = N_{\mu} \left( t \right) | X_t \right) = 1-W_{\mu}\left( X_t \right) h + o\left( h \right)$. \label{assumption_1d}
 
-		\item $P\left( N_{\mu}\left( t + h \right ) - N_{\mu} \left( t \right) = k | X_t \right)= \mathcal{O}\left( h \right) , \, \textrm{ for all } k \geq 2$. \label{assumption_1e}
+		\item $P\left( N_{\mu}\left( t + h \right ) - N_{\mu} \left( t \right) = k | X_t \right)= o \left( h \right) , \, \textrm{ for all } k \geq 2$. \label{assumption_1e}
 	\end{enumerate} \label{assumption_1}
 \end{assumption}
 
-\Crefrange{assumption_1c}{assumption_1d} in \cref{assumption_1} implies that the process formed by the event counts for a single class is a Poisson process with rate $W_{\mu}$. We assume each $W_{\mu}$ is a smooth function of the population. Assumption \ref{assumption_1e} ensures that no more than one event can occur simultaneously. Note also that conditioning the probabilities on the population $X_t$ at $t$ is sufficient, although conditioning based on the event counts $N\left( t \right)$ and the initial population state would also hold in this context.
+\Crefrange{assumption_1c}{assumption_1d} in \cref{assumption_1} implies that the process formed by the event counts for a single class is a Poisson process with rate $W_{\mu}$. Further, we assume that each $W_{\mu}$ is a smooth function of the population. Assumption \ref{assumption_1e} ensures that no more than one event can occur simultaneously. Note also that conditioning the probabilities on the population $X_t$ at $t$ (as we have done) is sufficient, although conditioning based on the event counts $N\left( t \right)$ and the initial population state would also hold in this context. \Crefrange{assumption_1c}{assumption_1d} correspond to assumptions on the marginal distributions of events. Simply put, is is assumed that the probability that a specific event shall occur increases more or less linearly with time (up to a deviation of $o \left( h \right)$.
 
 % Discuss some properties of a Poisson process
 
+
 The Chapman-Kolmogorov equation is as follows: Consider a stochastic process $\xi_1, \ldots, \xi_k$, with a joint probability density function $p_{\xi_1 \ldots \xi_k} \left( x_1, \ldots, x_k \right)$. Then the probability density
 \begin{align*}
-p_{\xi_1, \ldots, \xi_ {k-1}} \left( x_1, \ldots x_{k-1} \right) = \int_{-\infty}^\infty p_{\xi_1, \ldots, \xi_k}\left( x_1, \ldots, x_k \right) \mathrm{d} x_k,
+	p_{\xi_1, \ldots, \xi_ {k-1}} \left( x_1, \ldots , x_{k-1} \right) = \int_{-\infty}^\infty p_{\xi_1, \ldots, \xi_k}\left( x_1, \ldots, x_k \right) \mathrm{d} x_k,
 \end{align*}
 
-corresponding to a straight-forward marginalisation of the joint probability density function.
+corresponding to a straight-forward marginalisation of the joint probability density function. In the specific case of a Markov process, this equation can be written as follows:
+
+\begin{align*}
+	p_{\xi_3 | \xi_1 } \left( x_3 | x_1 \right) = \int_{-\infty}^{\infty} p_{\xi_3 | \xi_2} \left( x_3 | x_2 \right) p_{\xi_2 | \xi_1} \left( x_2 | x_1 \right)\mathrm{d}x_2,
+\end{align*}
+
+or: "The probability that $\xi_3 = x_3$ given that $\xi_1 = x_1$ can be found by considering the probability that the system should go from $\xi_1 = x_1$ to $\xi_2 = x_2$ and then to $\xi_3 = x_3$ for all possible intermediate states $x_2$ and summarising."
+
+This equation, together with the remaining assumptions, lead to the following result for sufficiently short time intervals:
+
+\begin{lemma} \label{lemma:exponential}
+	The waiting time $H$ to the next event is exponentially distributed with a rate $W = \sum_{\mu=1}^m W_\mu$
+\end{lemma}
+
+\begin{proof}
+	The waiting time to the next event is given by the time that the system remains in the same state, so we consider the time $h$ and the probability $P \left( \bm{N} \left( t + h \right) = \bm{N} \left( t \right) | X_t \right)$. In order to use the Chapman-Kolmogorov equation, we should consider all possible intermediate states $\bm{n}$, but as all $N_\mu$ are non-decreasing the only possible intermediate state is $\bm{N} \left( t \right)$. The Chapman Kolmogorov equation is then:
+	
+		\begin{align*}
+			P \left( \bm{N} \left( t + h \right) = \bm{n} | X_t \right) = P \left( \bm{N} \left( t \right) = \bm{n} | X_t \right) \left( 1 - \sum_{\mu = 1}^m W_\mu \left( X_t \right) h \right) + o \left( h \right) \Leftrightarrow \\
+			\frac{P \left( \bm{N} \left( t + h \right) = \bm{n} | X_t \right) - P \left( \bm{N} \left( t \right) = \bm{n} | X_t \right)}{h} = - P \left( \bm{N} \left( t \right) = \bm{n} | X_t \right) \sum_{\mu = 1}^m W_{\mu}\left( X_t \right) + \frac{o\left( h  \right)}{h}
+		\end{align*}
+	Letting $h \rightarrow 0$, we get:
+		\begin{align*}
+			\dot{P} \left( \bm{N} \left( t \right) = \bm{n} | X_t \right) = - P \left( \bm{N} \left( t \right) = \bm{n} | X_t \right) \sum_{\mu = 1}^m W_\mu \left( X_t \right)
+		\end{align*}
+	Using the natural initial condition $P \left( \bm{N} \left( 0 \right) = \bm{n} | X_t \right) = 1 $ (the probability that the system is in state $\bm{n}$ at time $0$, given that it is in state $\bm{n}$ at time 0, is 1), the probability density distribution for the time until the next event is
+		\begin{align*}
+			P \left( \bm{N} \left( t + \tau \right) - \bm{N} \left( t \right) = \bm{0} | X_t \right) = \exp \left( -\tau \sum_{\mu} W_\mu \left( X_t \right) \right)
+		\end{align*}
+\end{proof}
 
 Now, we consider the dependence of the population space on the event space. For each event class $\mu$ we define a vector $\delta^\mu$, where $\delta^\mu_\kappa$ describes the effects of event $\mu$ on population $\kappa$. The eventcounts can then easily be mapped to the population space by constructing a matrix $\bm{\delta} = \left[ \delta^1 \ldots \delta^m \right]^{T}$ as $X_t = X_0 + \bm{\delta} \bm{N} \left( t \right)$, but note that some information is lost in this projection. Using this description, there are no changes in the population outside of the events, which should match the initial idea that all relevant dynamics should be modelled using the event framework.
 
@@ -180,23 +212,6 @@ Now, we consider the dependence of the population space on the event space. For 
 
 Earlier we mentioned that the process constructed is a density dependent Markov jump process. The jump aspect of the process is in the discrete nature of the event counts, meaning that the system state jumps from one state to another with the instantaneous occurrence of an event. The density dependence is introduced via the probability rates $W_\mu \left( X_t\right)$, as they describe the future evolution of the process based on the current population and the current system state. Then only the Markov property should receive some further consideration. Again, we look to the $W_\mu$. They depend on the population state (and consequently the system state) $X$ at time $t$, but not on any earlier state. This is precisely the Markov property.
 
-In the comments on \cref{assumption_1}, we mentioned that each event count formed a Poisson process, so that the aggregate event counts forms a multivariate Poisson process. A well-known result for these is the following:
-
-\begin{lemma} \label{lemma:exponential}
-	The waiting time $H$ to the next event is exponentially distributed with a rate $W = \sum_{\mu=1}^m W_\mu$
-\end{lemma}
-
-This result will be used later, and so we will prove it here:
-
-\begin{proof}
-	The waiting time to the next event is given by the time until the very next event occurs. Let $H_\mu$ be the waiting time until event $\mu$. Then	$H = \min \{ H_1, \ldots, H_m \}$ or equivalently $H_\mu \geq H \textrm{ for all } \mu$. Given the system state at time $t$, the events can be regarded as independent. This gives us the following probability density function for $H$, where we use that $H_\mu \sim \exp \left( W_\mu \right)$:
-	\begin{align*}
-		f_{H} \left( h \right) = \prod_{\mu = 1}^m P \left( H_\mu \geq h \right) = \prod_{\mu =1}^m 1 - F_{H_\mu}\left( h \right) \underset{h\geq 0}{=\joinrel=} \prod_{\mu = 1}^m \mathrm{e}^{-W_{\mu} h} = \mathrm{e}^{- h \sum_{\mu = 1}^m W_\mu}
-	\end{align*}
-	This is precisely the exponential probability density function, with parameter $\sum_{\mu = 1}^m W_\mu$.
-\end{proof}
-
-Another result concerns the time-evolution of the probabilities governing the system state:
 
 \begin{theorem}
 	Under the previous assumptions, the dynamics in the event space obeys the Kolmogorov Forward equation.
@@ -338,7 +353,7 @@ where $k$ are the lags, $r_x$ is the autocovariance function and $N$ is the numb
 	\hat{r}_x \left( k \right) = \frac{1}{N} \sum_{t=k+1}^N \left( x_t - m \right) \left( x_{t-k} - m \right)
 \end{align*}
 
-This estimator can be somewhat reliably used for lags $k$ up to about $\frac{N}{4}$. For larger lags, the number of data points is too small. Based on the properties of the system, as well as the assumptions on events in disjoint time intervals being independent (\cref{assumption_1a}), we let $\hat{r}_x \left( k \right) = 0 \textrm{ for all } k > \frac{N}{4}$.
+This estimator can be somewhat reliably used for lags $k$ up to about $\frac{N}{4}$. For larger lags, the number of data points is too small. Based on the properties of the system, as well as the assumptions on events in disjoint time intervals being independent (\cref{assumption_1a} in \cref{assumption_1}), we let $\hat{r}_x \left( k \right) = 0 \textrm{ for all } k > \frac{N}{4}$.
 
 \subsection{Acquiring data and parameters}
 
@@ -375,27 +390,34 @@ Some relevant parameters for the events related to the healthy population is pre
 
 Several articles were considered when acquiring parameters for the modelling effort. Parameters were determined from numbers estimated based on the aggregate of articles. In the table below, numbers used to calculate the rates are presented, together with sources that support them. Two virulent serogroups were considered, A and W-135. In the cases where the parameters differ between this, it is clearly marked in the table. The same is true for cases where the parameters differ between age groups.
 
-\begin{tabular}{|l|c|c|}
-	\hline
-		Parameter 													& Value			& Source 														\\ \hline
-		Halflife of carriage										& 90 days		& [epidemiology of infections, northern nigeria]				\\
-		Duration of disease											& 7 days		& [modelling meningococcal meningitis in meningitis belt]		\\
-		Risk of death given disease									& $0.1$			& [WHO]															\\
-		Risk of invasive disease, given infection					& $0.01$		& [clonal waves]												\\
-		Time from transmission to disease or carriage				& 10 days		&																\\
-		Chance of acguring immunity after carriage (A)				& $0.71$		& [carriage and immunity, burkina faso 2003]					\\
-		Chance of acquiring immunity after carriage (W-135)		& $0$			& [as above]													\\
-		Risk of lost immunity after 4 months (A, $<14$ years)		& $0.15$		& [as above]													\\
-		Risk of lost immunity after 4 months (A, $>14$ years)		& $0.06$		& [as above]													\\
-		Risk of lost immunity after 4 months (W-135, $<14$ years)	& $0.57$		& [as above]													\\
-		Risk of lost immunity after 4 months (W-135, $>14$ years)	& $0.5$			& [as above]													\\ \hline
-\end{tabular}
+\begin{figure}[h]
+	\begin{tabular}{|l|c|c|}
+		\hline
+			Parameter 													& Value			& Source 														\\ \hline
+			Halflife of carriage										& 90 days		& [epidemiology of infections, northern nigeria]				\\
+			Duration of disease											& 7 days		& [modelling meningococcal meningitis in meningitis belt]		\\
+			Risk of death given disease									& $0.1$			& [WHO]															\\
+			Risk of invasive disease, given infection					& $0.01$		& [clonal waves]												\\
+																		& $0.002$		& Estimated from case-carrier ratios							\\			
+			Time from transmission to disease or carriage				& 10 days		&																\\
+			Chance of acguring immunity after carriage (A)				& $0.71$		& [carriage and immunity, burkina faso 2003]					\\
+			Chance of acquiring immunity after carriage (W-135)		& $0$			& [as above]													\\
+			Risk of lost immunity after 4 months (A, $<14$ years)		& $0.15$		& [as above]													\\
+			Risk of lost immunity after 4 months (A, $>14$ years)		& $0.06$		& [as above]													\\
+			Risk of lost immunity after 4 months (W-135, $<14$ years)	& $0.57$		& [as above]													\\
+			Risk of lost immunity after 4 months (W-135, $>14$ years)	& $0.5$			& [as above]													\\
+			$R_0$ (explanation below)									& $1.03$		& Estimated by carriage rates									\\ \hline
+	\end{tabular}
+	\caption{The values used to estimate the parameters needed to model the system. The equations relating each value above to the relevant parameters can be found in \cref{appendix:pars_eqs}} \label{table:pars:disease}
+\end{figure}
 
-Note that these numbers need further mathematical operations to derive the rates used in the implementation. For example, if we consider the rate at which a a sick individual dies, we would expect about $\frac{1}{10}$ to die within one week (the duration of disease), leading to the rate $\frac{1}{70} \left( \textrm{day} \right)^{-1}$.
+Note that these numbers need further mathematical operations to derive the rates used in the implementation. For example, if we consider the rate at which a a sick individual dies, we would expect about $\frac{1}{10}$ to die within one week (the duration of disease), leading to the rate $\frac{1}{70} \left( \textrm{day} \right)^{-1}$. The equation for each parameter that is needed can be found in \cref{appendix:pars_eqs}
 
 The transmission rates depend heavily on the model and the parametrization, and in general are not possible to measure. In this project, the estimate for the transmission rates are based on estimate of the basic reproductive number, $R_0$. This number is an estimate of the number of disease cases that one single infected individual will cause in an otherwise susceptible population. Using this number and the expected duration of disease and carriage, the transmission rates from sick individuals and carriers are straight-forward to estimate. Another thing to note about the transmission rates are that transmission to susceptible individuals and immune individuals are as likely, the only difference being that immune individuals will not be subject to invasive disease. This choice was made as there was no data suggesting that the naturally occuring immunity would lead to a reduction of carriage. There are some data that suggests that the modern conjugate vaccines induce immunity sufficient to prevent carriage, but these vaccines are not modelled in this project. [sources]
 
 Estimation of the basic reproductive number was made using by trying a range of different values and chosing the one producing the carriage rate closest to a target value of 5\% [source]. The estimated value is $R_0 \approx 1.03$
+
+One way to approximate the risk of invasive disease given infection is by studying case-carrier ratios, how many disease cases there are for each carrier. This value is what is presented in \cite{clonal waves}, and is also what was used in the first iterations of the model. However, this resulted in an unexpectedly high number of cases, both compared to the population as a whole and compared to the number of carriers. Instead, for the data presented in this report, the second value is used. This was estimated by varying the invasiveness parameter and studying the resulting case-carrier ratios, and matching them to the value presented in \cite{clonalwaves}. Possible reasons for the first method not working are considered in the discussion.
 
 The initial population values are expected to be of limited importance, as the system stabilizes into something of a steady-state solution, and not a lot of effort was put into making these values optimal. Estimates of population immunity ranges widely, and differs between what measures were used. [carriage and immunity BF 2003, human immunity to the meningococcus].
 
@@ -643,6 +665,111 @@ When an immune individual is infected by the bacterium, they can not be subject 
 \newpage
 
 \begin{appendices}
+
+\section{Complete list of events and the equations governing their rates} \label{appendix:event_eqs}
+This appendix provides a complete list of the events used in the implementation of the model, together with the equations used to estimate the rate corresponding to each event. Parameters are marked by a hat, and a full list of parameters can be found in \cref{appendix:pars_eqs}. $P_{\{ \bullet \bullet ( E ) \}}$ are used for the number of individuals in a certain subpopulation. The first indexing letter gives the age group and can be $A$ (adult), $Y$ (young) or $I$ (infant). The second letter gives the disease status and can be any of $S$ (susceptible), $C$ (carrier), $I$ (ill), $R$ (immune), or $L$ (infected by the bacterium, but not yet ill nor a carrier). The $E$ is used in cases where more than one base population is involved in the equation, and is then used to signify a subpopulation that belongs to a different base population than the one affected by the event.
+
+\begin{longtable}{p{3.5cm}|l|l|p{4cm}}
+	Type of event						& \multicolumn{2}{|c|}{Affected populations}		& Equation															\\ \hline
+										& Decreased population	& Increased population		&																	\\ \hline
+	Susceptible youth aging				& Young susceptible		& Adult susceptible			& $W = P_{YS} \cdot \hat{\Gamma}$										\\ \hline
+	Susceptible infant aging			& Infant susceptible	& Young susceptible			& $W = P_{IS} \cdot \hat{\gamma}$										\\ \hline
+	Immune youth aging					& Young immune			& Adult immune				& $W = P_{YR} \cdot \hat{\Gamma}$										\\ \hline
+	Immune infant aging					& Infant immune			& Young immune				& $W = P_{IR} \cdot \hat{\gamma}$										\\ \hline
+	Young carrier aging					& Young carriers		& Adult carriers			& $W = P_{YC} \cdot \hat{\Gamma}$										\\ \hline
+	Infant carrier aging				& Infant carriers		& Young carriers			& $W = P_{IC} \cdot \hat{\gamma}$										\\ \hline
+	Birth								& -						& Infant susceptible		& $W = \left( P_{AS} + P_{AC} + P_{AR} \right) \cdot \hat{\eta}$		\\ \hline
+	Death of adult carrier				& Adult carriers		& - 						& $W = P_{AC} \cdot \hat{\alpha}$										\\ \hline
+	Death of adult immune				& Adult immune			& - 						& $W = P_{AR} \cdot \hat{\alpha}$										\\ \hline
+	Death of adult susceptible			& Adult susceptible		& -							& $W = P_{AS} \cdot \hat{\alpha}$										\\ \hline
+	Death of sick adult					& Adult sick			& -							& $W = P_{AI} \cdot \hat{\omega}$										\\ \hline
+	Death of sick youth					& Young sick			& -							& $W = P_{YI} \cdot \hat{\omega}$										\\ \hline
+	Death of sick infant				& Infant sick			& -							& $W = P_{II} \cdot \hat{\omega}$										\\ \hline
+	Recovery of sick adult				& Adult sick			& Adult immune				& $W = P_{AI} \cdot \hat{\rho}$										\\ \hline
+	Recovery of sick youth				& Young sick			& Young immune				& $W = P_{YI} \cdot \hat{\rho}$										\\ \hline
+	Recovery of sick infant				& Infant sick			& Infant immune				& $W = P_{II} \cdot \hat{\rho}$										\\ \hline
+	Transmission to	susceptible adult	& Adult susceptible		& Adult infected			& 
+				$ W = \big( \left( P_{AI} + P_{YI} + P_{II} \right)\hat{\beta} + \left( P_{AC} + P_{YC} + P_{IC} \right) \hat{\phi} \big) \cdot \frac{P_{AS}}{\sum_{i,j}P_{ij}} $
+																																									\\ \hline
+	Transmission to	susceptible young 	& Young susceptible		& Young infected			& 
+				$W = \big( \left( P_{AI} + P_{YI} + P_{II} \right)\hat{\beta} + \left( P_{AC} + P_{YC} + P_{IC} \right) \hat{\phi} \big) \cdot \frac{P_{YS}}{\sum_{i,j}P_{ij}}$																																																	\\ \hline
+	Transmission to susceptible infant	& Infant susceptible	& Infant infected			& 
+				$W = \big( \left( P_{AI} + P_{YI} + P_{II} \right)\hat{\beta} + \left( P_{AC} + P_{YC} + P_{IC} \right) \hat{\phi} \big) \cdot \frac{P_{IS}}{\sum_{i,j}P_{ij}}$																																																	\\ \hline
+	Invasive disease of	infected adult	& Adult infected		& Adult sick				& $W = P_{AL} \hat{\theta}$												\\ \hline
+	Invasive disease of infected youth	& Young infected		& Young sick				& $W = P_{YL} \hat{\theta}$												\\ \hline
+	Invasive disease of infected infant & Infant infected		& Infant sick				& $W = P_{IL} \hat{\theta}$												\\ \hline
+	Infected adult becoming carrier	& Adult infected		& Adult carriers			& $W = P_{AL} \hat{\Theta}$												\\ \hline
+	Infected youth becoming carrier	& Young infected		& Young carriers			& $W = P_{YL} \hat{\Theta}$												\\ \hline
+	Infected infant becoming carrier	& Infant infected		& Infant carriers			& $W = P_{IL} \hat{\Theta}$												\\ \hline
+	Transmission to immune adult		& Adult immune			& Adult carriers			&
+				$W = \big( \left( P_{AI} + P_{YI} + P_{II} \right)\hat{\beta} + \left( P_{AC} + P_{YC} + P_{IC} \right) \hat{\phi} \big) \cdot \frac{P_{AR}}{\sum_{i,j}P_{ij}}$																																																	\\ \hline
+	Transmission to immune youth		& Young immune			& Young carriers			& 
+				$W = \big( \left( P_{AI} + P_{YI} + P_{II} \right)\hat{\beta} + \left( P_{AC} + P_{YC} + P_{IC} \right) \hat{\phi} \big) \cdot \frac{P_{YR}}{\sum_{i,j}P_{ij}}$																																																	\\ \hline
+	Transmission to immune infant		& Infant immune			& Infant carriers			&
+				$W = \big( \left( P_{AI} + P_{YI} + P_{II} \right)\hat{\beta} + \left( P_{AC} + P_{YC} + P_{IC} \right) \hat{\phi} \big) \cdot \frac{P_{IR}}{\sum_{i,j}P_{ij}}$																																																	\\ \hline
+	Adult carrier recovering and gaining immunity	& Adult carriers		& Adult immune				& $W = P_{AC} \hat{\psi_A}$									\\ \hline
+	Young carrier recovering and gaining immunity	& Young carriers		& Young immune				& $W = P_{YC} \hat{\psi_Y}$									\\ \hline
+	Infant carrier recovering and gaining immunity	& Infant carriers		& Infant immune				& $W = P_{IC} \hat{\psi_I}$									\\ \hline
+	Adult carrier recovering and not gaining immunity	& Adult carriers		& Adult susceptible			& $W = P_{AC} \hat{\Psi_A}$								\\ \hline
+	Young carrier recovering and not gaining immunity	& Young carriers		& Young susceptible			& $W = P_{YC} \hat{\Psi_Y}$								\\ \hline
+	Infant carrier recovering and not gaining immunity	& Infant carriers		& Infant susceptible		& $W = P_{IC} \hat{\Psi_I}$								\\ \hline
+	Adult immune losing immunity		& Adult immune			& Adult susceptible			& $W = P_{AR} \hat{\xi_A}$												\\ \hline
+	Young immune losing immunity		& Young immune			& Young susceptible			& $W = P_{YR} \hat{\xi_Y}$												\\ \hline
+	Infant immune losing immunity		& Infant immune			& Infant susceptible		& $W = P_{IR} \hat{\xi_I}$												\\ \hline \hline
+	\multicolumn{4}{c}{Special events only used in certain simulations} \\ \hline \hline
+	Transmission to susceptible adult from external population		& Adult susceptible		& Adult infected	&
+				$W = \big( \left( P_{AIE} + P_{YIE} + P_{IIE}\right) \hat{\beta} + \left( P_{ACE} + P_{YCE} + P_{ICE} \right) \hat{\phi} \big) \cdot \frac{P_{AS}}{\sum_{i,j}P_{ij} + \sum_{k,l} P_{klE}}$
+																																									\\ \hline
+	Transmission to susceptible youth from external population		& Young susceptible		& Young infected	&
+				$W = \big( \left( P_{AIE} + P_{YIE} + P_{IIE}\right) \hat{\beta} + \left( P_{ACE} + P_{YCE} + P_{ICE} \right) \hat{\phi} \big) \cdot \frac{P_{YS}}{\sum_{i,j}P_{ij} + \sum_{k,l} P_{klE}}$
+																																									\\ \hline	
+	Transmission to susceptible infant from external population	& Infant susceptible	& Infant infected	&
+				$W = \big( \left( P_{AIE} + P_{YIE} + P_{IIE}\right) \hat{\beta} + \left( P_{ACE} + P_{YCE} + P_{ICE} \right) \hat{\phi} \big) \cdot \frac{P_{IS}}{\sum_{i,j}P_{ij} + \sum_{k,l} P_{klE}}$
+																																									\\ \hline
+	Transmission to immune adult from external population			& Adult immune			& Adult carriers	&
+				$W = \big( \left( P_{AIE} + P_{YIE} + P_{IIE}\right) \hat{\beta} + \left( P_{ACE} + P_{YCE} + P_{ICE} \right) \hat{\phi} \big) \cdot \frac{P_{AR}}{\sum_{i,j} P_{ij} + \sum_{k,l} P_{klE}}$
+																																									\\ \hline
+	Transmission to immune youth from external population			& Young immune			& Young carriers	&
+				$W = \big( \left( P_{AIE} + P_{YIE} + P_{IIE}\right) \hat{\beta} + \left( P_{ACE} + P_{YCE} + P_{ICE} \right) \hat{\phi} \big) \cdot \frac{P_{YR}}{\sum_{i,j} P_{ij} + \sum_{k,l} P_{klE}}$
+																																									\\ \hline
+	Transmission to immune infant from external population			& Infant immune			& Infant carriers	&
+				$W = \big( \left( P_{AIE} + P_{YIE} + P_{IIE}\right) \hat{\beta} + \left( P_{ACE} + P_{YCE} + P_{ICE} \right) \hat{\phi} \big) \cdot \frac{P_{IR}}{\sum_{i,j} P_{ij} + \sum_{k,l} P_{klE}}$
+																																									\\ \hline
+	Invasive disease of infected adult with seasonal parameters	& Adult infected		& Adult sick		& $ W = P_{AL} \hat{\theta}_{\textrm{season}} $	\\ \hline
+	Invasice disease of infected youth with seasonal parameters	& Young infected		& Young sick		& $ W = P_{YL} \hat{\theta}_{\textrm{season}} $	\\ \hline
+	Invasive disease of infected infant with seasonal parameters	& Infant infected		& Infant sick		& $ W = P_{IL} \hat{\theta}_{\textrm{season}} $	\\ \hline
+	Infected adult becoming carrier, seasonal parameters			& Adult infected		& Adult carriers	& $ W = P_{AL} \hat{\Theta}_{\textrm{season}} $	\\ \hline
+	Infected youth becoming carrier, seasonal parameters			& Young infected		& Young carriers	& $ W = P_{YL} \hat{\Theta}_{\textrm{season}} $	\\ \hline
+	Infected infant becoming carrier, seasonal parameters			& Infant infected		& Infant carriers	& $ W = P_{IL} \hat{\Theta}_{\textrm{season}} $	\\ \hline
+
+\end{longtable}
+
+If the model includes another strain of disease with different parameters, the relevant events are duplicated for the other strain. This includes transmission events and events relating to carriage, so that the population groups that carry different strains are kept separate.
+
+
+\section{Parameters and equations to calculate them} \label{appendix:equations}
+
+This appendix contains a table with all parameters needed in order to calculate the rates given in \cref{appendix:event_eqs}. The values needed for the calculations are presented with their respective sources in \cref{table:pars:disease}.
+
+\begin{longtable}{l|p{4cm}|c|p{4cm}}
+	Parameter						& Description													& Derivation 								& Explanation							\\ \hline
+	$\beta$							& Rate of transmission from a sick individual.					& $\beta = \frac{R_0}{7}$					& About $R_0$ individuals in an otherwise healthy population should become infected during the expected duration of disease, 7 days.																											\\ \hline
+	$\phi$							& Average rate of transmission from a carrier					& $\phi = \frac{R_0}{130}$					& About $R_0$ individuals in an otherwise healthy population should become infected during the expected duration of carriage, 130 days.																										\\ \hline
+	$\theta$						& Rate at which infected individuals become sick				& $\theta = \frac{0.02}{10}$				& About $2\%$ of infected indivduals become sick at some point during the incubation period, estimated as 10 days.																																\\ \hline
+	$\Theta$						& Rate at which infected individuals become carriers			& $\Theta = \frac{1-0.02}{10}$				& The $98\%$ of infected individuals that do not become sick at some point during the 10 day incubation period become carriers in the same time.																									\\ \hline
+	$\xi_{\textrm{age}}$			& Rate at which immune individuals loses immunity				& $\xi_{\textrm{age}} = \frac{\ln D_{\textrm{age}}}{120}$	& The solution to the equation $\exp \left( -\xi 120 \right) = D_{\textrm{age}}$. Here, $D_{\textrm{age}}$ is the ratio of the (age specific) population that retains their immunity after 120 days, with $\xi$ giving the rate at which immunity is lost.
+																																													\\ \hline
+	$\psi_{\textrm{age}}$			& Rate at which a carrier loses carriage and becomes immune	& $\psi_{\textrm{age}} = \lambda_{\textrm{age}} \frac{\ln 2}{90}$	& $\lambda_{\textrm{age}}$ is the portion of the (age specific) population to gain immunity after carriage. The rate at which carriage is lost is $\frac{\ln 2}{90}$, found by considering the halflife of carriage, 90 days.
+																																													\\ \hline
+	$\Psi_{\textrm{age}}$			& Rate at which a carrier loses carriage without gaining immunity.	& $\Psi_{\textrm{age}} = \left( 1 - \lambda_{\textrm{age}} \right) \frac{\ln 2}{90}$	& Compare with above. $1 - \lambda_{\textrm{age}}$ gives the portion of carriers that do not gain immunity, and the remaining gives the rate at which carriers recover.					\\ \hline
+	$\gamma$						& Rate at which infants become young							& $\gamma = \frac{1}{1460}$					& An individual is expected to leave the infant sub-population once, and they are expected to remain within it for four years (ages 0-4).																										\\ \hline
+	$\Gamma$						& Rate at which young become adults.							& $\Gamma = \frac{1}{3650}$					& An individual is expected to leave the young sub-population once, and they are expected to remain within it for ten years (5-14).																												\\ \hline
+	$\alpha$						& Rate at which adults die.										& $\alpha = \frac{1}{16425}$				& An adult is expected to die (from non-disease related causes) once in their adult life ($\geq 15$), and life expectancy is 16 years.																											\\ \hline
+	$\omega$						& Rate at which sick individuals die.							& $\omega = \frac{0.1}{7}$					& 0.1, or $10\%$ of sick individuals are expected to die. Disease lasts for about 1 week.																																					\\ \hline
+	$\rho$							& Rate at which sick individual recover.						& $\rho = \frac{0.9}{7}$					& $90\%$ of sick individuals are expected to recover, and disease lasts for about 1 week.																																					\\ \hline
+	$\eta$							& Rate at which a new individual is born, per adult			& $\eta = \frac{41.1 a}{0.58 \cdot 1000 \cdot 365}$	& 41.1 is the crude birth rate per 1000 individuals and year, and $a$ is the survival rate of individuals surviving their first year. This is divided by the expected number of adults in those 1000 people ($0.58 \cdot 1000$) and the time period (365 days) to find the rate over time and per individual.																																		\\ \hline
+	
+\end{longtable}
 
 %\lstinputlisting[language=matlab, style=matlab_custom]{} % Example code input
 
